@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -40,6 +42,16 @@ class User
      * @ORM\Column(type="boolean")
      */
     private $admin;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Riddle", mappedBy="user_id")
+     */
+    private $riddle_id;
+
+    public function __construct()
+    {
+        $this->riddle_id = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -102,6 +114,37 @@ class User
     public function setAdmin(bool $admin): self
     {
         $this->admin = $admin;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Riddle[]
+     */
+    public function getRiddleId(): Collection
+    {
+        return $this->riddle_id;
+    }
+
+    public function addRiddleId(Riddle $riddleId): self
+    {
+        if (!$this->riddle_id->contains($riddleId)) {
+            $this->riddle_id[] = $riddleId;
+            $riddleId->setUserId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRiddleId(Riddle $riddleId): self
+    {
+        if ($this->riddle_id->contains($riddleId)) {
+            $this->riddle_id->removeElement($riddleId);
+            // set the owning side to null (unless already changed)
+            if ($riddleId->getUserId() === $this) {
+                $riddleId->setUserId(null);
+            }
+        }
 
         return $this;
     }
