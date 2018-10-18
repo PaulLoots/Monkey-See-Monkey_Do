@@ -41,6 +41,11 @@ class Riddle
      */
     private $correct_answer;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="riddles")
+     */
+    private $profile_id;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +107,18 @@ class Riddle
     public function setCorrectAnswer(string $correct_answer): self
     {
         $this->correct_answer = $correct_answer;
+
+        return $this;
+    }
+
+    public function getProfileId(): ?Profile
+    {
+        return $this->profile_id;
+    }
+
+    public function setProfileId(?Profile $profile_id): self
+    {
+        $this->profile_id = $profile_id;
 
         return $this;
     }
