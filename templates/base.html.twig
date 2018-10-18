@@ -16,9 +16,9 @@
     {% block stylesheets %}{% endblock %}
 </head>
 
-<body style="background-color: #2d3436;">
+<body {% block bodyStyling %}style="background-color: #2d3436;"{% endblock %}>
     
-    <main class="container">
+    <main class="container-fluid">
         {% block body %}{% endblock %}
     </main>
 
