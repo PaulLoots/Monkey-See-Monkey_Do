@@ -3,30 +3,6 @@
 {% block title %}Discover{% endblock %}
 
 {% block body %}
-    <div class="container" style="padding-top: 20px;">
-        <div class="row" style="padding-bottom: 20px;">
-            <div class="col-6 col-md-3 order-1"><img class="float-left" src="assets/img/logo1.svg" height="55px"></div>
-            <div class="col-12 d-md-none order-3" style="height: 3vh;"></div>
-            <div class="col-6 col-md-3 order-2 order-md-3"><a class="text-white" href="#" style="color: #dfe6e9;font-size: 25px;"></a>
-                <div class="dropdown show float-right"><button class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button"><img class="rounded-circle" src="assets/img/IMG_2189.jpg" width="40px" height="40px"><small class="d-none d-lg-inline" style="margin-left:10px;margin-right:10px;">Paul</small></button>
-                    <div
-                        class="dropdown-menu dropdown-menu-right show" role="menu" style="background-color: #1c1f21;"><a class="dropdown-item text-white" role="presentation" href="#" id="editDetails" style="background-color: #1c1f21;"><i class="icon-pencil" style="margin-right:20px;"></i>Edit Details</a><a class="dropdown-item text-white" role="presentation"
-                            href="#" style="background-color: #1c1f21;margin-top: 10px;"><i class="icon-logout" style="margin-right:20px;"></i>Log Out</a></div>
-            </div>
-        </div>
-        <div class="col-12 col-md-6 order-3 order-md-2" id="navRow">
-            <div>
-                <div class="row">
-                    <div class="col-4"><a class="text-white d-table mx-auto navItem" href="#" style="color: #dfe6e9;font-size: 25px;"><i class="la la-binoculars d-table mx-auto" style="color: #dfe6e9;font-size: 30px;"></i><p class="d-none d-lg-table" style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 15px;">Discover</p></a></div>
-                    <div
-                        class="col-4"><a class="text-white d-table mx-auto navItem" href="#" style="color: #dfe6e9;font-size: 25px;"><i class="la la-trophy d-table mx-auto" style="color: #dfe6e9;font-size: 30px;"></i><p class="d-none d-lg-table mx-auto" style="font-family: Roboto, sans-serif;font-weight: 400;margin-left: 10px;font-size: 15px;">Leaderboard</p></a></div>
-                <div
-                    class="col-4"><a class="text-white d-table mx-auto navItem" href="#" style="color: #dfe6e9;font-size: 25px;"><i class="la la-user d-table mx-auto" style="color: #dfe6e9;font-size: 30px;"></i><p class="d-none d-lg-table mx-auto" style="font-family: Roboto, sans-serif;font-weight: 400;margin-left: 10px;font-size: 15px;">My Riddles</p></a></div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
     <div class="container" style="margin-top: 10px;">
         <div class="row">
             <div class="col-10 col-sm-8 col-md-6 col-lg-8 col-xl-6 mx-auto">
@@ -82,16 +58,16 @@
                             <div data-bs-parallax-bg="true" style="height: 200px;padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-image: url(assets/img/monkey_pattern.svg);background-position: center;background-size: cover;">
                                 <div class="row" style="width: 100%;margin: 0px;font-family: Roboto, sans-serif;font-weight: normal;">
                                     <div class="col-auto" style="padding-right: 5px;">
-                                        <p style="color: rgb(255,255,255);font-size: 12px;font-weight: 300;">Jan 2018</p>
+                                        <p style="color: rgb(255,255,255);font-size: 12px;font-weight: 300;">{{ riddle.date | date ('d M')}}</p>
                                     </div>
                                     <div class="col-auto float-left" style="max-width: 60%;padding-left: 0px;">
-                                        <p class="text-truncate" style="color: rgb(255,255,255);font-size: 12px;font-weight: 500;">Armand Pretorius</p>
+                                        <p class="text-truncate" style="color: rgb(255,255,255);font-size: 12px;font-weight: 500;">{% for user in users %}<li>{{ user.username|e }}{% if users|length > 0 %}Armand Pretorius{% endif %}{% endfor %}</p>
                                     </div>
                                     <div class="col-auto ml-auto" style="padding-right: 15px;"><img src="assets/img/monkey-4.svg" height="40px"></div>
                                 </div>
                                 <div class="row" style="width: 100%;margin: 0px;">
                                     <div class="col-12" style="height: 85px;padding-top: 15px;padding-bottom: 20px;padding-left: 5px;">
-                                        <h3 class="text-nowrap text-truncate overflow-visible" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;font-weight: 600;font-size: 28px;max-height: 38px;">There are two monkeys oon a br</h3>
+                                        <h3 class="text-nowrap text-truncate overflow-visible" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;font-weight: 600;font-size: 28px;max-height: 38px;">{{ riddle.question }}</h3>
                                     </div>
                                 </div>
                                 <div class="row" style="width: 100%;margin: 0px;">

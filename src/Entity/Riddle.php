@@ -17,11 +17,6 @@ class Riddle
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="riddle_id")
-     */
-    private $user_id;
-
-    /**
      * @ORM\Column(type="text")
      */
     private $question;
@@ -41,21 +36,17 @@ class Riddle
      */
     private $correct_answer;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="riddles")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $profile_id;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUserId(): ?User
-    {
-        return $this->user_id;
-    }
-
-    public function setUserId(?User $user_id): self
-    {
-        $this->user_id = $user_id;
-
-        return $this;
     }
 
     public function getQuestion(): ?string
@@ -102,6 +93,18 @@ class Riddle
     public function setCorrectAnswer(string $correct_answer): self
     {
         $this->correct_answer = $correct_answer;
+
+        return $this;
+    }
+
+    public function getProfileId(): ?Profile
+    {
+        return $this->profile_id;
+    }
+
+    public function setProfileId(?Profile $profile_id): self
+    {
+        $this->profile_id = $profile_id;
 
         return $this;
     }

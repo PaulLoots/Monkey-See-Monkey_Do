@@ -6,28 +6,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>{% block title %}Hi{% endblock %}</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/fonts/line-awesome.min.css">
-    <link rel="stylesheet" href="assets/fonts/material-icons.min.css">
-    <link rel="stylesheet" href="assets/fonts/simple-line-icons.min.css">
+    <link rel="stylesheet" href="../assets/fonts/line-awesome.min.css">
+    <link rel="stylesheet" href="../assets/fonts/material-icons.min.css">
+    <link rel="stylesheet" href="../assets/fonts/simple-line-icons.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}<link rel="stylesheet" href="../assets/css/styles.css">{% endblock %}
 </head>
 
 <body style="background-color: #2d3436;">
     
     <main class="container">
+        {% block nav %}
+        <div class="container" style="padding-top: 20px;">
+        <div class="row" style="padding-bottom: 20px;">
+            <div class="col-6 col-md-3 order-1"><img class="float-left" src="assets/img/logo1.svg" height="55px"></div>
+            <div class="col-12 d-md-none order-3" style="height: 3vh;"></div>
+            <div class="col-6 col-md-3 order-2 order-md-3"><a class="text-white" href="#" style="color: #dfe6e9;font-size: 25px;"></a>
+                <div class="dropdown show float-right"><button class="btn btn-dark dropdown-toggle" data-toggle="dropdown" aria-expanded="true" type="button"><img class="rounded-circle" src="assets/img/IMG_2189.jpg" width="40px" height="40px"><small class="d-none d-lg-inline" style="margin-left:10px;margin-right:10px;">Paul</small></button>
+                    <div
+                        class="dropdown-menu dropdown-menu-right show" role="menu" style="background-color: #1c1f21;"><a class="dropdown-item text-white" role="presentation" href="#" id="editDetails" style="background-color: #1c1f21;"><i class="icon-pencil" style="margin-right:20px;"></i>Edit Details</a><a class="dropdown-item text-white" role="presentation"
+                            href="#" style="background-color: #1c1f21;margin-top: 10px;"><i class="icon-logout" style="margin-right:20px;"></i>Log Out</a></div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 order-3 order-md-2" id="navRow">
+            <div>
+                <div class="row">
+                    <div class="col-4"><a class="text-white d-table mx-auto navItem" href="#" style="color: #dfe6e9;font-size: 25px;"><i class="la la-binoculars d-table mx-auto" style="color: #dfe6e9;font-size: 30px;"></i><p class="d-none d-lg-table" style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 15px;">Discover</p></a></div>
+                    <div
+                        class="col-4"><a class="text-white d-table mx-auto navItem" href="#" style="color: #dfe6e9;font-size: 25px;"><i class="la la-trophy d-table mx-auto" style="color: #dfe6e9;font-size: 30px;"></i><p class="d-none d-lg-table mx-auto" style="font-family: Roboto, sans-serif;font-weight: 400;margin-left: 10px;font-size: 15px;">Leaderboard</p></a></div>
+                <div
+                    class="col-4"><a class="text-white d-table mx-auto navItem" href="#" style="color: #dfe6e9;font-size: 25px;"><i class="la la-user d-table mx-auto" style="color: #dfe6e9;font-size: 30px;"></i><p class="d-none d-lg-table mx-auto" style="font-family: Roboto, sans-serif;font-weight: 400;margin-left: 10px;font-size: 15px;">My Riddles</p></a></div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+        {% endblock %}
         {% block body %}{% endblock %}
     </main>
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/animation.js"></script>
-    <script src="assets/js/bs-animation.js"></script>
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/animation.js"></script>
+    <script src="../assets/js/bs-animation.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
-    <script src="assets/js/myRiddles.js"></script>
+    <script src="../assets/js/myRiddles.js"></script>
     {% block javascripts %}{% endblock %}
 </body>
 

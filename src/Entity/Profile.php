@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProfileRepository")
  */
-class User
+class Profile
 {
     /**
      * @ORM\Id()
@@ -44,13 +44,13 @@ class User
     private $admin;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Riddle", mappedBy="user_id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Riddle", mappedBy="profile_id")
      */
-    private $riddle_id;
+    private $riddles;
 
     public function __construct()
     {
-        $this->riddle_id = new ArrayCollection();
+        $this->riddles = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -121,28 +121,28 @@ class User
     /**
      * @return Collection|Riddle[]
      */
-    public function getRiddleId(): Collection
+    public function getRiddles(): Collection
     {
-        return $this->riddle_id;
+        return $this->riddles;
     }
 
-    public function addRiddleId(Riddle $riddleId): self
+    public function addRiddle(Riddle $riddle): self
     {
-        if (!$this->riddle_id->contains($riddleId)) {
-            $this->riddle_id[] = $riddleId;
-            $riddleId->setUserId($this);
+        if (!$this->riddles->contains($riddle)) {
+            $this->riddles[] = $riddle;
+            $riddle->setProfileId($this);
         }
 
         return $this;
     }
 
-    public function removeRiddleId(Riddle $riddleId): self
+    public function removeRiddle(Riddle $riddle): self
     {
-        if ($this->riddle_id->contains($riddleId)) {
-            $this->riddle_id->removeElement($riddleId);
+        if ($this->riddles->contains($riddle)) {
+            $this->riddles->removeElement($riddle);
             // set the owning side to null (unless already changed)
-            if ($riddleId->getUserId() === $this) {
-                $riddleId->setUserId(null);
+            if ($riddle->getProfileId() === $this) {
+                $riddle->setProfileId(null);
             }
         }
 
