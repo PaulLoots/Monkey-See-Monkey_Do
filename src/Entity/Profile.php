@@ -48,9 +48,15 @@ class Profile
      */
     private $riddles;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="profile_id")
+     */
+    private $answers;
+
     public function __construct()
     {
         $this->riddles = new ArrayCollection();
+        $this->answers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -143,6 +149,37 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($riddle->getProfileId() === $this) {
                 $riddle->setProfileId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Answer[]
+     */
+    public function getAnswers(): Collection
+    {
+        return $this->answers;
+    }
+
+    public function addAnswer(Answer $answer): self
+    {
+        if (!$this->answers->contains($answer)) {
+            $this->answers[] = $answer;
+            $answer->setProfileId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Answer $answer): self
+    {
+        if ($this->answers->contains($answer)) {
+            $this->answers->removeElement($answer);
+            // set the owning side to null (unless already changed)
+            if ($answer->getProfileId() === $this) {
+                $answer->setProfileId(null);
             }
         }
 

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -45,6 +47,16 @@ class Riddle
      * @ORM\ManyToOne(targetEntity="App\Entity\Profile", inversedBy="riddles")
      */
     private $profile_id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="riddle_id")
+     */
+    private $answers;
+
+    public function __construct()
+    {
+        $this->answers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,6 +131,37 @@ class Riddle
     public function setProfileId(?Profile $profile_id): self
     {
         $this->profile_id = $profile_id;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Answer[]
+     */
+    public function getAnswers(): Collection
+    {
+        return $this->answers;
+    }
+
+    public function addAnswer(Answer $answer): self
+    {
+        if (!$this->answers->contains($answer)) {
+            $this->answers[] = $answer;
+            $answer->setRiddleId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAnswer(Answer $answer): self
+    {
+        if ($this->answers->contains($answer)) {
+            $this->answers->removeElement($answer);
+            // set the owning side to null (unless already changed)
+            if ($answer->getRiddleId() === $this) {
+                $answer->setRiddleId(null);
+            }
+        }
 
         return $this;
     }
