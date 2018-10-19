@@ -1,0 +1,138 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Login{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="assets/css/styles_2.css">{% endblock %}
+
+{% block bodyStyling %}style="background-color: #2d3436;background-image:
+url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 col-lg-6 col-xl-8 d-lg-block infoBlock" style="height: 100vh;">
+            <div class="row d-none d-lg-block" style="margin-top: 20vh;">
+                <div class="col" style="text-align:center;"><img src="assets/img/logo1.svg" style="height: 110px;"></div>
+            </div>
+            <div class="row d-none d-lg-block" style="padding-top: 10vh;margin-bottom: 40px;">
+                <div class="col-10 offset-1">
+                    <p style="color: rgb(255,255,255);font-family: Roboto, sans-serif;">Welcome to Monkey See
+                        Monkey Do!&nbsp;Welcome to Monkey See Monkey Do!&nbsp;Welcome to Monkey See Monkey
+                        Do!&nbsp;Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey Do!&nbsp;Welcome to
+                        Monkey See Monkey Do!&nbsp;Welcome
+                        to Monkey See Monkey Do! Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey
+                        Do!Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey Do!<br><br></p>
+                    <p style="color: rgb(255,255,255);font-family: Roboto, sans-serif;">Welcome to Monkey See
+                        Monkey Do!&nbsp;Welcome to Monkey See Monkey Do!&nbsp;Welcome to Monkey See Monkey
+                        Do!&nbsp;Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey Do!&nbsp;Welcome to
+                        Monkey See Monkey Do!&nbsp;Welcome
+                        to Monkey See Monkey Do! Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey
+                        Do!Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey Do!<br><br></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-8 col-xl-4 offset-sm-2 offset-md-3 offset-lg-2 offset-xl-4"
+                    style="margin-bottom: 30px;">
+                    <div class="collapseContentBlock" style="transition:0.3s;"><a class="btn btn-primary btn-block d-none d-lg-block collapse-button"
+                            data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" role="button" href="#collapse-1"
+                            id="collapseToBottom" style="background-color: #e17055;border: none;border-radius: 10px;height: 60px;font-size: 24px;font-family: Quicksand, sans-serif;font-weight: 500;padding: 8px 16px;">Create
+                            Account</a>
+                        <div class="collapse collapseContentBlock" id="collapse-1" style="padding-top: 25px;transition:0.3s;">
+                            <div class="row">
+                                <div class="col d-block d-lg-none">
+                                    <h2 style="font-family: Quicksand, sans-serif;text-align: center;color: rgb(255,255,255);font-weight: 500;">Create
+                                        Account</h2>
+                                </div>
+                            </div>
+                            
+                                
+
+                                {{ form_start(form, {'attr': {'name':'CreateAccountForm', 'novalidate': 'novalidate'}}) }}
+
+                                    <div class="form-group" style="margin-bottom: 0px;">
+                                        <!--Profile Image Upload-->
+                                        <div class="customCodeProfileImage">
+                                            <label class="filebutton">
+                                                <i style="margin:35%;font-size:40px;color:white;" class="la la-user-plus"></i>
+                                                <span>
+                                                    <input accept="image/*" type="file" id="myfile" name="editImage">
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group inputRoundedBlock" style="height: 50px;">
+                                        <i class="la la-user float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
+                                        {{ form_widget(form.name, {'attr': {'class':'form-control', 'placeholder':'Name', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                                    </div>
+                                    <div class="form-group inputRoundedBlock" style="height: 50px;">
+                                        <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
+                                        {{ form_widget(form.email, {'attr': {'class':'form-control', 'placeholder':'Email', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                                    </div>
+                                    <div class="form-group inputRoundedBlock" style="height: 50px;">
+                                        <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
+                                        {{ form_widget(form.password, {'attr': {'class':'form-control', 'placeholder':'Password', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                                    </div>
+                                    <div style="margin-top: 3vh;">
+                                        {{ form_widget(form.submitSignUp, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
+                                    </div>
+                                    <div style="margin-top: 3vh;"><a class="btn btn-primary btn-block btn-lg d-block d-lg-none collapse-button changeToLogin"
+                                        data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" role="button"
+                                        href="#collapse-1" style="border: none;border-radius: 15px;background-color: rgba(255,255,255,0);">Login</a>
+                                        <div class="collapse d-none" id="collapse-1"></div>
+                                    </div>
+
+
+                                
+                                {{ form_end(form) }}
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6 col-xl-4 loginBlock" style="position: fixed;right: 0px;height: 100vh;background-color: #e17055;padding-top: 0;">
+            <div class="loginContent">
+                <div class="d-block d-lg-none" style="text-align:center;padding-bottom: 30px;padding-top: 25px;color: rgb(255,255,255);"><img
+                        src="assets/img/logo1.svg" style="height: 80px;"></div>
+                <div class="d-none d-lg-block" style="height: 30vh;"></div>
+                <div style="height: 50vh;">
+                    <div class="row">
+                        <div class="col">
+                            <h2 style="font-family: Quicksand, sans-serif;text-align: center;color: rgb(255,255,255);font-weight: 500;">Login</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-sm-8 col-md-6 col-lg-10 col-xl-8 offset-sm-2 offset-md-3 offset-lg-1 offset-xl-2">
+                            <form>
+                                <div class="form-group inputRoundedBlock" style="height: 50px;"><i class="la la-envelope float-left"
+                                        style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i><input class="form-control"
+                                        type="email" name="loginEmail" required="" placeholder="Email" style="width: 83%;border: none;font-family: Roboto, sans-serif;height: 50px;"></div>
+                                <div class="form-group inputRoundedBlock" style="height: 50px;"><i class="la la-lock float-left"
+                                        style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i><input class="form-control"
+                                        type="password" name="loginPassword" placeholder="Password" style="width: 83%;font-family: Roboto, sans-serif;border: none;height: 50px;"></div>
+                                <a class="btn btn-primary btn-block btn-lg" role="button" href="#" style="text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;">Login</a>
+                                <div style="margin-top: 3vh;"><a class="btn btn-primary btn-block btn-lg d-block d-lg-none collapse-button createAccount"
+                                        data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" role="button"
+                                        href="#collapse-1" style="border: none;border-radius: 15px;background-color: rgba(255,255,255,0);">Create
+                                        Account</a>
+                                    <div class="collapse d-none" id="collapse-1"></div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+<script src="assets/js/collapse-handle-login.js"></script>
+{% endblock %}
