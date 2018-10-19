@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,7 +14,7 @@ class Riddle
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -25,6 +26,7 @@ class Riddle
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $question;
 
@@ -40,6 +42,7 @@ class Riddle
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $correct_answer;
 

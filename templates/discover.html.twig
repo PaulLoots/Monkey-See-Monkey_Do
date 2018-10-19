@@ -61,7 +61,7 @@
                                         <p style="color: rgb(255,255,255);font-size: 12px;font-weight: 300;">{{ riddle.date | date ('d M')}}</p>
                                     </div>
                                     <div class="col-auto float-left" style="max-width: 60%;padding-left: 0px;">
-                                        <p class="text-truncate" style="color: rgb(255,255,255);font-size: 12px;font-weight: 500;">{% for profile in profiles %}{% if profile.id == riddle.id %}{{ profile.name }}{% endif %}{% endfor %}</p>
+                                        <p class="text-truncate" style="color: rgb(255,255,255);font-size: 12px;font-weight: 500;">{% for profile in profiles %}{% if profile.id == riddle.profileId.id %}{{ profile.name }}{% endif %}{% endfor %}</p>
                                     </div>
                                     <div class="col-auto ml-auto" style="padding-right: 15px;"><img src="assets/img/monkey-4.svg" height="40px"></div>
                                 </div>

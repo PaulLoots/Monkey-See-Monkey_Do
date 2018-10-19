@@ -36,6 +36,10 @@ $("#chooseColour").click(function(){
 $(".colourItem").click(function(){
     $(".colourItem").removeClass("selectedColour");
     $(this).addClass("selectedColour");
+    
+    var currentColour = $(this).attr("value");
+    $('#riddleSelectedColourBtn').css('background-color', currentColour);
+    $('#create_riddle_colour').val(currentColour);
 });
 
 
