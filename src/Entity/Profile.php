@@ -53,10 +53,16 @@ class Profile
      */
     private $answers;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ProfileImage", mappedBy="profile_id")
+     */
+    private $profileImages;
+
     public function __construct()
     {
         $this->riddles = new ArrayCollection();
         $this->answers = new ArrayCollection();
+        $this->profileImages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -180,6 +186,37 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($answer->getProfileId() === $this) {
                 $answer->setProfileId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ProfileImage[]
+     */
+    public function getProfileImages(): Collection
+    {
+        return $this->profileImages;
+    }
+
+    public function addProfileImage(ProfileImage $profileImage): self
+    {
+        if (!$this->profileImages->contains($profileImage)) {
+            $this->profileImages[] = $profileImage;
+            $profileImage->setProfileId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProfileImage(ProfileImage $profileImage): self
+    {
+        if ($this->profileImages->contains($profileImage)) {
+            $this->profileImages->removeElement($profileImage);
+            // set the owning side to null (unless already changed)
+            if ($profileImage->getProfileId() === $this) {
+                $profileImage->setProfileId(null);
             }
         }
 
