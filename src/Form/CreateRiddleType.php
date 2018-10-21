@@ -33,7 +33,13 @@ class CreateRiddleType extends AbstractType
             ->add('correct_answer', TextareaType::class)
             ->add('date', DateTimeType::class)
             ->add('colour', HiddenType::class)
-            //->add('icon', HiddenType::class)
+            ->add('icon', HiddenType::class)
+            ->add('likes', HiddenType::class, array(
+                'data' => 0
+            ))
+            ->add('dislikes', HiddenType::class, array(
+                'data' => 0
+            ))
             ->add('submitCreateRiddle', SubmitType::class, ['label' => 'Create'])
         ;
     }

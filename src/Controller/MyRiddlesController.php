@@ -39,7 +39,7 @@ class MyRiddlesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
+           
             $createRiddle = $form->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($createRiddle);

@@ -56,6 +56,21 @@ class Riddle
      */
     private $answers;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $likes;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $dislikes;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $icon;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -165,6 +180,42 @@ class Riddle
                 $answer->setRiddleId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(?int $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function getDislikes(): ?int
+    {
+        return $this->dislikes;
+    }
+
+    public function setDislikes(?int $dislikes): self
+    {
+        $this->dislikes = $dislikes;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }
