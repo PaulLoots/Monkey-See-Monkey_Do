@@ -49,7 +49,7 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                             
                                 
 
-                                {{ form_start(form, {'attr': {'name':'CreateAccountForm', 'novalidate': 'novalidate'}}) }}
+                                {{ form_start(SignUpform, {'attr': {'name':'CreateAccountForm', 'novalidate': 'novalidate'}}) }}
 
                                     <div class="form-group" style="margin-bottom: 0px;">
                                         <!--Profile Image Upload-->
@@ -65,18 +65,18 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
 
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
                                         <i class="la la-user float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
-                                        {{ form_widget(form.name, {'attr': {'class':'form-control', 'placeholder':'Name', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                                        {{ form_widget(SignUpform.name, {'attr': {'class':'form-control', 'placeholder':'Name', 'style':'height: 50px;width: 84%;border: none;'}}) }}
                                     </div>
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
                                         <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
-                                        {{ form_widget(form.email, {'attr': {'class':'form-control', 'placeholder':'Email', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                                        {{ form_widget(SignUpform.email, {'attr': {'class':'form-control', 'placeholder':'Email', 'style':'height: 50px;width: 84%;border: none;'}}) }}
                                     </div>
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
-                                        <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
-                                        {{ form_widget(form.password, {'attr': {'class':'form-control', 'placeholder':'Password', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                                        <i class="la la-lock float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
+                                        {{ form_widget(SignUpform.password, {'attr': {'class':'form-control', 'placeholder':'Password', 'style':'height: 50px;width: 84%;border: none;'}}) }}
                                     </div>
                                     <div style="margin-top: 3vh;">
-                                        {{ form_widget(form.submitSignUp, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
+                                        {{ form_widget(SignUpform.submitSignUp, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
                                     </div>
                                     <div style="margin-top: 3vh;"><a class="btn btn-primary btn-block btn-lg d-block d-lg-none collapse-button changeToLogin"
                                         data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" role="button"
@@ -86,7 +86,7 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
 
 
                                 
-                                {{ form_end(form) }}
+                                {{ form_end(SignUpform) }}
 
                         </div>
                     </div>
@@ -106,21 +106,31 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                     </div>
                     <div class="row">
                         <div class="col-12 col-sm-8 col-md-6 col-lg-10 col-xl-8 offset-sm-2 offset-md-3 offset-lg-1 offset-xl-2">
-                            <form>
-                                <div class="form-group inputRoundedBlock" style="height: 50px;"><i class="la la-envelope float-left"
-                                        style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i><input class="form-control"
-                                        type="email" name="loginEmail" required="" placeholder="Email" style="width: 83%;border: none;font-family: Roboto, sans-serif;height: 50px;"></div>
-                                <div class="form-group inputRoundedBlock" style="height: 50px;"><i class="la la-lock float-left"
-                                        style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i><input class="form-control"
-                                        type="password" name="loginPassword" placeholder="Password" style="width: 83%;font-family: Roboto, sans-serif;border: none;height: 50px;"></div>
-                                <a class="btn btn-primary btn-block btn-lg" role="button" href="#" style="text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;">Login</a>
-                                <div style="margin-top: 3vh;"><a class="btn btn-primary btn-block btn-lg d-block d-lg-none collapse-button createAccount"
+
+                            {{ form_start(loginform, {'attr': {'name':'CreateAccountForm', 'novalidate': 'novalidate'}}) }}
+
+                                   
+                                    <div class="form-group inputRoundedBlock" style="height: 50px;">
+                                        <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
+                                        {{ form_widget(loginform.email, {'attr': {'class':'form-control', 'placeholder':'Email', 'style':'width: 83%;border: none;font-family: Roboto, sans-serif;height: 50px;'}}) }}
+                                    </div>
+                                    <div class="form-group inputRoundedBlock" style="height: 50px;">
+                                        <i class="la la-lock float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
+                                        {{ form_widget(loginform.password, {'attr': {'class':'form-control', 'placeholder':'Password', 'style':'width: 83%;font-family: Roboto, sans-serif;border: none;height: 50px;'}}) }}
+                                    </div>
+                                    <div style="margin-top: 3vh;">
+                                        {{ form_widget(loginform.submitLogin, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
+                                    </div>
+                                    <div style="margin-top: 3vh;"><a class="btn btn-primary btn-block btn-lg d-block d-lg-none collapse-button createAccount"
                                         data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" role="button"
                                         href="#collapse-1" style="border: none;border-radius: 15px;background-color: rgba(255,255,255,0);">Create
                                         Account</a>
-                                    <div class="collapse d-none" id="collapse-1"></div>
-                                </div>
-                            </form>
+                                        <div class="collapse d-none" id="collapse-1"></div>
+                                    </div>
+
+
+                                
+                                {{ form_end(loginform) }}
 
                         </div>
                     </div>
