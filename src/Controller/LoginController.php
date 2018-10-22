@@ -41,7 +41,7 @@ class LoginController extends AbstractController
         $loginform->handleRequest($request);
         
         if ($loginform->isSubmitted() && $loginform->isValid()) {
-            // $form->getData() holds the submitted values
+            // $loginform->getData() holds the submitted values
             $loginProfile = $loginform->getData();
 
             $entityManager = $this->getDoctrine()->getManager();
@@ -58,42 +58,6 @@ class LoginController extends AbstractController
 
         return $this->render($view, $model);
     }
-
-    // /**
-    // * @Route("/login", name="login_view")
-    // */
-    // public function loginProfile(Request $request)
-    // {
-
-    //     $loginProfile = new User();
-    //     $loginform = $this->createForm(LoginType::class, $loginProfile);
-    //     $loginform->handleRequest($request);
-
-        
-    //     if ($loginform->isSubmitted() && $loginform->isValid()) {
-    //         // $form->getData() holds the submitted values
-    //         $loginProfile = $loginform->getData();
-
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->persist($loginProfile);
-    //    //     $entityManager->flush();
-
-
-    //    //SHould redirect to DISCOVER PAGE!!!!!
-    //         return $this->redirectToRoute('profile_success');
-    //     }
-
-
-    //     $view = 'login.html.twig';
-    //     $model = array('loginform' => $loginform->createView());
-
-    //     return $this->render($view, $model);
-    // }
-
-
-
-
-
 
     //test signup
     /**
