@@ -13,17 +13,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
     <link rel="stylesheet" href="../assets/css/styles.css">
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}<link rel="stylesheet" href="../assets/css/styles_2.css">{% endblock %}
 </head>
 
 <body {% block bodyStyling %}style="background-color: #2d3436;"{% endblock %}>
-    
+
+    <main class="container-fluid">
     {% block navigation %}
-
-    {# Navigation Bar #}
-
-        {# modal for edit Profile (button class=showModal) 
-        <div class="modal fade" role="dialog" tabindex="-1" id="profileModal">
+    <div class="modal fade" role="dialog" tabindex="-1" id="profileModal">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: #2d3436;color: rgb(251,251,251);border:none !important;">
@@ -64,11 +61,10 @@
                     </div>
                 </div>
             </div>
-        </div>#}
-
+        </div>
+    </div><button class="btn btn-primary showModal" type="button">Edit Profile</button>
     {% endblock %}
-
-    <main class="container-fluid">
+    
         {% block body %}{% endblock %}
     </main>
 

@@ -43,8 +43,7 @@ class LoginController extends AbstractController
 
             $session->set('profile', $profile);
 
-       //SHould redirect to DISCOVER PAGE!!!!!
-            return $this->redirectToRoute('profile_success');
+            return $this->redirectToRoute('discover_view');
         }
 
         $loginProfile = new Profile();
