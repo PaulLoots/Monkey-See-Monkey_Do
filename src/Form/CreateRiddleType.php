@@ -3,6 +3,7 @@
 namespace App\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Doctrine\ORM\EntityRepository;
 
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -19,13 +20,21 @@ class CreateRiddleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $session = new Session();
-        $profile = $session->get('profile');
+
         $builder
             //->add('profile_id', HiddenType::class)
             ->add('profileId', EntityType::class, array(
                 // looks for choices from this entity
                 'class' => Profile::class,
+                'query_builder' => function (EntityRepository $er) {
+                    $session = new Session(); 
+                    $profile = $session->get('profile');
+                    $profileID = $profile->getId();
+                    return $er->createQueryBuilder('u')
+                        //->from('Profile', 'u')
+                        ->where("u.id = $profileID");
+                        //->orderBy('u.id', 'ASC');
+                },
                 'choice_label' => 'id'
             ))
             //->add('profileId', HiddenType::class, $profile)

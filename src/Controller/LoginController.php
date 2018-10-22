@@ -10,7 +10,6 @@ use App\Entity\Profile;
 use App\Form\UserProfileType;
 use App\Form\LoginType;
 
-
 class LoginController extends AbstractController
 {
     /**
@@ -18,11 +17,12 @@ class LoginController extends AbstractController
     */
     public function newProfile(Request $request)
     {
+        $session = new Session();
+        $session->start();
 
         $userProfile = new Profile();
         $SignUpform = $this->createForm(UserProfileType::class, $userProfile);
         $SignUpform->handleRequest($request);
-
         
         if ($SignUpform->isSubmitted() && $SignUpform->isValid()) {
             // $form->getData() holds the submitted values
@@ -32,7 +32,6 @@ class LoginController extends AbstractController
             $entityManager->persist($userProfile);
             $entityManager->flush();
 
-
        //SHould redirect to DISCOVER PAGE!!!!!
             return $this->redirectToRoute('profile_success');
         }
@@ -40,7 +39,6 @@ class LoginController extends AbstractController
         $loginProfile = new Profile();
         $loginform = $this->createForm(LoginType::class, $loginProfile);
         $loginform->handleRequest($request);
-
         
         if ($loginform->isSubmitted() && $loginform->isValid()) {
             // $form->getData() holds the submitted values
@@ -49,7 +47,6 @@ class LoginController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($loginProfile);
        //     $entityManager->flush();
-
 
        //SHould redirect to DISCOVER PAGE!!!!!
             return $this->redirectToRoute('profile_success');
