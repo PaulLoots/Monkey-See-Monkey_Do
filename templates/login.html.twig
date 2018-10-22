@@ -57,11 +57,13 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                                             <label class="filebutton">
                                                 <i style="margin:35%;font-size:40px;color:white;" class="la la-user-plus"></i>
                                                 <span>
-                                                    <input accept="image/*" type="file" id="myfile" name="editImage">
+                                                {{ form_widget(SignUpform.image_path, {'attr': {'accept':'image/*', 'type':'file', 'id':'myfile', 'name':'editImage'}}) }}
                                                 </span>
                                             </label>
                                         </div>
                                     </div>
+
+
 
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
                                         <i class="la la-user float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
