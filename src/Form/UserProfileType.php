@@ -8,6 +8,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class UserProfileType extends AbstractType
@@ -19,6 +20,9 @@ class UserProfileType extends AbstractType
             ->add('email', EmailType::class)
             ->add('password', PasswordType::class)
             ->add('submitSignUp', SubmitType::class, ['label' => 'Create'])
+            ->add('riddling_score', HiddenType::class, array(
+                'data' => 0
+            ))
         ;
     }
 }

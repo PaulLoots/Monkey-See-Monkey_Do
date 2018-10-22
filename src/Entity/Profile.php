@@ -39,7 +39,7 @@ class Profile
     private $riddling_score;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $admin;
 

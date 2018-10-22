@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Entity\User;
+use App\Entity\Profile;
 use App\Form\UserProfileType;
 use App\Form\LoginType;
 
@@ -19,7 +19,7 @@ class LoginController extends AbstractController
     public function newProfile(Request $request)
     {
 
-        $userProfile = new User();
+        $userProfile = new Profile();
         $SignUpform = $this->createForm(UserProfileType::class, $userProfile);
         $SignUpform->handleRequest($request);
 
@@ -30,14 +30,14 @@ class LoginController extends AbstractController
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userProfile);
-       //     $entityManager->flush();
+            $entityManager->flush();
 
 
        //SHould redirect to DISCOVER PAGE!!!!!
             return $this->redirectToRoute('profile_success');
         }
 
-        $loginProfile = new User();
+        $loginProfile = new Profile();
         $loginform = $this->createForm(LoginType::class, $loginProfile);
         $loginform->handleRequest($request);
 
