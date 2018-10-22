@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,7 +14,7 @@ class Riddle
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -25,6 +26,7 @@ class Riddle
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $question;
 
@@ -40,6 +42,7 @@ class Riddle
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank()
      */
     private $correct_answer;
 
@@ -52,6 +55,21 @@ class Riddle
      * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="riddle_id")
      */
     private $answers;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $likes;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $dislikes;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $icon;
 
     public function __construct()
     {
@@ -162,6 +180,42 @@ class Riddle
                 $answer->setRiddleId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(?int $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function getDislikes(): ?int
+    {
+        return $this->dislikes;
+    }
+
+    public function setDislikes(?int $dislikes): self
+    {
+        $this->dislikes = $dislikes;
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }
