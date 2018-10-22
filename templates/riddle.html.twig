@@ -2,6 +2,8 @@
 
 {% block title %}Riddle{% endblock %}
 
+{% block bodyStyling %}style="background-color:{{ riddle.colour }};background-image: url(../assets/img/{{ riddle.icon }}_pattern.svg);background-position: center;background-size: 600px;"{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="row backBlock" style="height: 60px;">
@@ -9,7 +11,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col"><img class="d-table mx-auto" src="assets/img/monkey-4.svg" height="80px"></div>
+        <div class="col"><img class="d-table mx-auto" src="../assets/img/{{ riddle.icon }}.svg" height="80px"></div>
     </div>
     <div class="row" style="padding-top: 2vh;">
         <div class="col">
@@ -20,14 +22,11 @@
     <div class="row" style="padding-top: 2vh;">
         <div class="col-auto mx-auto">
             <div class="row" style="margin: 0px;">
-                <div class="col-auto" style="padding-right: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">album</i>
-                    <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">81%</p>
-                </div>
                 <div class="col-auto" style="padding-right: 5px;padding-left: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">thumb_up</i>
-                    <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">67</p>
+                    <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.likes }}</p>
                 </div>
                 <div class="col-auto" style="padding-right: 5px;padding-left: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">thumb_down</i>
-                    <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">9</p>
+                    <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.dislikes }}</p>
                 </div>
                 <div class="col-auto" style="padding-right: 5px;padding-left: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">comment</i>
                     <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">12</p>
@@ -42,14 +41,19 @@
             </div>
         </div>
     </div>
+    {{ form_start(form, {'attr': {'name':'RiddleAnswerForm', 'novalidate': 'novalidate'}}) }}
     <div class="row" style="width: 100%;">
         <div class="col-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3 commentBox sitckyB" style="padding-left: 0px;padding-right: 0px;background-color: rgba(45,52,54,0.75);">
             <div class="row" style="width: 100%;margin-left: 0;">
                 <div class="col-12 col-sm-10 mx-auto sendTxtCol" style="margin-top: 12px;padding-right: 0px;padding-left: 0px;">
-                    <div class="answerTxtBox" style="width: 95%;margin-bottom: 10px;margin-left: 2.5%;background-color: #ffffff;"><i class="la la-comment" style="font-size: 18px;margin-left: 15px;"></i><input type="text" class="answerTxt" style="height: 50px;padding-left: 15px;padding-right: 15px;width: 85%;"></div>
+                    <div class="answerTxtBox" style="width: 95%;margin-bottom: 10px;margin-left: 2.5%;background-color: #ffffff;"><i class="la la-comment" style="font-size: 18px;margin-left: 15px;"></i>
+                    {{ form_widget(form.answerTxt, {'attr': {'class':'answerTxt', 'placeholder':'Enter Answer Here', 'style':'height: 50px;padding-left: 15px;padding-right: 15px;width: 85%;'}}) }}
+                    </div>
                 </div>
-                <div class="col-12 col-sm-2 sendBtnCol thumbsHover" style="margin-bottom: 10px;"><a class="btn btn-primary btn-block btn-lg answerBtn" role="button" href="riddle_answers.html" style="height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;padding-top: 10px;background-color: #252525;">Answer</a></div>
+                <div class="col-12 col-sm-2 sendBtnCol thumbsHover" style="margin-bottom: 10px;">{{ form_widget(form.submitAnswerRiddle, {'attr': {'class':'btn btn-primary btn-block btn-lg answerBtn', 'style':'height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;padding-top: 10px;background-color: #252525;'}}) }}
+                </div>
             </div>
         </div>
     </div>
+    {{ form_end(form) }}
 {% endblock %}
