@@ -2,6 +2,155 @@
 
 {% block title %}Answers{% endblock %}
 
-{% block body %}
+{% block bodyStyling %}style="background-image: url(../assets/img/{{ riddle.icon }}_pattern.svg);background-position: center;background-size: 600px;"{% endblock %}
 
+{% block body %}
+<div class="container" style="padding-right: 0;padding-left: 0;">
+        <div class="row">
+            <div class="col-12 col-md-5 col-xl-4" id="sidebar">
+                <div class="container">
+                    <div class="row backBlock" style="height: 60px;">
+                        <div class="col-2 thumbsHover" style="margin: 0;padding-top: 16px;padding-left: 25px;"><a href="/discover"><i class="la la-chevron-circle-left d-table" style="font-size: 36px;color: #dfe6e9;margin: auto;"></i></a></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col" style="padding: 15px;">
+                        <div class="row">
+                            <div class="col"><img class="d-table mx-auto" src="../assets/img/{{ riddle.icon }}.svg" height="80px"></div>
+                        </div>
+                        <div class="row" style="padding-top: 2vh;">
+                            <div class="col">
+                                <h5 class="text-center text-light" style="font-family: Roboto, sans-serif;">{{ profile.name }}</h5>
+                                <h6 class="text-center text-light" style="font-family: Roboto, sans-serif;font-weight: 300;">{{ riddle.date | date ('d M')}}</h6>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12" style="margin-top: 10px;">
+                                <div class="row" style="margin-left: 0;margin-right: 0;">
+                                    <div class="col-12 riddleStateCard" style="padding: 0px; border-color: {{ riddle.colour }};">
+                                        <div data-bs-parallax-bg="true" style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
+                                            <div class="row" style="width: 100%;margin: 0px;">
+                                                <div class="col-12" style="padding-top: 15px;padding-bottom: 20px;padding-left: 10px;padding-right: 10px;">
+                                                    <h4 class="text-center text-white riddleTextScroll" style="font-family: Quicksand, sans-serif;font-size: 20px;max-height: 265px;">{{ riddle.question }}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="filterBg riddleStateCard" style="padding-bottom: 1px;margin-top: 20px;"><a class="btn btn-outline-link btn-block btn-sm thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-A" role="button" href="#collapse-A" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;">Answer<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
+                                    <div
+                                        class="collapse" id="collapse-A">
+                                        <div class="col" style="padding: 0px;">
+                                            <div data-bs-parallax-bg="true" style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
+                                                <div class="row" style="width: 100%;margin: 0px;">
+                                                    <div class="col-12" style="padding-top: 15px;padding-bottom: 20px;padding-left: 15px;padding-right: 20px;">
+                                                        <h4 class="text-center text-light riddleTextScroll" style="font-family: Quicksand, sans-serif;max-height: 265px;font-size: 20px;">{{ riddle.correctAnswer }}</h4>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="width: 100%;margin: 0px;padding-left: 20%;padding-right: 20%;margin-top: 25px;">
+                        <div class="col-auto ml-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
+                            <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.likes }}</p>
+                        </div>
+                        <div class="col-auto mx-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
+                            <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.dislikes }}</p>
+                        </div>
+                        <div class="col-auto mr-auto thumbsHover" style="padding-right: 5px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 offset-md-6" style="padding-left: 0;">
+            <div class="container">
+                <div class="row" style="margin-bottom: 20px;margin-left: 0;">
+                    <div class="col mx-auto" style="padding-top: 5px;padding-bottom: 10px;">
+                        <h1 class="text-center text-white" style="font-family: Quicksand, sans-serif;font-weight: 300;font-size: 30px;margin-top: 10px;">Answers</h1>
+                    </div>
+                    {% for answer in answers %}
+                    <div class="col-12 col-xl-10 mx-auto" data-aos="zoom-in" style="padding-top: 5px;padding-bottom: 5px;padding-left: 10px;padding-right: 10px;">
+                        <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;">
+                            <div class="row">
+                                <div class="col-auto" style="padding-right: 5px;">
+                                    <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">Jan 2018</p>
+                                </div>
+                                <div class="col" style="padding-left: 0px;">
+                                    <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">Armand Pretorius</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <p class="text-white">{{ answer.answerTxt }}</p>
+                                </div>
+                            </div>
+                            <div class="row" style="width: 100%;margin: 0px;">
+                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
+                                    <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ answer.likes }}</p>
+                                </div>
+                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
+                                    <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ answer.dislikes }}</p>
+                                </div>
+                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><a href="riddle_comments.html"><i class="la la-comment" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i><p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">9</p></a></div>
+                                <div
+                                    class="col"></div>
+                            <div class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
+                        </div>
+                        <div class="row" style="width: 100%;margin: 0px;margin-top: 10px;">
+                            <div class="col" style="padding: 0;">
+                                <div class="filterBg answerRiddleCardItem2" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-sm thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-{{ answer.id }}" role="button" href="#collapse-{{ answer.id }}" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;">Comments<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
+                                    <div
+                                        class="collapse" id="collapse-{{ answer.id }}">
+                                        <div class="row" style="padding-left: 26px;padding-right: 26px;">
+                                            <div class="col-10" style="padding-right: 0px;padding-left: 0px;">
+                                                <div class="answerTxtBox" style="width: 98%;background-color: #ffffff;"><i class="la la-comment" style="font-size: 18px;margin-left: 15px;"></i><input type="text" class="answerTxt" style="height: 50px;padding-left: 15px;padding-right: 15px;width: 80%;"></div>
+                                            </div>
+                                            <div class="col-2 sendBtnCol thumbsHover"><a class="btn btn-primary btn-block btn-lg answerBtn" role="button" href="" style="height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;background-color: {{ riddle.colour }};padding-top: 10px;"><i class="la la-send"></i></a></div>
+                                        </div>
+                                        <div class="row overflowScroll" style="max-height: 50vh;padding-right: 20px;padding-left: 20px;">
+                                            {% for answer in answers %}
+                                            <div class="col-12" style="padding: 0px;margin-top: 5px;">
+                                                <div style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
+                                                    <div class="row">
+                                                        <div class="col-auto" style="padding-right: 5px;">
+                                                            <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">3 Jan</p>
+                                                        </div>
+                                                        <div class="col" style="padding-left: 0px;">
+                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">Armand Pretorius</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col overflowScroll" style="max-height: 20vh;">
+                                                            <p class="text-white">This is my comment.&nbsp;</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="width: 100%;margin: 0px;">
+                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
+                                                            <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">67</p>
+                                                        </div>
+                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
+                                                            <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">9</p>
+                                                        </div>
+                                                        <div class="col"></div>
+                                                        <div class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><a href="riddle_comments.html"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {% endfor %}    
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
 {% endblock %}

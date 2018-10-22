@@ -58,7 +58,7 @@ class RiddleController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($createAnswer);
             $entityManager->flush();
-            return $this->redirectToRoute('discover_view');
+            return $this->redirectToRoute("answers_view");
         }        
 
         $model = array('profile' => $questionProfile,'riddle' => $riddle,'form' => $form->createView());
