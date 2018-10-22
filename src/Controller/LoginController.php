@@ -5,6 +5,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use App\Entity\Profile;
 
@@ -29,9 +30,18 @@ class LoginController extends AbstractController
             // $form->getData() holds the submitted values
             $userProfile = $SignUpform->getData();
 
+            $profileEmail = $userProfile->getEmail();
+            
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userProfile);
             $entityManager->flush();
+
+            $profile = $this->getDoctrine()
+            ->getRepository(Profile::class)
+            ->findOneBy(['email' => $profileEmail]);
+
+            $session->set('profile', $profile);
 
        //SHould redirect to DISCOVER PAGE!!!!!
             return $this->redirectToRoute('profile_success');

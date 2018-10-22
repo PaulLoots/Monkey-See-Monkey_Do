@@ -29,6 +29,10 @@ class MyRiddlesController extends AbstractController
 
         $session->set('profile', $profile);
 
+        //UNCOMMENT to let this page work with sessions
+        //$profile = $session->get('profile');
+        //$profileId = $profile->getId();
+
         $riddles = $this->getDoctrine()
         ->getRepository(Riddle::class)
         ->findBy(array('profile_id' => $profileId));
