@@ -41,6 +41,16 @@ class Answer
      */
     private $time;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $likes;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $dislikes;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,6 +112,30 @@ class Answer
     public function setTime(\DateTimeInterface $time): self
     {
         $this->time = $time;
+
+        return $this;
+    }
+
+    public function getLikes(): ?int
+    {
+        return $this->likes;
+    }
+
+    public function setLikes(?int $likes): self
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    public function getDislikes(): ?int
+    {
+        return $this->dislikes;
+    }
+
+    public function setDislikes(?int $dislikes): self
+    {
+        $this->dislikes = $dislikes;
 
         return $this;
     }
