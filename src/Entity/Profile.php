@@ -58,11 +58,17 @@ class Profile
      */
     private $profileImages;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="profile_id", orphanRemoval=true)
+     */
+    private $comments;
+
     public function __construct()
     {
         $this->riddles = new ArrayCollection();
         $this->answers = new ArrayCollection();
         $this->profileImages = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -217,6 +223,37 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($profileImage->getProfileId() === $this) {
                 $profileImage->setProfileId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comment $comment): self
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setProfileId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getProfileId() === $this) {
+                $comment->setProfileId(null);
             }
         }
 

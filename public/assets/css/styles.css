@@ -283,3 +283,6 @@ body {
   border-width: 2px;
 }
 
+.roundBorder {
+  border-radius: 12px;
+}

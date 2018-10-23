@@ -8,9 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use App\Entity\Answer;
+use App\Entity\Comment;
 use App\Entity\Riddle;
 use App\Entity\Profile;
-//use App\Form\RiddleAnswerType;
+use App\Form\AnswerCommentType;
 
 class AnswersController extends AbstractController
 {
@@ -40,6 +41,10 @@ class AnswersController extends AbstractController
         ->getRepository(Answer::class)
         ->findAll();
 
+        $comments = $this->getDoctrine()
+        ->getRepository(Comment::class)
+        ->findAll();
+
         //$session = new Session();
         //$session->start();
 
@@ -47,32 +52,32 @@ class AnswersController extends AbstractController
         //$profile = $session->get('profile');
         //$profileId = $profile->getId();
 
-        //$profileId = 1;
+        $profileId = 1;
 
-        //$profile = $this->getDoctrine()
-        //->getRepository(Profile::class)
-        //->find($profileId);
+        $profile = $this->getDoctrine()
+        ->getRepository(Profile::class)
+        ->find($profileId);
 
-        //$session->set('profile', $profile);
-        //$session->set('riddleId', $riddleId);
+        $session->set('profile', $profile);
+        $session->set('answerId', 1);
 
         //form
-        //$createAnswer = new Answer();
-        //$form = $this->createForm(RiddleAnswerType::class, $createAnswer);
-        //$form->handleRequest($request);
+        $createComment = new Comment();
+        $form = $this->createForm(AnswerCommentType::class, $createComment);
+        $form->handleRequest($request);
 
-        //if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
            
-        //    $createAnswer = $form->getData();
-        //    $entityManager = $this->getDoctrine()->getManager();
-        //    $entityManager->persist($createAnswer);
-        //    $entityManager->flush();
-        //    return $this->redirectToRoute('discover_view');
-        //}        
+            $createComment = $form->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($createComment);
+            $entityManager->flush();
+            return $this->redirectToRoute('answers_view');
+        }        
 
         $model = array(
-            'profile' => $questionProfile,'riddle' => $riddle, 'answers' => $answers
-            //'form' => $form->createView()
+            'profile' => $questionProfile,'riddle' => $riddle, 'answers' => $answers, 'comments' => $comments,
+            'form' => $form->createView()
         );
         $view = 'answers.html.twig';
 

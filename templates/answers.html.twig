@@ -105,16 +105,20 @@
                         <div class="row" style="width: 100%;margin: 0px;margin-top: 10px;">
                             <div class="col" style="padding: 0;">
                                 <div class="filterBg answerRiddleCardItem2" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-sm thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-{{ answer.id }}" role="button" href="#collapse-{{ answer.id }}" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;">Comments<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
-                                    <div
-                                        class="collapse" id="collapse-{{ answer.id }}">
+                                    <div class="collapse" id="collapse-{{ answer.id }}">
                                         <div class="row" style="padding-left: 26px;padding-right: 26px;">
+                                            {{ form_start(form, {'attr': {'name':'RiddleAnswerForm', 'novalidate': 'novalidate'}}) }}
                                             <div class="col-10" style="padding-right: 0px;padding-left: 0px;">
-                                                <div class="answerTxtBox" style="width: 98%;background-color: #ffffff;"><i class="la la-comment" style="font-size: 18px;margin-left: 15px;"></i><input type="text" class="answerTxt" style="height: 50px;padding-left: 15px;padding-right: 15px;width: 80%;"></div>
+                                                <div class="answerTxtBox" style="width: 98%;background-color: #ffffff;"><i class="la la-comment" style="font-size: 18px;margin-left: 15px;"></i>
+                                                    {{ form_widget(form.commentTxt, {'attr': {'class':'answerTxt', 'placeholder':'Enter Comment Here', 'style':'height: 50px;padding-left: 15px;padding-right: 15px;width: 80%;'}}) }}</div>
+                                                </div>
+                                            <div class="col-2 sendBtnCol thumbsHover">
+                                            {{ form_widget(form.submitAnswerComment, {'attr': {'class':'btn btn-primary btn-block btn-lg answerBtn', 'style':'height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;background-color: {{ riddle.colour }};padding-top: 10px;'}}) }}<i class="la la-send"></i>
                                             </div>
-                                            <div class="col-2 sendBtnCol thumbsHover"><a class="btn btn-primary btn-block btn-lg answerBtn" role="button" href="" style="height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;background-color: {{ riddle.colour }};padding-top: 10px;"><i class="la la-send"></i></a></div>
+                                            {{ form_end(form) }}
                                         </div>
                                         <div class="row overflowScroll" style="max-height: 50vh;padding-right: 20px;padding-left: 20px;">
-                                            {% for answer in answers %}
+                                            {% for comment in comments %}
                                             <div class="col-12" style="padding: 0px;margin-top: 5px;">
                                                 <div style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
                                                     <div class="row">
