@@ -14,7 +14,7 @@ use App\Form\EditProfileType;
 class EditProfileController extends AbstractController
 {
     /**
-    * @Route("/editProfile", name="discover_view")
+    * @Route("/editprofile", name="editProfile_view")
     */
     public function updateProfile(Request $request)
     {
@@ -42,20 +42,15 @@ class EditProfileController extends AbstractController
 
             $session->set('profile', $profile);
 
-            return $this->redirectToRoute('discover_view');
+            return $this->redirectToRoute('editProfile_view');
         }
 
-      $view = 'base.html.twig';
+      $view = 'editProfile.html.twig';
         $model = array('EditProfileform' => $EditProfileform->createView());
 
         return $this->render($view, $model);
 
-        
     }
-
-  
-
-    
 
 }
 ?>
