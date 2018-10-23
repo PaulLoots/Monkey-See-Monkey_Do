@@ -13,40 +13,47 @@ use App\Form\EditProfileType;
 
 class EditProfileController extends AbstractController
 {
-    // /**
-    // * @Route("/discover", name="discover_view")
-    // */
-    // public function updateProfile(Request $request)
-    // {
-    //     $session = new Session();
-    //     $session->start();
+    /**
+    * @Route("/editProfile", name="discover_view")
+    */
+    public function updateProfile(Request $request)
+    {
+        $session = new Session();
+        $session->start();
 
-    //     $userProfile = new Profile();
-    //     $EditProfileform = $this->createForm(EditProfileType::class, $userProfile);
-    //     $EditProfileform->handleRequest($request);
+        $userProfile = new Profile();
+        $EditProfileform = $this->createForm(EditProfileType::class, $userProfile);
+        $EditProfileform->handleRequest($request);
         
-    //     if ($EditProfileform->isSubmitted() && $EditProfileform->isValid()) {
-    //         // $form->getData() holds the submitted values
-    //         $userProfile = $EditProfileform->getData();
+        if ($EditProfileform->isSubmitted() && $EditProfileform->isValid()) {
+            // $form->getData() holds the submitted values
+            $userProfile = $EditProfileform->getData();
 
-    //         $profileEmail = $userProfile->getEmail();
+            $profileEmail = $userProfile->getEmail();
             
 
-    //         $entityManager = $this->getDoctrine()->getManager();
-    //         $entityManager->persist($userProfile);
-    //         $entityManager->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($userProfile);
+            $entityManager->flush();
 
-    //         $profile = $this->getDoctrine()
-    //         ->getRepository(Profile::class)
-    //         ->findOneBy(['email' => $profileEmail]);
+            $profile = $this->getDoctrine()
+            ->getRepository(Profile::class)
+            ->findOneBy(['email' => $profileEmail]);
 
-    //         $session->set('profile', $profile);
+            $session->set('profile', $profile);
 
-    //         return $this->redirectToRoute('discover_view');
-    //     }
+            return $this->redirectToRoute('discover_view');
+        }
+
+      $view = 'base.html.twig';
+        $model = array('EditProfileform' => $EditProfileform->createView());
+
+        return $this->render($view, $model);
 
         
-    // }
+    }
+
+  
 
     
 

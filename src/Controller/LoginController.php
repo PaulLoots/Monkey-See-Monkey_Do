@@ -54,12 +54,22 @@ class LoginController extends AbstractController
             // $loginform->getData() holds the submitted values
             $loginProfile = $loginform->getData();
 
+            // $loginEmail = $loginProfile->getEmail();
+            // $loginPassword = $loginProfile->getPassword();
+
+            // $profile = $this->getDoctrine()
+            // ->getRepository(Profile::class)
+            // ->findOneBy(['email' => $profileEmail]);
+
+            
+
+
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($loginProfile);
        //     $entityManager->flush();
 
-       //SHould redirect to DISCOVER PAGE!!!!!
-            return $this->redirectToRoute('profile_success');
+            return $this->redirectToRoute('discover_view');
         }
 
 
