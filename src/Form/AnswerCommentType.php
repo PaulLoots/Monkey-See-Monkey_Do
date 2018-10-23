@@ -5,7 +5,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Doctrine\ORM\EntityRepository;
 
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -43,15 +43,17 @@ class AnswerCommentType extends AbstractType
                 },
                 'choice_label' => 'id'
             ))
-            ->add('commentTxt', TextType::class)
-            ->add('time', HiddenType::class)
+            ->add('commentTxt', TextareaType::class)
+            ->add('time', HiddenType::class, array(
+                'data' => date("d M")
+            ))
             ->add('likes', HiddenType::class, array(
                 'data' => 0
             ))
             ->add('dislikes', HiddenType::class, array(
                 'data' => 0
             ))
-            ->add('submitAnswerComment', SubmitType::class, ['label' => ''])
+            ->add('submitAnswerComment', SubmitType::class, ['label' => 'Send'])
         ;
     }
 }

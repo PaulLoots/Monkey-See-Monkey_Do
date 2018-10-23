@@ -8,7 +8,6 @@ use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 use App\Entity\Profile;
@@ -40,7 +39,9 @@ class CreateRiddleType extends AbstractType
             //->add('profileId', HiddenType::class, $profile)
             ->add('question', TextareaType::class)
             ->add('correct_answer', TextareaType::class)
-            ->add('date', DateTimeType::class)
+            ->add('date', HiddenType::class, array(
+                'data' => date("d M")
+            ))
             ->add('colour', HiddenType::class)
             ->add('icon', HiddenType::class)
             ->add('likes', HiddenType::class, array(

@@ -7,6 +7,58 @@
 {% block bodyStyling %}style="background-image: url(../assets/img/{{ riddle.icon }}_pattern.svg);background-position: center;background-size: 600px;"{% endblock %}
 
 {% block body %}
+    <div class="modal fade" role="dialog" tabindex="-1" id="textCommentModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body" style="background-color: #1c1f21;padding-top: 25px;">
+                    <div class="row" style="height: 45px;padding-left: 25px;">
+                        <div class="col-8" style="padding-left: 0;">
+                            <h4 class="text-light" style="font-family: Roboto, sans-serif;">&nbsp;New Comment</h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col" style="padding-right: 10px;padding-left: 10px;">
+                            <div>
+                                <ul class="nav nav-pills nav-justified" style="padding-right: 25px;padding-left: 25px;">
+                                    <li class="nav-item"><a class="nav-link text-light active thumbsHover" role="tab" data-toggle="pill" href="#textTab" style="height: 50px;padding-top: 8px;"><i class="la la-i-cursor" style="font-size: 30px;"></i></a></li>
+                                    <li class="nav-item"><a class="nav-link text-light thumbsHover" role="tab" data-toggle="pill" href="#gifTab" style="height: 50px;padding-top: 3px;"><i class="material-icons" style="font-size: 42px;">gif</i></a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" role="tabpanel" id="textTab" style="padding-top: 10px;padding-left: 25px;padding-right: 25px;">
+                                        {{ form_start(form, {'attr': {'name':'CreateRiddleForm', 'novalidate': 'novalidate'}}) }}
+                                        <div class="row" style="margin-left: 0;margin-right: 0;">
+                                            <div class="col-12 riddleStateCard" style="padding: 0px;">
+                                                <div data-bs-parallax-bg="true" style="padding-top: 20px;padding-bottom: 5px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 130px;">
+                                                    <h6 class="text-light" style="margin-top: -10px;font-family: Roboto, sans-serif;margin-left: 5px;">Comment</h6>
+                                                    <div class="row" style="width: 100%;margin: 0px;">
+                                                        <div class="col" style="padding: 0;">{{ form_widget(form.commentTxt, {'attr': {'class':'rTextArea', 'placeholder':'Enter Comment Here', 'style':'width: 100%;height: 60px;padding: 5px;padding-left: 8px;color: rgb(232,232,232);font-family: Roboto, sans-serif;background-color: transparent;max-height: 80px;'}}) }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;">
+                                            <div class="row">
+                                                <div class="col" style="margin: 15px;margin-top: 65px;margin-left: 0;margin-right: 0;">
+                                                {{ form_widget(form.submitAnswerComment, {'attr': {'class':'btn btn-light btn-block btn-lg answerBtn riddleItem', 'style':'height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;padding-top: 8px;'}}) }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{ form_widget(form.profileId, {'attr': {'style':'display: none;'}}) }}
+                                        {{ form_widget(form.answerId, {'attr': {'style':'display: none;'}}) }}
+                                        {{ form_end(form) }}
+                                    </div>
+                                    <div class="tab-pane" role="tabpanel" id="gifTab" style="padding-top: 10px;">
+                                        <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 <div class="container" style="padding-right: 0;padding-left: 0;">
         <div class="row">
             <div class="col-12 col-md-5 col-xl-4" id="sidebar">
@@ -23,7 +75,7 @@
                         <div class="row" style="padding-top: 2vh;">
                             <div class="col">
                                 <h5 class="text-center text-light" style="font-family: Roboto, sans-serif;">{{ profile.name }}</h5>
-                                <h6 class="text-center text-light" style="font-family: Roboto, sans-serif;font-weight: 300;">{{ riddle.date }}</h6>
+                                <h6 class="text-center text-light" style="font-family: Roboto, sans-serif;font-weight: 300;">{{ riddle.date | date ('d M')}}</h6>
                             </div>
                         </div>
                         <div class="row">
@@ -79,10 +131,10 @@
                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;">
                             <div class="row">
                                 <div class="col-auto" style="padding-right: 5px;">
-                                    <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">{{ answer.time }}</p>
+                                    <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">Jan 2018</p>
                                 </div>
                                 <div class="col" style="padding-left: 0px;">
-                                    <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">{{ answer.profileId.name }}</p>
+                                    <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">Armand Pretorius</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -106,42 +158,6 @@
                             <div class="col" style="padding: 0;">
                                 <div class="filterBg answerRiddleCardItem2" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-sm thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-{{ answer.id }}" role="button" href="#collapse-{{ answer.id }}" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;">Comments<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
                                     <div class="collapse" id="collapse-{{ answer.id }}">
-                                        <div class="row" style="padding-left: 15px;padding-right: 15px;">
-                                            <div class="col-12 sendBtnCol thumbsHover" style="padding-right: 25px;padding-left: 25px;"><a class="btn btn-dark btn-block btn-lg" role="button" href="/createComment/{{ answer.id }}" style="height: 50px;font-family: Quicksand, sans-serif;border-style: none;border-radius: 10px;font-weight: 700;width: 100%;background-color: {{ riddle.colour }};padding-top: 10px;"><i class="la la-pencil"></i></a></div>
-                                        </div>
-                                        <div class="row overflowScroll" style="max-height: 50vh;padding-right: 20px;padding-left: 20px;">
-                                            {% for comment in comments %}
-                                            {% if answer.id == comment.answerId.id %}
-                                            <div class="col-12" style="padding: 0px;margin-top: 5px;">
-                                                <div style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
-                                                    <div class="row">
-                                                        <div class="col-auto" style="padding-right: 5px;">
-                                                            <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">{{ comment.time }}</p>
-                                                        </div>
-                                                        <div class="col" style="padding-left: 0px;">
-                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">Armand Pretorius</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col overflowScroll" style="max-height: 20vh;">
-                                                            <p class="text-white">{{ comment.commentTxt }}</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row" style="width: 100%;margin: 0px;">
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
-                                                            <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.likes }}</p>
-                                                        </div>
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
-                                                            <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.dislikes }}</p>
-                                                        </div>
-                                                        <div class="col"></div>
-                                                        <div class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><a href="riddle_comments.html"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></a></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            {% endif %}
-                                            {% endfor %}    
-                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -155,4 +171,8 @@
     </div>
     </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="../assets/js/comments.js"></script>
 {% endblock %}

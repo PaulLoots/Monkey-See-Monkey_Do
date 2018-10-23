@@ -361,10 +361,9 @@
                                 </div>
                                 <div class="col" style="margin: 15px;margin-top: 65px;">{{ form_widget(form.submitCreateRiddle, {'attr': {'class':'btn btn-light btn-block btn-lg answerBtn riddleItem', 'style':'height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;padding-top: 8px;'}}) }}
                                 </div>
-                                {{ form_widget(form.profileId, {'attr': {'option':'2'}}) }}
+                                {{ form_widget(form.profileId, {'attr': {'style':'display: none;'}}) }}
                                 {{ form_widget(form.colour, {'attr': {'value':'#e17055'}}) }}
                                 {{ form_widget(form.icon, {'attr': {'value':'monkey'}}) }}
-                                {{ form_widget(form.date, {'attr': {'value':'{{ "now" | date }}'}}) }}
                             </div>
                             {{ form_end(form) }}
                         </div>

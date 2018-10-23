@@ -44,7 +44,9 @@ class RiddleAnswerType extends AbstractType
                 'choice_label' => 'id'
             ))
             ->add('answerTxt', TextType::class)
-            ->add('time', DateTimeType::class)
+            ->add('time', HiddenType::class, array(
+                'data' => date("d M")
+            ))
             ->add('likes', HiddenType::class, array(
                 'data' => 0
             ))

@@ -286,3 +286,11 @@ body {
 .roundBorder {
   border-radius: 12px;
 }
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: transparent;
+  border-style: solid;
+  border-radius: 13px;
+  border-width: 2px;
+}
