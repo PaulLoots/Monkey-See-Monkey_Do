@@ -3,6 +3,8 @@
 {% block title %}My Riddles{% endblock %}
 {% block stylesheets %}{% endblock %}
 
+{% block MyRiddlesNav %}<i class="la la-user d-table mx-auto" style="color: #55efc4;font-size: 30px;"></i><p class="d-none d-lg-table mx-auto" style="font-family: Roboto, sans-serif;font-weight: 400;margin-left: 10px;font-size: 15px;">My Riddles</p>{% endblock %}
+
 {% block body %}
     <div class="modal fade" role="dialog" tabindex="-1" id="chooseColourModal">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -276,7 +278,7 @@
                                         <div class="col-auto" style="padding-right: 5px;">
                                             <p style="color: rgb(255,255,255);font-size: 12px;font-weight: 300;">{{ riddle.date | date ('d M')}}</p>
                                         </div>
-                                        <div class="col-auto ml-auto" style="padding-right: 15px;"><img src="assets/img/{{ riddle.icon }}.svg" height="40px"></div>
+                                        <div class="col-auto ml-auto" style="padding-right: 15px;"><img src="../assets/img/{{ riddle.icon }}.svg" height="40px"></div>
                                     </div>
                                     <div class="row" style="width: 100%;margin: 0px;">
                                         <div class="col-12" style="height: 85px;padding-top: 15px;padding-bottom: 20px;padding-left: 5px;">
@@ -351,7 +353,7 @@
                                             <div data-bs-parallax-bg="true" id="chooseIcon" style="padding-top: 20px;padding-bottom: 10px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);">
                                                 <h6 class="text-light" style="margin-top: -10px;font-family: Roboto, sans-serif;margin-left: 5px;">Icon</h6>
                                                 <div class="row" style="width: 100%;margin: 0px;">
-                                                    <div class="col riddleItem" style="padding: 0;height: 10vh;"><img id="riddleSelectedIconBtn" class="d-table m-auto" src="assets/img/monkey.svg" height="100%"></div>
+                                                    <div class="col riddleItem" style="padding: 0;height: 10vh;"><img id="riddleSelectedIconBtn" class="d-table m-auto" src="../assets/img/monkey.svg" height="100%"></div>
                                                 </div>
                                             </div>
                                         </div>

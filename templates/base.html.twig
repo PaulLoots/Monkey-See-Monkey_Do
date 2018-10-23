@@ -22,7 +22,31 @@
     <main class="container-fluid">
 
         {% block navigation %}
-        
+        <div class="container" style="padding-top: 20px;">
+        <div class="row" style="padding-bottom: 20px;">
+            <div class="col-6 col-md-3 order-1"><img class="float-left" src="../assets/img/logo1.svg" height="55px"></div>
+            <div class="col-12 d-md-none order-3" style="height: 3vh;"></div>
+            <div class="col-6 col-md-3 order-2 order-md-3">
+                <div class="dropdown float-right"><button class="btn btn-outline-link dropdown-toggle riddleStateCard thumbsHover" data-toggle="dropdown" aria-expanded="false" type="button" style="background-color: transparent;border-width: 2px;color: white;"><img class="rounded-circle" src="../assets/img/IMG_2189.jpg" width="40px" height="40px"><small class="d-none d-lg-inline" style="margin-left:10px;margin-right:10px;">Paul</small></button>
+                    <div
+                        class="dropdown-menu dropdown-menu-right roundBorder" role="menu" style="background-color: #1c1f21;box-shadow: 0px 3px 10px rgba(0, 0, 0, .5);"><a class="dropdown-item text-white thumbsHover roundBorder" role="presentation" href="#" style="background-color: #1c1f21;height: 50px;padding-top: 12px;"><i class="icon-user" style="margin-right:20px;"></i>Admin</a><a class="dropdown-item text-white thumbsHover roundBorder"
+                            role="presentation" href="#" id="editDetails" style="background-color: #1c1f21;height: 50px;padding-top: 12px;"><i class="icon-pencil" style="margin-right:20px;"></i>Edit Details</a><a class="dropdown-item thumbsHover roundBorder"
+                            role="presentation" href="/login" style="background-color: #1c1f21;height: 50px;padding-top: 12px;color: #ff7675;"><i class="icon-logout" style="margin-right:20px;"></i>Log Out</a></div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 order-3 order-md-2" id="navRow">
+            <div>
+                <div class="row">
+                    <div class="col-4"><a class="text-white d-table mx-auto navItem" href="/discover" style="color: #dfe6e9;font-size: 25px;">{% block DiscoverNav %}<i class="la la-binoculars d-table mx-auto" style="color: #dfe6e9;font-size: 30px;"></i><p class="d-none d-lg-table" style="font-family: Roboto, sans-serif;font-weight: 400;font-size: 15px;">Discover</p>{% endblock %}</a></div>
+                    <div
+                        class="col-4"><a class="text-white d-table mx-auto navItem" href="/leaderboard" style="color: #dfe6e9;font-size: 25px;">{% block LeaderboardNav %}<i class="la la-trophy d-table mx-auto" style="color: #dfe6e9;font-size: 30px;"></i><p class="d-none d-lg-table mx-auto" style="font-family: Roboto, sans-serif;font-weight: 400;margin-left: 10px;font-size: 15px;">Leaderboard</p>{% endblock %}</a></div>
+                <div
+                    class="col-4"><a class="text-white d-table mx-auto navItem" href="/myriddles" style="color: #dfe6e9;font-size: 25px;">{% block MyRiddlesNav %}<i class="la la-user d-table mx-auto" style="color: #dfe6e9;font-size: 30px;"></i><p class="d-none d-lg-table mx-auto" style="font-family: Roboto, sans-serif;font-weight: 400;margin-left: 10px;font-size: 15px;">My Riddles</p>{% endblock %}</a></div>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
         {% endblock %}
 
         {% block body %}{% endblock %}
