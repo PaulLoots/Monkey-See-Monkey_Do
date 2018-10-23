@@ -72,6 +72,7 @@
                         <h1 class="text-center text-white" style="font-family: Quicksand, sans-serif;font-weight: 300;font-size: 30px;margin-top: 10px;">Answers</h1>
                     </div>
                     {% for answer in answers %}
+                    {% if riddle.id == answer.riddleId.id %}
                     <div class="col-12 col-xl-10 mx-auto" data-aos="zoom-in" style="padding-top: 5px;padding-bottom: 5px;padding-left: 10px;padding-right: 10px;">
                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;">
                             <div class="row">
@@ -147,6 +148,7 @@
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>
