@@ -58,6 +58,11 @@ class Answer
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $reported;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -179,6 +184,18 @@ class Answer
                 $comment->setAnswerId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getReported(): ?bool
+    {
+        return $this->reported;
+    }
+
+    public function setReported(?bool $reported): self
+    {
+        $this->reported = $reported;
 
         return $this;
     }
