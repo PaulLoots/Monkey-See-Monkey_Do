@@ -14,35 +14,44 @@ use App\Form\EditProfileType;
 class EditProfileController extends AbstractController
 {
     /**
-    * @Route("/editprofile", name="editProfile_view")
+    * @Route("/editprofile/{id}", name="editProfile_view")
     */
-    public function updateProfile(Request $request)
+    public function updateProfile($id = "2", Request $request)
     {
         $session = new Session();
         $session->start();
 
-        $userProfile = new Profile();
-        $EditProfileform = $this->createForm(EditProfileType::class, $userProfile);
+        $profile = $this->getDoctrine()
+            ->getRepository(Profile::class)
+            ->find($id);
+        
+        $EditProfileform = $this->createForm(EditProfileType::class, $profile);
         $EditProfileform->handleRequest($request);
         
         if ($EditProfileform->isSubmitted() && $EditProfileform->isValid()) {
             // $form->getData() holds the submitted values
             $userProfile = $EditProfileform->getData();
 
+            $profileName = $userProfile->getName();
             $profileEmail = $userProfile->getEmail();
+            $profilePassword = $userProfile->getPassword();
             
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($userProfile);
-            $entityManager->flush();
+            
 
-            $profile = $this->getDoctrine()
-            ->getRepository(Profile::class)
-            ->findOneBy(['email' => $profileEmail]);
+            
+
+            $profile->setName($profileName);
+            $profile->setEmail($profileEmail);
+            $profile->setPassword($profilePassword);
 
             $session->set('profile', $profile);
 
-            return $this->redirectToRoute('editProfile_view');
+            $entityManager->persist($profile);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('discover_view');
         }
 
       $view = 'editProfile.html.twig';
