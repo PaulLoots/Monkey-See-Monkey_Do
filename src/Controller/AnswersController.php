@@ -58,6 +58,59 @@ class AnswersController extends AbstractController
         ->getRepository(Profile::class)
         ->find($profileId);        
 
+        //AJAX
+
+        if ($request->isXmlHttpRequest()) {  
+            $entity = $_POST['entity'];
+            $vote = $_POST['vote'];
+
+            $likes = 0;
+            $dislikes = 0;
+
+            $entityManager = $this->getDoctrine()->getManager();
+
+            if($entity == 'Riddle'){
+                $riddle = $entityManager->getRepository(Riddle::class)->find($riddleId);
+
+                if($vote == 'Like'){
+                    $likes = $riddle->getLikes();
+                    $riddle->setLikes($likes + 1);
+                } else {
+                    $dislikes = $riddle->getDislikes();
+                    $riddle->setDislikes($dislikes + 1);
+                }
+            }
+
+            if($entity == 'Answer'){
+                $answerId = $_POST['id'];
+                $answer = $entityManager->getRepository(Answer::class)->find($answerId);
+
+                if($vote == 'Like'){
+                    $likes = $answer->getLikes();
+                    $answer->setLikes($likes + 1);
+                } else {
+                    $dislikes = $answer->getDislikes();
+                    $answer->setDislikes($dislikes + 1);
+                }
+            }
+
+            if($entity == 'Comment'){
+                $commentId = $_POST['id'];
+                $comment = $entityManager->getRepository(Comment::class)->find($commentId);
+
+                if($vote == 'Like'){
+                    $likes = $comment->getLikes();
+                    $comment->setLikes($likes + 1);
+                } else {
+                    $dislikes = $comment->getDislikes();
+                    $comment->setDislikes($dislikes + 1);
+                }
+            }
+            $entityManager->flush();
+
+            return $likes + $dislikes +1; 
+         }
+
         $model = array(
             'profile' => $questionProfile,'riddle' => $riddle, 'answers' => $answers, 'comments' => $comments
         );

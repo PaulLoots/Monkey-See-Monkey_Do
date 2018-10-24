@@ -56,10 +56,10 @@
                         </div>
                     </div>
                     <div class="row" style="width: 100%;margin: 0px;padding-left: 20%;padding-right: 20%;margin-top: 25px;">
-                        <div class="col-auto ml-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
+                        <div id="likeRiddle" class="col-auto ml-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.likes }}</p>
                         </div>
-                        <div class="col-auto mx-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
+                        <div id="dislikeRiddle" class="col-auto mx-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.dislikes }}</p>
                         </div>
                         <div class="col-auto mr-auto thumbsHover" style="padding-right: 5px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
@@ -91,10 +91,10 @@
                                 </div>
                             </div>
                             <div class="row" style="width: 100%;margin: 0px;">
-                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
+                                <div value="{{ answer.id }}" class="col-auto thumbsHover likeAnswer" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
                                     <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ answer.likes }}</p>
                                 </div>
-                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
+                                <div value="{{ answer.id }}"  class="col-auto thumbsHover dislikeAnswer" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
                                     <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ answer.dislikes }}</p>
                                 </div>
                                 <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><a href="riddle_comments.html"><i class="la la-comment" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i><p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">9</p></a></div>
@@ -128,10 +128,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="row" style="width: 100%;margin: 0px;">
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
+                                                        <div value="{{ comment.id }}" class="col-auto thumbsHover likeComment" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
                                                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.likes }}</p>
                                                         </div>
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
+                                                        <div value="{{ comment.id }}" class="col-auto thumbsHover dislikeComment" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
                                                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.dislikes }}</p>
                                                         </div>
                                                         <div class="col"></div>
@@ -155,4 +155,8 @@
     </div>
     </div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="../assets/js/AJAX.js"></script>
 {% endblock %}
