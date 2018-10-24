@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+use App\Entity\Profile;
+
 class AdminController extends AbstractController
 {
     /**
@@ -13,11 +15,23 @@ class AdminController extends AbstractController
     */
     public function viewAdmin()
     {
-        $model = array();
+
+        $admins = $this->getDoctrine()
+        ->getRepository(Profile::class)
+        ->findBy(array('admin' => true));
+
+        // change to false
+        $allProfiles = $this->getDoctrine()
+        ->getRepository(Profile::class)
+        ->findBy(array('admin' => NULL));
+
+        $model = array('admins' => $admins, 'allProfiles' => $allProfiles);
         $view = 'admin.html.twig';
 
         return $this->render($view, $model);
     }
+
+
 }
 
 ?>
