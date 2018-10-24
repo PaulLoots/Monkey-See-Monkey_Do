@@ -34,7 +34,7 @@ class Answer
     private $answerTxt;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $correct;
 

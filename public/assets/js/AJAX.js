@@ -1,6 +1,7 @@
 $(document).ready(function(){   
     $("#likeRiddle").on("click", function(event){  
-        
+    var amount = parseInt($(this).children( "p" ).text());
+    $(this).children( "p" ).text(amount + 1);
        $.ajax({  
           url:        '/answers',  
           type:       'POST',
@@ -12,13 +13,14 @@ $(document).ready(function(){
               console.log(data);
           },  
           error : function(xhr, textStatus, errorThrown) {  
-             alert('Ajax request failed.');  
+             //alert('Ajax request failed.');  
           }  
        });  
     });
     
     $("#dislikeRiddle").on("click", function(event){  
-        
+        var amount = parseInt($(this).children( "p" ).text());
+        $(this).children( "p" ).text(amount + 1);
        $.ajax({  
           url:        '/answers',  
           type:       'POST',
@@ -30,12 +32,14 @@ $(document).ready(function(){
               
           },  
           error : function(xhr, textStatus, errorThrown) {  
-             alert('Ajax request failed.');  
+             //alert('Ajax request failed.');  
           }  
        });  
     }); 
     
-    $(".likeAnswer").on("click", function(event){  
+    $(".likeAnswer").on("click", function(event){ 
+        var amount = parseInt($(this).children( "p" ).text());
+        $(this).children( "p" ).text(amount + 1); 
        var ansClicked = $(this).attr("value");
        $.ajax({  
           url:        '/answers',  
@@ -48,12 +52,14 @@ $(document).ready(function(){
               console.log(data);
           },  
           error : function(xhr, textStatus, errorThrown) {  
-             alert('Ajax request failed.');  
+             //alert('Ajax request failed.');  
           }  
        });  
     });
 
-    $(".dislikeAnswer").on("click", function(event){  
+    $(".dislikeAnswer").on("click", function(event){ 
+        var amount = parseInt($(this).children( "p" ).text());
+        $(this).children( "p" ).text(amount + 1); 
         var ansClicked = $(this).attr("value");
         $.ajax({  
            url:        '/answers',  
@@ -66,12 +72,14 @@ $(document).ready(function(){
                console.log(data);
            },  
            error : function(xhr, textStatus, errorThrown) {  
-              alert('Ajax request failed.');  
+              //alert('Ajax request failed.');  
            }  
         });  
      });
 
-     $(".likeComment").on("click", function(event){  
+     $(".likeComment").on("click", function(event){
+        var amount = parseInt($(this).children( "p" ).text());
+        $(this).children( "p" ).text(amount + 1);  
         var ansClicked = $(this).attr("value");
         $.ajax({  
            url:        '/answers',  
@@ -84,12 +92,14 @@ $(document).ready(function(){
                console.log(data);
            },  
            error : function(xhr, textStatus, errorThrown) {  
-              alert('Ajax request failed.');  
+              //alert('Ajax request failed.');  
            }  
         });  
      });
  
-     $(".dislikeComment").on("click", function(event){  
+     $(".dislikeComment").on("click", function(event){ 
+        var amount = parseInt($(this).children( "p" ).text());
+        $(this).children( "p" ).text(amount + 1); 
          var ansClicked = $(this).attr("value");
          $.ajax({  
             url:        '/answers',  
@@ -102,7 +112,45 @@ $(document).ready(function(){
                 console.log(data);
             },  
             error : function(xhr, textStatus, errorThrown) {  
-               alert('Ajax request failed.');  
+               //alert('Ajax request failed.');  
+            }  
+         });  
+      });
+
+      $(".answerCorrect").on("click", function(event){
+        $( this ).parent().parent().parent().hide(300);  
+        var ansClicked = $(this).attr("value");
+        $.ajax({  
+           url:        '/myriddles',  
+           type:       'POST',
+           data: { vote: "Correct", id: ansClicked},   
+           dataType:   'text',  
+           async:      true,  
+           
+           success: function(data, status) {   
+               console.log(data);
+           },  
+           error : function(xhr, textStatus, errorThrown) {  
+              //alert('Ajax request failed.');  
+           }  
+        });  
+     });
+ 
+     $(".answerIncorrect").on("click", function(event){ 
+         $( this ).parent().parent().parent().hide(300); 
+         var ansClicked = $(this).attr("value");
+         $.ajax({  
+            url:        '/myriddles',  
+            type:       'POST',
+            data: { vote: "Incorrect", id: ansClicked},   
+            dataType:   'text',  
+            async:      true,  
+            
+            success: function(data, status) {   
+                console.log(data);
+            },  
+            error : function(xhr, textStatus, errorThrown) {  
+               //alert('Ajax request failed.');  
             }  
          });  
       });

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use App\Entity\Answer;
 use App\Entity\Comment;
 use App\Entity\Riddle;
+use App\Entity\RiddleLikes;
 use App\Entity\Profile;
 use App\Form\AnswerCommentType;
 
@@ -66,11 +67,14 @@ class AnswersController extends AbstractController
 
             $likes = 0;
             $dislikes = 0;
-
+            
             $entityManager = $this->getDoctrine()->getManager();
+
+            //if($entityManager->getRepository(RiddleLikes::class)->findOneBy(['riddleId' => $riddle_id]) == undefined){};
 
             if($entity == 'Riddle'){
                 $riddle = $entityManager->getRepository(Riddle::class)->find($riddleId);
+                
 
                 if($vote == 'Like'){
                     $likes = $riddle->getLikes();

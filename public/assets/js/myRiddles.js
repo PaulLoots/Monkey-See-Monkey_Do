@@ -24,7 +24,7 @@ $(".myRiddleSelect").click(function(){
     console.log(ridClicked);
 });
 
-$("#closeAnswersIcon").click(function(){
+$(".closeAnswersIcon").click(function(){
     $(".myRiddleSelect").removeClass("selectedRiddle");
     $(".visible").attr('class', 'invisible');
 });

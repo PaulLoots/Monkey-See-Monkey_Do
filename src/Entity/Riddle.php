@@ -71,9 +71,15 @@ class Riddle
      */
     private $icon;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RiddleLikes", mappedBy="riddle_id", orphanRemoval=true)
+     */
+    private $riddleLikes;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
+        $this->riddleLikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -216,6 +222,37 @@ class Riddle
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RiddleLikes[]
+     */
+    public function getRiddleLikes(): Collection
+    {
+        return $this->riddleLikes;
+    }
+
+    public function addRiddleLike(RiddleLikes $riddleLike): self
+    {
+        if (!$this->riddleLikes->contains($riddleLike)) {
+            $this->riddleLikes[] = $riddleLike;
+            $riddleLike->setRiddleId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRiddleLike(RiddleLikes $riddleLike): self
+    {
+        if ($this->riddleLikes->contains($riddleLike)) {
+            $this->riddleLikes->removeElement($riddleLike);
+            // set the owning side to null (unless already changed)
+            if ($riddleLike->getRiddleId() === $this) {
+                $riddleLike->setRiddleId(null);
+            }
+        }
 
         return $this;
     }

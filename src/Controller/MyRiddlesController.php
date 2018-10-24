@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 
+use App\Entity\Answer;
 use App\Entity\Riddle;
 use App\Entity\Profile;
 use App\Form\CreateRiddleType;
@@ -37,6 +38,11 @@ class MyRiddlesController extends AbstractController
         ->getRepository(Riddle::class)
         ->findBy(array('profile_id' => $profileId));
 
+
+        $answers = $this->getDoctrine()
+        ->getRepository(Answer::class)
+        ->findBy(array('correct' => NULL));
+
         //form
         $createRiddle = new Riddle();
         $form = $this->createForm(CreateRiddleType::class, $createRiddle);
@@ -50,8 +56,29 @@ class MyRiddlesController extends AbstractController
             $entityManager->flush();
             return $this->redirectToRoute('myriddles_view');
         }
+
+        //ajax
+
+        if ($request->isXmlHttpRequest()) {  
+            $answerId = $_POST['id'];
+            $vote = $_POST['vote'];
+            
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $answer = $entityManager->getRepository(Answer::class)->find($answerId);
+                
+            if($vote == 'Correct'){
+                $answer->setCorrect(true);
+            } else {
+                $answer->setCorrect(false);
+            }
+
+            $entityManager->flush();
+
+            return true; 
+         }
          
-        $model = array('profile' => $profile,'riddles' => $riddles,'form' => $form->createView());
+        $model = array('profile' => $profile,'riddles' => $riddles, 'answers' => $answers, 'form' => $form->createView());
         $view = 'myriddles.html.twig';
 
         return $this->render($view, $model);

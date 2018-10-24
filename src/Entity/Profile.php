@@ -63,12 +63,18 @@ class Profile
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\RiddleLikes", mappedBy="profile_id", orphanRemoval=true)
+     */
+    private $riddleLikes;
+
     public function __construct()
     {
         $this->riddles = new ArrayCollection();
         $this->answers = new ArrayCollection();
         $this->profileImages = new ArrayCollection();
         $this->comments = new ArrayCollection();
+        $this->riddleLikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -254,6 +260,37 @@ class Profile
             // set the owning side to null (unless already changed)
             if ($comment->getProfileId() === $this) {
                 $comment->setProfileId(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|RiddleLikes[]
+     */
+    public function getRiddleLikes(): Collection
+    {
+        return $this->riddleLikes;
+    }
+
+    public function addRiddleLike(RiddleLikes $riddleLike): self
+    {
+        if (!$this->riddleLikes->contains($riddleLike)) {
+            $this->riddleLikes[] = $riddleLike;
+            $riddleLike->setProfileId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRiddleLike(RiddleLikes $riddleLike): self
+    {
+        if ($this->riddleLikes->contains($riddleLike)) {
+            $this->riddleLikes->removeElement($riddleLike);
+            // set the owning side to null (unless already changed)
+            if ($riddleLike->getProfileId() === $this) {
+                $riddleLike->setProfileId(null);
             }
         }
 

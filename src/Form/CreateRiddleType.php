@@ -30,9 +30,7 @@ class CreateRiddleType extends AbstractType
                     $profile = $session->get('profile');
                     $profileID = $profile->getId();
                     return $er->createQueryBuilder('u')
-                        //->from('Profile', 'u')
                         ->where("u.id = $profileID");
-                        //->orderBy('u.id', 'ASC');
                 },
                 'choice_label' => 'id'
             ))

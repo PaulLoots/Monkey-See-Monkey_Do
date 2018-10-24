@@ -97,9 +97,8 @@
                                 <div value="{{ answer.id }}"  class="col-auto thumbsHover dislikeAnswer" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
                                     <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ answer.dislikes }}</p>
                                 </div>
-                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><a href="riddle_comments.html"><i class="la la-comment" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i><p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">9</p></a></div>
-                                <div
-                                    class="col"></div>
+                            
+                                <div class="col"></div>
                             <div class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
                         </div>
                         <div class="row" style="width: 100%;margin: 0px;margin-top: 10px;">
@@ -119,7 +118,7 @@
                                                             <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">{{ comment.time }}</p>
                                                         </div>
                                                         <div class="col" style="padding-left: 0px;">
-                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">Armand Pretorius</p>
+                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">{{ comment.profileId.name }}</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
@@ -159,4 +158,5 @@
 
 {% block javascripts %}
     <script src="../assets/js/AJAX.js"></script>
+    <script src="../assets/js/animation.js"></script>
 {% endblock %}
