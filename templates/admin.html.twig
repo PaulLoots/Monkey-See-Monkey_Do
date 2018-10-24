@@ -99,20 +99,22 @@
                             <div class="tab-content overflowScroll" style="max-height: 90vh;">
                                 <div class="tab-pane active" role="tabpanel" id="riddlesTab" style="padding-top: 10px;">
                                     <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
+                                    {% for reportedRiddle in reportedRiddles %}
                                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
                                             <div class="row">
                                                 <div class="col-12 col-md-10">
                                                     <div class="row">
                                                         <div class="col-auto" style="padding-right: 5px;">
-                                                            <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">Jan 2018</p>
+                                                            <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">{{reportedRiddle.date}}</p>
                                                         </div>
                                                         <div class="col" style="padding-left: 0px;">
-                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">Armand Pretorius</p>
+                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">{% for profileReported in profilesReported %}{% if profileReported.id == reportedRiddle.profileId.id %}{{ profileReported.name }}{% endif %}{% endfor %}</p>
                                                         </div>
                                                     </div>
+                                                    
                                                     <div class="row">
                                                         <div class="col">
-                                                            <p class="text-white overflowScroll" style="max-height: 110px;margin-bottom: 0;font-family: Roboto, sans-serif;">Riddle goes Here.</p>
+                                                            <p class="text-white overflowScroll" style="max-height: 110px;margin-bottom: 0;font-family: Roboto, sans-serif;">{{ reportedRiddle.question }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -128,24 +130,27 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        {% endfor %}
                                     </div>
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="answersTab" style="padding-top: 10px;">
                                     <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
+                                        
+                                    {% for reportedAnswer in reportedAnswers %}
                                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
                                             <div class="row">
                                                 <div class="col-12 col-md-10">
                                                     <div class="row">
                                                         <div class="col-auto" style="padding-right: 5px;">
-                                                            <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">Jan 2018</p>
+                                                            <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">{{ reportedAnswer.time }}</p>
                                                         </div>
                                                         <div class="col" style="padding-left: 0px;">
-                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">Armand Pretorius</p>
+                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">{% for profileReported in profilesReported %}{% if profileReported.id == reportedAnswer.profileId.id %}{{ profileReported.name }}{% endif %}{% endfor %}</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <p class="text-white overflowScroll" style="max-height: 110px;margin-bottom: 0;font-family: Roboto, sans-serif;">Answer Goes Here.</p>
+                                                            <p class="text-white overflowScroll" style="max-height: 110px;margin-bottom: 0;font-family: Roboto, sans-serif;">{{ reportedAnswer.answerTxt }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -161,24 +166,26 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    {% endfor %}
                                     </div>
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="commentsTab" style="padding-top: 10px;">
                                     <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
+                                        {% for reportedComment in reportedComments %}
                                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
                                             <div class="row">
                                                 <div class="col-12 col-md-10">
                                                     <div class="row">
                                                         <div class="col-auto" style="padding-right: 5px;">
-                                                            <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">Jan 2018</p>
+                                                            <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">{{ reportedComment.time }}</p>
                                                         </div>
                                                         <div class="col" style="padding-left: 0px;">
-                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">Armand Pretorius</p>
+                                                            <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">{% for profileReported in profilesReported %}{% if profileReported.id == reportedComment.profileId.id %}{{ profileReported.name }}{% endif %}{% endfor %}</p>
                                                         </div>
                                                     </div>
                                                     <div class="row">
                                                         <div class="col">
-                                                            <p class="text-white overflowScroll" style="max-height: 110px;margin-bottom: 0;font-family: Roboto, sans-serif;">Comment goes here.&nbsp;</p>
+                                                            <p class="text-white overflowScroll" style="max-height: 110px;margin-bottom: 0;font-family: Roboto, sans-serif;">{{ reportedComment.commentTxt }}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -194,6 +201,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    {% endfor %}
                                     </div>
                                 </div>
                             </div>
