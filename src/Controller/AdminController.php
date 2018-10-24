@@ -28,9 +28,9 @@ class AdminController extends AbstractController
         ->getRepository(Profile::class)
         ->findBy(array('admin' => NULL));
 
-        $allProfiles = $this->getDoctrine()
+        $bannedProfiles = $this->getDoctrine()
         ->getRepository(Profile::class)
-        ->findBy(array('admin' => NULL));
+        ->findBy(array('banned' => true));
 
         $reportedRiddles = $this->getDoctrine()
         ->getRepository(Riddle::class)
@@ -44,7 +44,6 @@ class AdminController extends AbstractController
         ->getRepository(Comment::class)
         ->findBy(array('reported' => true));
 
-
         $profilesReported = $this->getDoctrine()
         ->getRepository(Profile::class)
         ->findAll();
@@ -55,7 +54,8 @@ class AdminController extends AbstractController
             'reportedRiddles' => $reportedRiddles,
             'reportedAnswers' => $reportedAnswers,
             'reportedComments' => $reportedComments,
-            'profilesReported' => $profilesReported
+            'profilesReported' => $profilesReported,
+            'bannedProfiles' => $bannedProfiles
         );
         $view = 'admin.html.twig';
 
