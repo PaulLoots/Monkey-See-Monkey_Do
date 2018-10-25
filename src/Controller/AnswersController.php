@@ -17,14 +17,16 @@ use App\Form\AnswerCommentType;
 class AnswersController extends AbstractController
 {
     /**
-    * @Route("/answers", name="answers_view")
+    * @Route("/answers/{id}", name="answers_view")
     */
-    public function viewAnswers(Request $request)
+    public function viewAnswers($id = "33", Request $request)
     {
         $session = new Session();
         $session->start();
     
-        $riddleId = $session->get('riddleId');
+        $riddleId = (int) $id;
+
+        $session->set('riddleId', $riddleId);
 
         $riddle = $this->getDoctrine()
         ->getRepository(Riddle::class)
@@ -35,8 +37,6 @@ class AnswersController extends AbstractController
         $questionProfile = $this->getDoctrine()
         ->getRepository(Profile::class)
         ->find($questionProfileId);
-
-        //$answerId = $riddle->getAnswerId(); 
 
         $answers = $this->getDoctrine()
         ->getRepository(Answer::class)
@@ -53,7 +53,7 @@ class AnswersController extends AbstractController
         //$profile = $session->get('profile');
         //$profileId = $profile->getId();
 
-        $profileId = 1;
+        $profileId = 2;
 
         $profile = $this->getDoctrine()
         ->getRepository(Profile::class)
@@ -70,12 +70,10 @@ class AnswersController extends AbstractController
             
             $entityManager = $this->getDoctrine()->getManager();
 
-            //if($entityManager->getRepository(RiddleLikes::class)->findOneBy(['riddleId' => $riddle_id]) == undefined){};
-
             if($entity == 'Riddle'){
+                $riddleId = $_POST['id'];
                 $riddle = $entityManager->getRepository(Riddle::class)->find($riddleId);
                 
-
                 if($vote == 'Like'){
                     $likes = $riddle->getLikes();
                     $riddle->setLikes($likes + 1);
@@ -116,7 +114,7 @@ class AnswersController extends AbstractController
          }
 
         $model = array(
-            'profile' => $questionProfile,'riddle' => $riddle, 'answers' => $answers, 'comments' => $comments
+            'user' => $profile,'profile' => $questionProfile,'riddle' => $riddle, 'answers' => $answers, 'comments' => $comments
         );
         $view = 'answers.html.twig';
 

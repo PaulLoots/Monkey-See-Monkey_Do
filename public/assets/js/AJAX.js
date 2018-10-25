@@ -1,11 +1,12 @@
 $(document).ready(function(){   
     $("#likeRiddle").on("click", function(event){  
     var amount = parseInt($(this).children( "p" ).text());
+    var id = $(this).attr("value");
     $(this).children( "p" ).text(amount + 1);
        $.ajax({  
           url:        '/answers',  
           type:       'POST',
-          data: { entity: "Riddle", vote: "Like"},   
+          data: { entity: "Riddle", vote: "Like", id: id},   
           dataType:   'text',  
           async:      true,  
           
@@ -21,10 +22,11 @@ $(document).ready(function(){
     $("#dislikeRiddle").on("click", function(event){  
         var amount = parseInt($(this).children( "p" ).text());
         $(this).children( "p" ).text(amount + 1);
+        var id = $(this).attr("value");
        $.ajax({  
           url:        '/answers',  
           type:       'POST',
-          data: { entity: "Riddle", vote: "Dislike"},   
+          data: { entity: "Riddle", vote: "Dislike", id: id},   
           dataType:   'json',  
           async:      true,  
           

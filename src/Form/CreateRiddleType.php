@@ -21,7 +21,6 @@ class CreateRiddleType extends AbstractType
     {
 
         $builder
-            //->add('profile_id', HiddenType::class)
             ->add('profileId', EntityType::class, array(
                 // looks for choices from this entity
                 'class' => Profile::class,
