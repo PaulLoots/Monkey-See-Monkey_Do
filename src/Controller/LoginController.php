@@ -46,8 +46,12 @@ class LoginController extends AbstractController
             return $this->redirectToRoute('discover_view');
         }
 
-        $loginProfile = new Profile();
-        $loginform = $this->createForm(LoginType::class, $loginProfile);
+
+        $profile = $this->getDoctrine()
+            ->getRepository(Profile::class)
+            ->findAll();
+        
+        $loginform = $this->createForm(LoginType::class, $profile);
         $loginform->handleRequest($request);
         
         if ($loginform->isSubmitted() && $loginform->isValid()) {
@@ -57,17 +61,17 @@ class LoginController extends AbstractController
             // $loginEmail = $loginProfile->getEmail();
             // $loginPassword = $loginProfile->getPassword();
 
-            // $profile = $this->getDoctrine()
+            // $profileMatchingEmail = $this->getDoctrine()
             // ->getRepository(Profile::class)
-            // ->findOneBy(['email' => $profileEmail]);
+            // ->findOneBy(['email' => $loginEmail]);
 
-            
-
-
+            // $profileMatchingPassword = $this->getDoctrine()
+            // ->getRepository(Profile::class)
+            // ->findOneBy(['password' => $loginPassword]);
 
             $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($loginProfile);
-       //     $entityManager->flush();
+            $entityManager->persist($profile);
+        //    $entityManager->flush();
 
             return $this->redirectToRoute('discover_view');
         }
@@ -76,17 +80,6 @@ class LoginController extends AbstractController
         $view = 'login.html.twig';
         $model = array('SignUpform' => $SignUpform->createView(), 'loginform' => $loginform->createView());
 
-        return $this->render($view, $model);
-    }
-
-    //test signup
-    /**
-    * @Route("/success", name="profile_success")
-    */
-    public function successProfile(Request $request)
-    {
-        $view = 'success.html.twig';
-        $model = array();
         return $this->render($view, $model);
     }
 

@@ -38,7 +38,7 @@
                             <div class="row">
                                 <div class="col-4 col-sm-8 col-md-6 col-lg-4 col-xl-4 offset-sm-2 offset-md-3 offset-lg-4 offset-xl-4">
 
-                                     {# {{ form_start(EditProfileform, {'attr': {'name':'EditProfileForm', 'novalidate': 'novalidate'}}) }} #}
+                                     
 
                                     <div class="form-group" style="margin-bottom: 0px;">
                                         <!--Profile Image Upload-->
@@ -51,30 +51,33 @@
                                             </label>
                                         </div>
                                     </div>
+                                    {# {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
 
 
-                                    {# <div class="form-group inputRoundedBlock" style="height: 50px;">
+                                    <div class="form-group inputRoundedBlock" style="height: 50px;">
                                         <i class="la la-user float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
-                                        {{ form_widget(EditProfileform.name, {'attr': {'class':'form-control', 'placeholder':'Name', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                                        {{ form_widget(form.name, {'attr': {'class':'form-control', 'placeholder':'Name', 'style':'height: 50px;width: 84%;border: none;'}}) }}
                                     </div>
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
                                         <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
-                                        {{ form_widget(EditProfileform.email, {'attr': {'class':'form-control', 'placeholder':'Email', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                                        {{ form_widget(form.email, {'attr': {'class':'form-control', 'placeholder':'Email', 'style':'height: 50px;width: 84%;border: none;'}}) }}
                                     </div>
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
                                         <i class="la la-lock float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
-                                        {{ form_widget(EditProfileform.password, {'attr': {'class':'form-control', 'placeholder':'Password', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                                        {{ form_widget(form.password, {'attr': {'class':'form-control', 'placeholder':'Password', 'style':'height: 50px;width: 84%;border: none;'}}) }}
                                     </div>
                                     <div style="margin-top: 3vh;">
-                                        {{ form_widget(EditProfileform.submitEditProfile, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
+                                        {{ form_widget(form.submitEditProfile, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
                                     </div>
+
+                                    {{ form_end(form) }}  #}
                                     
-                                    </div>
+                                </div>
 
 
                                 
-                                {{ form_end(EditProfileform) }}  #}
+                                
                                 </div>
                             </div>
                         </div>

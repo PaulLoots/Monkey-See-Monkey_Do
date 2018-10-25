@@ -31,7 +31,7 @@ class UploadImageController extends AbstractController
 
         $session->set('profile', $profile);
 
-         //UNCOMMENT to let this page work with sessions
+        //UNCOMMENT to let this page work with sessions
         //$profile = $session->get('profile');
         //$profileId = $profile->getId();
         
@@ -84,6 +84,7 @@ class UploadImageController extends AbstractController
         // uniqid(), which is based on timestamps
         return md5(uniqid());
     }
+
 
 }
 ?>
