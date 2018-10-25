@@ -12,8 +12,9 @@
                     </div>
                     <div class="col" style="padding: 0;">
                         <div class="overflowScroll" style="max-height: 30vh;">
-                            <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
                             {% for admin in admins %}
+                            <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
+                            
                                 <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
                                     <div class="row">
                                         <div class="col-12 col-md-8 col-lg-12">
@@ -34,8 +35,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                {% endfor %}
+                                
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -46,8 +48,9 @@
                     </div>
                     <div class="col" style="padding: 0;">
                         <div class="overflowScroll" style="max-height: 30vh;">
-                            <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
                             {% for bannedProfile in bannedProfiles %}
+                            <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
+                            
                                 <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
                                     <div class="row">
                                         <div class="col-12 col-md-8 col-lg-12">
@@ -68,8 +71,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                {% endfor %}
+                                
                             </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -85,8 +89,9 @@
                     <div class="col"
                         style="padding: 0;">
                         <div class="overflowScroll" style="max-height: 45vh;">
-                            <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
                             {% for allProfile in allProfiles %}
+                            <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
+                            
                                 <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
                                     <div class="row">
                                         <div class="col-12 col-md-8 col-lg-12">
@@ -114,6 +119,7 @@
                             </div>
                             {% endfor %}
                         </div>
+                        
                     </div>
                 </div>
             </div>
@@ -133,8 +139,9 @@
                             </ul>
                             <div class="tab-content overflowScroll" style="max-height: 90vh;">
                                 <div class="tab-pane active" role="tabpanel" id="riddlesTab" style="padding-top: 10px;">
+                                     {% for reportedRiddle in reportedRiddles %}
                                     <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
-                                    {% for reportedRiddle in reportedRiddles %}
+                                   
                                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
                                             <div class="row">
                                                 <div class="col-12 col-md-10">
@@ -165,13 +172,15 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {% endfor %}
+                                        
                                     </div>
+                                    {% endfor %}
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="answersTab" style="padding-top: 10px;">
+                                    {% for reportedAnswer in reportedAnswers %}
                                     <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
                                         
-                                    {% for reportedAnswer in reportedAnswers %}
+                                    
                                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
                                             <div class="row">
                                                 <div class="col-12 col-md-10">
@@ -201,12 +210,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endfor %}
+                                    
                                     </div>
+                                    {% endfor %}
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="commentsTab" style="padding-top: 10px;">
+                                    {% for reportedComment in reportedComments %}
                                     <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
-                                        {% for reportedComment in reportedComments %}
+                                        
                                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
                                             <div class="row">
                                                 <div class="col-12 col-md-10">
@@ -236,8 +247,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    {% endfor %}
+                                    
                                     </div>
+                                    {% endfor %}
                                 </div>
                             </div>
                         </div>
