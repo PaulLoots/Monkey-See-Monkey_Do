@@ -64,15 +64,13 @@ class Profile
     private $comments;
 
     /**
-<<<<<<< HEAD
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $banned;
-=======
-     * @ORM\OneToMany(targetEntity="App\Entity\RiddleLikes", mappedBy="profile_id", orphanRemoval=true)
+    /**
+    * @ORM\OneToMany(targetEntity="App\Entity\RiddleLikes", mappedBy="profile_id", orphanRemoval=true)
      */
     private $riddleLikes;
->>>>>>> ajax
 
     public function __construct()
     {
@@ -272,7 +270,6 @@ class Profile
         return $this;
     }
 
-<<<<<<< HEAD
     public function getBanned(): ?bool
     {
         return $this->banned;
@@ -281,7 +278,7 @@ class Profile
     public function setBanned(?bool $banned): self
     {
         $this->banned = $banned;
-=======
+    }    
     /**
      * @return Collection|RiddleLikes[]
      */
@@ -309,7 +306,6 @@ class Profile
                 $riddleLike->setProfileId(null);
             }
         }
->>>>>>> ajax
 
         return $this;
     }

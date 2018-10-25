@@ -72,15 +72,13 @@ class Riddle
     private $icon;
 
     /**
-<<<<<<< HEAD
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $reported;
-=======
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\RiddleLikes", mappedBy="riddle_id", orphanRemoval=true)
      */
     private $riddleLikes;
->>>>>>> ajax
 
     public function __construct()
     {
@@ -232,7 +230,6 @@ class Riddle
         return $this;
     }
 
-<<<<<<< HEAD
     public function getReported(): ?bool
     {
         return $this->reported;
@@ -241,7 +238,7 @@ class Riddle
     public function setReported(?bool $reported): self
     {
         $this->reported = $reported;
-=======
+    }
     /**
      * @return Collection|RiddleLikes[]
      */
@@ -269,7 +266,6 @@ class Riddle
                 $riddleLike->setRiddleId(null);
             }
         }
->>>>>>> ajax
 
         return $this;
     }
