@@ -29,8 +29,8 @@ $(function(){
         console.log();
     })
     
-    $(".showModal").click(function(){
-        $("#profileModal").modal();
+    $(".filebutton").click(function(){
+        $("#uploadImageModal").modal();
     })
     
     
