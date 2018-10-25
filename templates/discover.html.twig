@@ -8,43 +8,33 @@
     <div class="container" style="margin-top: 10px;">
         <div class="row">
             <div class="col-10 col-sm-8 col-md-6 col-lg-8 col-xl-6 mx-auto">
-                <div class="filterBg" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-lg thumbsHover" data-toggle="collapse" aria-expanded="true" aria-controls="collapse-1" role="button" href="#collapse-1" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;height: 60px;">Filter<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
-                    <div
-                        class="collapse show" id="collapse-1">
+                <div class="filterBg" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-lg thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" role="button" href="#collapse-1" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;height: 60px;">Filter<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
+                    <div class="collapse" id="collapse-1">
                         <div class="col">
                             <div class="row" style="margin-bottom: 15px;">
-                                <div class="col-4 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 20px;">
-                                    <div class="mx-auto filterBtns" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-search d-table mx-auto" style="font-size: 28px;color: white;"></i>
-                                        <p class="text-center" style="margin-bottom: 0px;color: white;font-size: 10px;">Users</p>
+                                <div class="col-3 col-lg-2 ml-auto" style="padding: 0px;padding-top: 10px;padding-bottom: 20px;">
+                                    <div class="mx-auto filterBtns selectedFilter" id="filterAll" style="width: 70px;height: 70px;padding-top: 13px;background-color: #1c1f21;"><i class="icon ion-ios-infinite d-table mx-auto" style="font-size: 28px;margin-top: -6px;margin-bottom: -10px;"></i>
+                                        <p class="text-center" style="margin-bottom: 0px;font-size: 10px;">All</p>
                                     </div>
                                 </div>
-                                <div class="col-4 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 20px;">
-                                    <div class="mx-auto filterBtns" style="background-color: #b2bec3;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-users d-table mx-auto" style="font-size: 28px;color: rgb(0,0,0);"></i>
-                                        <p class="text-center" style="margin-bottom: 0px;color: rgb(0,0,0);font-size: 10px;">Popularity</p>
+                                <div class="col-3 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 20px;">
+                                    <div class="mx-auto filterBtns" id="filterUsers" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-search d-table mx-auto" style="font-size: 28px;"></i>
+                                        <p class="text-center" style="margin-bottom: 0px;font-size: 10px;">Users</p>
                                     </div>
                                 </div>
-                                <div class="col-4 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 20px;">
-                                    <div class="mx-auto filterBtns" style="background-color: #b2bec3;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-dashboard d-table mx-auto" style="font-size: 28px;color: rgb(0,0,0);"></i>
-                                        <p class="text-center" style="margin-bottom: 0px;color: rgb(0,0,0);font-size: 10px;">Difficulty</p>
+                                <div class="col-3 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 10px;">
+                                    <div class="mx-auto filterBtns" id="filterLiked" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-thumbs-o-up d-table mx-auto" style="font-size: 28px;"></i>
+                                        <p class="text-center" style="margin-bottom: 0px;font-size: 10px;">Liked</p>
                                     </div>
                                 </div>
-                                <div class="col-4 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 10px;">
-                                    <div class="mx-auto filterBtns" style="background-color: #b2bec3;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-thumbs-o-up d-table mx-auto" style="font-size: 28px;color: rgb(0,0,0);"></i>
-                                        <p class="text-center" style="margin-bottom: 0px;color: rgb(0,0,0);font-size: 10px;">Liked</p>
-                                    </div>
-                                </div>
-                                <div class="col-4 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 10px;">
-                                    <div class="mx-auto filterBtns" style="background-color: #b2bec3;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-history d-table mx-auto" style="font-size: 28px;color: rgb(0,0,0);"></i>
-                                        <p class="text-center" style="margin-bottom: 0px;color: rgb(0,0,0);font-size: 10px;">Users</p>
-                                    </div>
-                                </div>
-                                <div class="col-4 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 10px;">
-                                    <div class="mx-auto filterBtns" style="background-color: #b2bec3;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-check-circle d-table mx-auto" style="font-size: 28px;color: rgb(0,0,0);"></i>
-                                        <p class="text-center" style="margin-bottom: 0px;color: rgb(0,0,0);font-size: 10px;">Answered</p>
+                                <div class="col-3 col-lg-2 mr-auto" style="padding: 0px;padding-top: 10px;padding-bottom: 10px;">
+                                    <div class="mx-auto filterBtns" id="filterAnswered" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-check-circle d-table mx-auto" style="font-size: 28px;"></i>
+                                        <p class="text-center" style="margin-bottom: 0px;font-size: 10px;">Answered</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -52,11 +42,25 @@
     </div>
     <div class="container">
         <div class="row" style="padding-left: 1%;">
+        {% if filterItem == 'all' %}
         {% for riddle in riddles %}
+        {% if profile.id != riddle.profileId.id %}
+        {% set seen = false %}
+        {% for answer in answers %}
+            {% if riddle.id == answer.riddleId.id %}
+                {% if profile.id == answer.profileId.id %}
+                    {% set seen = true %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
             <div class="col-12 col-md-6 col-lg-4" style="padding: 15px;padding-left: 30px;padding-right: 30px;">
                 <div class="row riddleItem hover">
                     <div class="col riddleCard" data-aos="zoom-in" style="padding: 0px;background-color: {{ riddle.colour }};">
+                        {% if seen == true %}
+                        <a href="/answers/{{ riddle.id }}">
+                        {% else %}
                         <a href="/riddle/{{ riddle.id }}">
+                        {% endif %}
                             <div data-bs-parallax-bg="true" style="height: 200px;padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-image: url(../assets/img/{{ riddle.icon }}_pattern.svg);background-position: center;background-size: cover;">
                                 <div class="row" style="width: 100%;margin: 0px;font-family: Roboto, sans-serif;font-weight: normal;">
                                     <div class="col-auto" style="padding-right: 5px;">
@@ -73,26 +77,92 @@
                                     </div>
                                 </div>
                                 <div class="row" style="width: 100%;margin: 0px;">
-                                    <div class="col-auto" style="padding-right: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">album</i>
-                                        <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">81%</p>
-                                    </div>
                                     <div class="col-auto" style="padding-right: 5px;padding-left: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">thumb_up</i>
-                                        <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">67</p>
+                                        <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.likes }}</p>
                                     </div>
                                     <div class="col-auto" style="padding-right: 5px;padding-left: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">thumb_down</i>
-                                        <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">9</p>
+                                        <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.dislikes }}</p>
                                     </div>
                                     <div class="col-auto" style="padding-right: 5px;padding-left: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">comment</i>
                                         <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">12</p>
                                     </div>
+                                    {% if seen == true %}
+                                    <div class="col-auto ml-auto seenTag" style="padding-left: 0px;">
+                                        <p class="text-light" style="border-style: solid;border-radius: 10px;border-width: 2px;padding: 4px;padding-left: 8px;padding-right: 8px;font-family: Roboto, sans-serif;font-weight: 500;"><i class="la la-eye" style="font-weight: bold;"></i> Seen </p>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </a>
                     </div>
                 </div>
             </div>
-        {% endfor %}    
+        {% endif %}   
+        {% endfor %}
+        {% elseif filterItem == 'likes' %}
+        {% for riddle in riddles | sortbyfield('likes') | reverse %}
+        {% if profile.id != riddle.profileId.id %}
+        {% set seen = false %}
+        {% for answer in answers %}
+            {% if riddle.id == answer.riddleId.id %}
+                {% if profile.id == answer.profileId.id %}
+                    {% set seen = true %}
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+            <div class="col-12 col-md-6 col-lg-4" style="padding: 15px;padding-left: 30px;padding-right: 30px;">
+                <div class="row riddleItem hover">
+                    <div class="col riddleCard" data-aos="zoom-in" style="padding: 0px;background-color: {{ riddle.colour }};">
+                        {% if seen == true %}
+                        <a href="/answers/{{ riddle.id }}">
+                        {% else %}
+                        <a href="/riddle/{{ riddle.id }}">
+                        {% endif %}
+                            <div data-bs-parallax-bg="true" style="height: 200px;padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-image: url(../assets/img/{{ riddle.icon }}_pattern.svg);background-position: center;background-size: cover;">
+                                <div class="row" style="width: 100%;margin: 0px;font-family: Roboto, sans-serif;font-weight: normal;">
+                                    <div class="col-auto" style="padding-right: 5px;">
+                                        <p style="color: rgb(255,255,255);font-size: 12px;font-weight: 300;">{{ riddle.date | date ('d M')}}</p>
+                                    </div>
+                                    <div class="col-auto float-left" style="max-width: 60%;padding-left: 0px;">
+                                        <p class="text-truncate" style="color: rgb(255,255,255);font-size: 12px;font-weight: 500;">{% for profile in profiles %}{% if profile.id == riddle.profileId.id %}{{ profile.name }}{% endif %}{% endfor %}</p>
+                                    </div>
+                                    <div class="col-auto ml-auto" style="padding-right: 15px;"><img src="../assets/img/{{ riddle.icon }}.svg" height="40px"></div>
+                                </div>
+                                <div class="row" style="width: 100%;margin: 0px;">
+                                    <div class="col-12" style="height: 85px;padding-top: 15px;padding-bottom: 20px;padding-left: 5px;">
+                                        <h3 class="text-nowrap text-truncate overflow-visible" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;font-weight: 600;font-size: 28px;max-height: 38px;">{{ riddle.question }}</h3>
+                                    </div>
+                                </div>
+                                <div class="row" style="width: 100%;margin: 0px;">
+                                    <div class="col-auto" style="padding-right: 5px;padding-left: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">thumb_up</i>
+                                        <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.likes }}</p>
+                                    </div>
+                                    <div class="col-auto" style="padding-right: 5px;padding-left: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">thumb_down</i>
+                                        <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.dislikes }}</p>
+                                    </div>
+                                    <div class="col-auto" style="padding-right: 5px;padding-left: 5px;"><i class="material-icons" style="color: rgba(255,255,255,0.65);font-size: 18px;">comment</i>
+                                        <p class="d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">12</p>
+                                    </div>
+                                    {% if seen == true %}
+                                    <div class="col-auto ml-auto seenTag" style="padding-left: 0px;">
+                                        <p class="text-light" style="border-style: solid;border-radius: 10px;border-width: 2px;padding: 4px;padding-left: 8px;padding-right: 8px;font-family: Roboto, sans-serif;font-weight: 500;"><i class="la la-eye" style="font-weight: bold;"></i> Seen </p>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}   
+        {% endfor %}
+        {% endif %}        
         </div>
     </div>
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="../assets/js/animation.js"></script>
+    <script src="../assets/js/filter.js"></script>
 {% endblock %}

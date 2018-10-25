@@ -58,8 +58,8 @@ class RiddleController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($createAnswer);
             $entityManager->flush();
-            return $this->redirectToRoute("answers_view");
-        }        
+            return $this->redirectToRoute("answers_view", array('id' => $riddleId));
+        }
 
         $model = array('profile' => $questionProfile,'riddle' => $riddle,'form' => $form->createView());
         $view = 'riddle.html.twig';

@@ -53,9 +53,7 @@ class RiddleAnswerType extends AbstractType
             ->add('dislikes', HiddenType::class, array(
                 'data' => 0
             ))
-            ->add('correct', HiddenType::class, array(
-                'data' => 0
-            ))
+            ->add('correct', HiddenType::class)
             ->add('submitAnswerRiddle', SubmitType::class, ['label' => 'Answer'])
         ;
     }

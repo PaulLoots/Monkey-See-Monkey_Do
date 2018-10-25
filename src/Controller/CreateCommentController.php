@@ -65,7 +65,7 @@ class CreateCommentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($createComment);
             $entityManager->flush();
-            return $this->redirectToRoute('answers_view');
+            return $this->redirectToRoute('answers_view', array('id' => $riddleId));
         }        
 
         $model = array(

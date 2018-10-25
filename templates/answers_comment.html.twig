@@ -131,10 +131,10 @@
                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;">
                             <div class="row">
                                 <div class="col-auto" style="padding-right: 5px;">
-                                    <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">Jan 2018</p>
+                                    <p style="color: #b2bec3;font-size: 12px;font-weight: 300;">{{ answer.time }}</p>
                                 </div>
                                 <div class="col" style="padding-left: 0px;">
-                                    <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">Armand Pretorius</p>
+                                    <p class="text-truncate" style="color: #b2bec3;font-size: 12px;font-weight: 500;">{{ answer.profileId.id }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -175,4 +175,5 @@
 
 {% block javascripts %}
     <script src="../assets/js/comments.js"></script>
+    <script src="../assets/js/animation.js"></script>
 {% endblock %}

@@ -5,42 +5,67 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 use App\Entity\Riddle;
 use App\Entity\Profile;
+use App\Entity\Answer;
 
 class DiscoverController extends AbstractController
 {
     /**
     * @Route("/discover", name="discover_view")
     */
-    public function viewDiscover()
+    public function viewDiscover(Request $request)
     {
+        $session = new Session();
+        $session->start();
+
+        //UNCOMMENT to let this page work with sessions
+        //$profile = $session->get('profile');
+        //$profileId = $profile->getId();
+
+        $profileId = 2;
+
+        $profile = $this->getDoctrine()
+        ->getRepository(Profile::class)
+        ->find($profileId);
+
+        $session->set('filter', 'all');
+
         $riddles = $this->getDoctrine()
         ->getRepository(Riddle::class)
         ->findAll();
+
+        shuffle($riddles);
 
         $profiles = $this->getDoctrine()
         ->getRepository(Profile::class)
         ->findAll();
 
-        //forEach($riddles as $riddle){
-            //echo $riddle-> getId();
-            //$profileID = $riddle -> getProfileId();
+        $answers = $this->getDoctrine()
+        ->getRepository(Answer::class)
+        ->findAll();
 
-            //$profile = $this->getDoctrine()
-            //->getRepository(Profile::class)
-            //->find($profileID);
+        
+        //AJAX
+        if ($request->isXmlHttpRequest()) {  
+            $filter = $_POST['filter'];
+            $model = array('filterItem' => $filter,'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
+            $view = 'discover.html.twig';
+    
+            return $this->render($view, $model); 
 
-            //$profileName = $profile-> getName();
+         } else {
 
-            //$riddle->append($profileName);
-
-        //}
-
-        $model = array('profiles' => $profiles,'riddles' => $riddles);
+            $filter = $session->get('filter');
+        
+        $model = array('filterItem' => $filter,'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
         $view = 'discover.html.twig';
 
         return $this->render($view, $model);
+
+         }
     }
 }
 

@@ -21,7 +21,6 @@ class CreateRiddleType extends AbstractType
     {
 
         $builder
-            //->add('profile_id', HiddenType::class)
             ->add('profileId', EntityType::class, array(
                 // looks for choices from this entity
                 'class' => Profile::class,
@@ -30,9 +29,7 @@ class CreateRiddleType extends AbstractType
                     $profile = $session->get('profile');
                     $profileID = $profile->getId();
                     return $er->createQueryBuilder('u')
-                        //->from('Profile', 'u')
                         ->where("u.id = $profileID");
-                        //->orderBy('u.id', 'ASC');
                 },
                 'choice_label' => 'id'
             ))
