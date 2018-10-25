@@ -63,6 +63,11 @@ class Profile
      */
     private $comments;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $banned;
+
     public function __construct()
     {
         $this->riddles = new ArrayCollection();
@@ -256,6 +261,18 @@ class Profile
                 $comment->setProfileId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBanned(): ?bool
+    {
+        return $this->banned;
+    }
+
+    public function setBanned(?bool $banned): self
+    {
+        $this->banned = $banned;
 
         return $this;
     }

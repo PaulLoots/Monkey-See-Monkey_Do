@@ -48,6 +48,11 @@ class Comment
      */
     private $time;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $reported;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -121,6 +126,18 @@ class Comment
     public function setTime(string $time): self
     {
         $this->time = $time;
+
+        return $this;
+    }
+
+    public function getReported(): ?bool
+    {
+        return $this->reported;
+    }
+
+    public function setReported(?bool $reported): self
+    {
+        $this->reported = $reported;
 
         return $this;
     }

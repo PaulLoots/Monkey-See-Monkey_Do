@@ -71,6 +71,11 @@ class Riddle
      */
     private $icon;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $reported;
+
     public function __construct()
     {
         $this->answers = new ArrayCollection();
@@ -216,6 +221,18 @@ class Riddle
     public function setIcon(string $icon): self
     {
         $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function getReported(): ?bool
+    {
+        return $this->reported;
+    }
+
+    public function setReported(?bool $reported): self
+    {
+        $this->reported = $reported;
 
         return $this;
     }
