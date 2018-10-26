@@ -8,27 +8,27 @@
     <div class="container" style="margin-top: 10px;">
         <div class="row">
             <div class="col-10 col-sm-8 col-md-6 col-lg-8 col-xl-6 mx-auto">
-                <div class="filterBg" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-lg thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" role="button" href="#collapse-1" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;height: 60px;">Filter<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
-                    <div class="collapse" id="collapse-1">
+                <div class="filterBg" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-lg thumbsHover" data-toggle="collapse" {% if filterItem != 'all' %} aria-expanded="true" {% else %} aria-expanded="false" {% endif %} aria-controls="collapse-1" role="button" href="#collapse-1" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;height: 60px;">Filter<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
+                    <div class="collapse {% if filterItem != 'all' %} show {% else %} {% endif %}" id="collapse-1">
                         <div class="col">
                             <div class="row" style="margin-bottom: 15px;">
                                 <div class="col-3 col-lg-2 ml-auto" style="padding: 0px;padding-top: 10px;padding-bottom: 20px;">
-                                    <div class="mx-auto filterBtns selectedFilter" id="filterAll" style="width: 70px;height: 70px;padding-top: 13px;background-color: #1c1f21;"><i class="icon ion-ios-infinite d-table mx-auto" style="font-size: 28px;margin-top: -6px;margin-bottom: -10px;"></i>
+                                    <div class="mx-auto filterBtns {% if filterItem == 'all' %} selectedFilter {% endif %}" id="filterAll" style="width: 70px;height: 70px;padding-top: 13px;background-color: #1c1f21;"><i class="icon ion-ios-infinite d-table mx-auto" style="font-size: 28px;margin-top: -6px;margin-bottom: -10px;"></i>
                                         <p class="text-center" style="margin-bottom: 0px;font-size: 10px;">All</p>
                                     </div>
                                 </div>
                                 <div class="col-3 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 20px;">
-                                    <div class="mx-auto filterBtns" id="filterUsers" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-search d-table mx-auto" style="font-size: 28px;"></i>
+                                    <div class="mx-auto filterBtns {% if filterItem == 'users' %} selectedFilter {% endif %}" id="filterUsers" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-search d-table mx-auto" style="font-size: 28px;"></i>
                                         <p class="text-center" style="margin-bottom: 0px;font-size: 10px;">Users</p>
                                     </div>
                                 </div>
                                 <div class="col-3 col-lg-2" style="padding: 0px;padding-top: 10px;padding-bottom: 10px;">
-                                    <div class="mx-auto filterBtns" id="filterLiked" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-thumbs-o-up d-table mx-auto" style="font-size: 28px;"></i>
+                                    <div class="mx-auto filterBtns {% if filterItem == 'likes' %} selectedFilter {% endif %}" id="filterLiked" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-thumbs-o-up d-table mx-auto" style="font-size: 28px;"></i>
                                         <p class="text-center" style="margin-bottom: 0px;font-size: 10px;">Liked</p>
                                     </div>
                                 </div>
                                 <div class="col-3 col-lg-2 mr-auto" style="padding: 0px;padding-top: 10px;padding-bottom: 10px;">
-                                    <div class="mx-auto filterBtns" id="filterAnswered" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-check-circle d-table mx-auto" style="font-size: 28px;"></i>
+                                    <div class="mx-auto filterBtns {% if filterItem == 'answered' %} selectedFilter {% endif %}" id="filterAnswered" style="background-color: #1c1f21;width: 70px;height: 70px;padding-top: 13px;"><i class="la la-check-circle d-table mx-auto" style="font-size: 28px;"></i>
                                         <p class="text-center" style="margin-bottom: 0px;font-size: 10px;">Answered</p>
                                     </div>
                                 </div>

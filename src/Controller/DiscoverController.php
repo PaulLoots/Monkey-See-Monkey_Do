@@ -31,8 +31,6 @@ class DiscoverController extends AbstractController
         ->getRepository(Profile::class)
         ->find($profileId);
 
-        $session->set('filter', 'all');
-
         $riddles = $this->getDoctrine()
         ->getRepository(Riddle::class)
         ->findAll();
@@ -51,10 +49,14 @@ class DiscoverController extends AbstractController
         //AJAX
         if ($request->isXmlHttpRequest()) {  
             $filter = $_POST['filter'];
+
             $model = array('filterItem' => $filter,'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
             $view = 'discover.html.twig';
-    
+
+            $session->set('filter', $filter );
+            
             return $this->render($view, $model); 
+            
 
          } else {
 
