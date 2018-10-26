@@ -24,6 +24,9 @@ class EditProfileController extends AbstractController
         $session = new Session();
         $session->start();
 
+
+        // update Profile handle
+
         $profile = $this->getDoctrine()
             ->getRepository(Profile::class)
             ->find($id);
@@ -53,13 +56,61 @@ class EditProfileController extends AbstractController
             return $this->redirectToRoute('discover_view');
         }
 
+        // upload Image handle
+
+        $profileId=1;
+
+        $profilesImage = $this->getDoctrine()
+        ->getRepository(Profile::class)
+        ->find($profileId);
+
+        $session->set('profile', $profilesImage);
+
+        //UNCOMMENT to let this page work with sessions
+        //$profile = $session->get('profile');
+        //$profileId = $profile->getId();
+        
+        $profileImage = new ProfileImage();
+        $Uploadform = $this->createForm(ProfileImageType::class, $profileImage);
+        $Uploadform->handleRequest($request);
+
+
+            if ($Uploadform->isSubmitted() && $Uploadform->isValid()) {
+
+                $entityManager = $this->getDoctrine()->getManager();
+
+                /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+                // $file=$profileImage->getImagePath();
+                $file=$Uploadform->get('image_path')->getData();
+
+                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        $this->getParameter('profileImages_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                $profileImage->setImagePath($fileName);
+
+                $entityManager->persist($profileImage);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('editProfile_view');
+            }
+
+
+
       $view = 'editProfile.html.twig';
-        $model = array('form' => $form->createView());
+        $model = array('form' => $form->createView(), 'Uploadform' => $Uploadform->createView());
 
         return $this->render($view, $model);
 
     }
-
 
 }
 ?>

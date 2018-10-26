@@ -38,7 +38,7 @@ class ProfileImageType extends AbstractType
             ->add('image_path', FileType::class)
             ->add('submit', SubmitType::class, ['label' => 'Upload'])
             ->add('active_state', HiddenType::class, array(
-                'data' => true
+                'data' => 0
             ))
             ;
     }

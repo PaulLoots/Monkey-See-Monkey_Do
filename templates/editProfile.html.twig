@@ -4,7 +4,6 @@
 
 {% block body %}
 
-
 <div class="modal fade" role="dialog" tabindex="-1" id="uploadImageModal">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -19,15 +18,33 @@
                     {{ form_start(Uploadform, {'attr': {'novalidate': 'novalidate'}}) }}
                     
                     {{ form_widget(Uploadform.profileId, {'attr': {'style':'display: none;'}}) }}
-                    {{ form_widget(Uploadform) }}
+                    
+                    <div class="form-group" style="margin-bottom: 0px;">
+                                        <!--Profile Image Upload-->
+                                        <div class="customCodeProfileImage">
+                                            <label class="filebutton">
+                                                <i style="margin:35%;font-size:40px;color:white;" class="la la-user-plus"></i>
+                                                <span>
+                                                <div id="myfile">
+                                                {{ form_widget(Uploadform.image_path) }}
+                                                </div>
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div style="margin-top: 3vh;">
+                                        {{ form_widget(Uploadform.submit, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
+                                    </div>
+                                    {{form_widget(Uploadform)}}
+
+
                     {{ form_end(Uploadform) }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
 
 <div role="dialog" tabindex="-1">
             <div role="document">
@@ -51,7 +68,9 @@
                                             </label>
                                         </div>
                                     </div>
-                                    {# {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+
+                                    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
 
 
 
@@ -71,12 +90,9 @@
                                         {{ form_widget(form.submitEditProfile, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
                                     </div>
 
-                                    {{ form_end(form) }}  #}
+                                    {{ form_end(form) }} 
                                     
-                                </div>
-
-
-                                
+                                </div>                                
                                 
                                 </div>
                             </div>
