@@ -6,6 +6,7 @@
         <div class="container">
         <div class="row">
             <div class="col-12 col-lg-4">
+            {# admin #}
                 <div class="row">
                     <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 10px;">
                         <h1 class="text-center text-white" style="font-family: Quicksand, sans-serif;font-weight: 300;font-size: 30px;margin-top: 10px;">Admin</h1>
@@ -28,7 +29,7 @@
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-12">
                                             <div class="row" style="width: 100%;margin: 0px;">
-                                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
+                                                <div value="{{ admin.id }}" class="col-auto thumbsHover removeAdmin" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
                                                     <div class="mx-auto filterBtns" style="background-color: #ff7675;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-user-times d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                 </div>
                                             </div>
@@ -41,43 +42,7 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 10px;">
-                        <h1 class="text-center text-white" style="font-family: Quicksand, sans-serif;font-weight: 300;font-size: 30px;margin-top: 10px;">Banned</h1>
-                    </div>
-                    <div class="col" style="padding: 0;">
-                        <div class="overflowScroll" style="max-height: 30vh;">
-                            {% for bannedProfile in bannedProfiles %}
-                            <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
-                            
-                                <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
-                                    <div class="row">
-                                        <div class="col-12 col-md-8 col-lg-12">
-                                            <div class="row">
-                                            {# ImagePath in source #}
-                                                <div class="col-3 col-lg-4" style="padding-right: 5px;margin-bottom: 10px;"><img class="rounded-circle" src="assets/img/PHOTO-2018-01-28-13-45-52.jpg" width="55px" height="55px" style="margin-left: 5px;"></div>
-                                                <div class="col" style="padding-left: 0px;">
-                                                    <p class="text-truncate text-light" style="font-size: 18px;font-weight: 500;margin-left: 5px;margin-top: 18px;margin-bottom: 10px;">{{ bannedProfile.name }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-4 col-lg-12">
-                                            <div class="row" style="width: 100%;margin: 0px;">
-                                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
-                                                    <div class="mx-auto filterBtns" style="background-color: #ff7675;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-user-times d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-
+{# users #}
                 <div class="row" style="width: 100%;margin-left: 0;">
                     <div class="col-12 mx-auto" style="padding-top: 5px;">
                         <h1 class="text-center text-white" style="font-family: Quicksand, sans-serif;font-weight: 300;font-size: 30px;margin-top: 10px;">Users</h1>
@@ -122,6 +87,43 @@
                         
                     </div>
                 </div>
+{# banned #}
+                <div class="row">
+                    <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 10px;">
+                        <h1 class="text-center text-white" style="font-family: Quicksand, sans-serif;font-weight: 300;font-size: 30px;margin-top: 10px;">Banned</h1>
+                    </div>
+                    <div class="col" style="padding: 0;">
+                        <div class="overflowScroll" style="max-height: 30vh;">
+                            {% for bannedProfile in bannedProfiles %}
+                            <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
+                            
+                                <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
+                                    <div class="row">
+                                        <div class="col-12 col-md-8 col-lg-12">
+                                            <div class="row">
+                                            {# ImagePath in source #}
+                                                <div class="col-3 col-lg-4" style="padding-right: 5px;margin-bottom: 10px;"><img class="rounded-circle" src="assets/img/PHOTO-2018-01-28-13-45-52.jpg" width="55px" height="55px" style="margin-left: 5px;"></div>
+                                                <div class="col" style="padding-left: 0px;">
+                                                    <p class="text-truncate text-light" style="font-size: 18px;font-weight: 500;margin-left: 5px;margin-top: 18px;margin-bottom: 10px;">{{ bannedProfile.name }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-4 col-lg-12">
+                                            <div class="row" style="width: 100%;margin: 0px;">
+                                                <div value="{{ bannedProfile.id }}" class="col-auto thumbsHover unbanButton" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
+                                                    <div class="mx-auto filterBtns" style="background-color: #ff7675;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-user-times d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <div class="col-12 col-lg-8">
                 <div class="row">
@@ -259,3 +261,7 @@
         </div>
     </div>
     {% endblock %}
+
+    {% block javascripts %}
+    <script src="../assets/js/report_AJAX.js"></script>
+{% endblock %}

@@ -16,14 +16,35 @@ class AdminController extends AbstractController
     /**
     * @Route("/admin", name="admin_view")
     */
-    public function viewAdmin()
+    public function viewAdmin(Request $request)
     {
 
         $admins = $this->getDoctrine()
         ->getRepository(Profile::class)
         ->findBy(array('admin' => true));
 
-        // change to false
+//Admin ajax
+
+        if ($request->isXmlHttpRequest()) {  
+            $adminId = $_POST['id'];
+            $vote = $_POST['vote'];
+            
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $profileAdmin = $entityManager->getRepository(Profile::class)->find($adminId);
+                
+            if($vote == 'RemoveAdmin'){
+                $profileAdmin->setAdmin(false);
+            } else {
+                $profileAdmin->setAdmin(true);
+            }
+
+            $entityManager->flush();
+
+            return true; 
+         }
+
+         // change to false
         $allProfiles = $this->getDoctrine()
         ->getRepository(Profile::class)
         ->findBy(array('admin' => NULL));
