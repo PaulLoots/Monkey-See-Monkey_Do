@@ -13,7 +13,8 @@
                     </div>
                     <div class="col" style="padding: 0;">
                         <div class="overflowScroll" style="max-height: 30vh;">
-                            {% for admin in admins %}
+                            {% for Profile in Profiles %}
+                            {% if Profile.admin == true %}
                             <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
                             
                                 <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
@@ -23,13 +24,13 @@
                                             {# ImagePath in source #}
                                                 <div class="col-3 col-lg-4" style="padding-right: 5px;margin-bottom: 10px;"><img class="rounded-circle" src="assets/img/PHOTO-2018-01-28-13-45-52.jpg" width="55px" height="55px" style="margin-left: 5px;"></div>
                                                 <div class="col" style="padding-left: 0px;">
-                                                    <p class="text-truncate text-light" style="font-size: 18px;font-weight: 500;margin-left: 5px;margin-top: 18px;margin-bottom: 10px;">{{ admin.name }}</p>
+                                                    <p class="text-truncate text-light" style="font-size: 18px;font-weight: 500;margin-left: 5px;margin-top: 18px;margin-bottom: 10px;">{{ Profile.name }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-12">
                                             <div class="row" style="width: 100%;margin: 0px;">
-                                                <div value="{{ admin.id }}" class="col-auto thumbsHover removeAdmin" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
+                                                <div value="{{ Profile.id }}" class="col-auto thumbsHover removeAdmin" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
                                                     <div class="mx-auto filterBtns" style="background-color: #ff7675;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-user-times d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                 </div>
                                             </div>
@@ -38,6 +39,7 @@
                                 </div>
                                 
                             </div>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -54,7 +56,8 @@
                     <div class="col"
                         style="padding: 0;">
                         <div class="overflowScroll" style="max-height: 45vh;">
-                            {% for allProfile in allProfiles %}
+                            {% for Profile in Profiles %}
+                            {% if Profile.admin == false %}
                             <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
                             
                                 <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
@@ -65,16 +68,16 @@
                                                 {# imagePath in src #}
                                                 <img class="rounded-circle" src="assets/img/PHOTO-2018-01-28-13-45-52.jpg" width="55px" height="55px" style="margin-left: 5px;"></div>
                                                 <div class="col" style="padding-left: 0px;">
-                                                    <p class="text-truncate text-light" style="font-size: 18px;font-weight: 500;margin-left: 5px;margin-top: 18px;margin-bottom: 10px;">{{ allProfile.name }}</p>
+                                                    <p class="text-truncate text-light" style="font-size: 18px;font-weight: 500;margin-left: 5px;margin-top: 18px;margin-bottom: 10px;">{{ Profile.name }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-12">
                                             <div class="row" style="width: 100%;margin: 0px;">
-                                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;">
+                                                <div value={{ Profile.id }} class="col-auto thumbsHover addAdmin" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;">
                                                     <div class="mx-auto filterBtns" style="background-color: #55efc4;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-user-plus d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                 </div>
-                                                <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
+                                                <div value={{ Profile.id }} class="col-auto thumbsHover removeUser" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
                                                     <div class="mx-auto filterBtns" style="background-color: #ff7675;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-ban d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                 </div>
                                             </div>
@@ -82,6 +85,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                             {% endfor %}
                         </div>
                         
@@ -94,7 +98,8 @@
                     </div>
                     <div class="col" style="padding: 0;">
                         <div class="overflowScroll" style="max-height: 30vh;">
-                            {% for bannedProfile in bannedProfiles %}
+                            {% for Profile in Profiles %}
+                            {% if Profile.banned == true %}
                             <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
                             
                                 <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;padding-bottom: 0;">
@@ -104,13 +109,13 @@
                                             {# ImagePath in source #}
                                                 <div class="col-3 col-lg-4" style="padding-right: 5px;margin-bottom: 10px;"><img class="rounded-circle" src="assets/img/PHOTO-2018-01-28-13-45-52.jpg" width="55px" height="55px" style="margin-left: 5px;"></div>
                                                 <div class="col" style="padding-left: 0px;">
-                                                    <p class="text-truncate text-light" style="font-size: 18px;font-weight: 500;margin-left: 5px;margin-top: 18px;margin-bottom: 10px;">{{ bannedProfile.name }}</p>
+                                                    <p class="text-truncate text-light" style="font-size: 18px;font-weight: 500;margin-left: 5px;margin-top: 18px;margin-bottom: 10px;">{{ Profile.name }}</p>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-4 col-lg-12">
                                             <div class="row" style="width: 100%;margin: 0px;">
-                                                <div value="{{ bannedProfile.id }}" class="col-auto thumbsHover unbanButton" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
+                                                <div value={{ Profile.id }} class="col-auto thumbsHover unbanButton" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
                                                     <div class="mx-auto filterBtns" style="background-color: #ff7675;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-user-times d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                 </div>
                                             </div>
@@ -119,6 +124,7 @@
                                 </div>
                                 
                             </div>
+                            {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -164,10 +170,10 @@
                                                 </div>
                                                 <div class="col-12 col-md-2">
                                                     <div class="row" style="width: 100%;margin: 0px;">
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;">
+                                                        <div value={{ reportedRiddle.id }} class="col-auto thumbsHover dismissRiddle" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;">
                                                             <div class="mx-auto filterBtns" style="background-color: #55efc4;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-circle d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                         </div>
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
+                                                        <div value={{ reportedRiddle.id }} class="col-auto thumbsHover deleteRiddle" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
                                                             <div class="mx-auto filterBtns" style="background-color: #ff7675;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-trash d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                         </div>
                                                     </div>
@@ -202,10 +208,10 @@
                                                 </div>
                                                 <div class="col-12 col-md-2">
                                                     <div class="row" style="width: 100%;margin: 0px;">
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;">
+                                                        <div value={{ reportedAnswer.id }} class="col-auto thumbsHover dismissAnswer" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;">
                                                             <div class="mx-auto filterBtns" style="background-color: #55efc4;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-circle d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                         </div>
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
+                                                        <div value={{ reportedAnswer.id }} class="col-auto thumbsHover deleteAnswer" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
                                                             <div class="mx-auto filterBtns" style="background-color: #ff7675;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-trash d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                         </div>
                                                     </div>
@@ -239,10 +245,10 @@
                                                 </div>
                                                 <div class="col-12 col-md-2">
                                                     <div class="row" style="width: 100%;margin: 0px;">
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;">
+                                                        <div value={{ reportedComment.id }} class="col-auto thumbsHover dismissComment" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;">
                                                             <div class="mx-auto filterBtns" style="background-color: #55efc4;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-circle d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                         </div>
-                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
+                                                        <div value={{ reportedComment.id }} class="col-auto thumbsHover deleteComment" style="padding-right: 20px;padding-left: 5px;margin-top: 5px;margin-bottom: 20px;">
                                                             <div class="mx-auto filterBtns" style="background-color: #ff7675;width: 55px;height: 55px;padding-top: 13px;"><i class="la la-trash d-table mx-auto" style="font-size: 28px;color: black;"></i></div>
                                                         </div>
                                                     </div>

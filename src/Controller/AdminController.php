@@ -19,39 +19,9 @@ class AdminController extends AbstractController
     public function viewAdmin(Request $request)
     {
 
-        $admins = $this->getDoctrine()
+        $Profiles = $this->getDoctrine()
         ->getRepository(Profile::class)
-        ->findBy(array('admin' => true));
-
-//Admin ajax
-
-        if ($request->isXmlHttpRequest()) {  
-            $adminId = $_POST['id'];
-            $vote = $_POST['vote'];
-            
-            $entityManager = $this->getDoctrine()->getManager();
-
-            $profileAdmin = $entityManager->getRepository(Profile::class)->find($adminId);
-                
-            if($vote == 'RemoveAdmin'){
-                $profileAdmin->setAdmin(false);
-            } else {
-                $profileAdmin->setAdmin(true);
-            }
-
-            $entityManager->flush();
-
-            return true; 
-         }
-
-         // change to false
-        $allProfiles = $this->getDoctrine()
-        ->getRepository(Profile::class)
-        ->findBy(array('admin' => NULL));
-
-        $bannedProfiles = $this->getDoctrine()
-        ->getRepository(Profile::class)
-        ->findBy(array('banned' => true));
+        ->findAll();
 
         $reportedRiddles = $this->getDoctrine()
         ->getRepository(Riddle::class)
@@ -69,14 +39,142 @@ class AdminController extends AbstractController
         ->getRepository(Profile::class)
         ->findAll();
 
+        //Admin ajax
+
+        if ($request->isXmlHttpRequest()) {  
+            $target = $_POST['target'];
+            // $action = $_POST['action'];
+
+            $entityManager = $this->getDoctrine()->getManager();
+
+            //Remove Admin
+            if($target == "AdminList"){
+                $adminId = $_POST['id'];
+                $action = $_POST['action'];
+
+                $profileAdmin = $entityManager->getRepository(Profile::class)->find($adminId);
+                    
+                if($action == 'RemoveAdmin'){
+                    $profileAdmin->setAdmin(false);
+                } else {
+                    $profileAdmin->setAdmin(true);
+                    }
+            }
+
+            //Not working yet
+            //Unbanned User from list
+            if($target == "BannedList"){
+                $BannedId = $_POST['id'];
+                $action = $_POST['action'];
+
+                $ProfileBanned = $entityManager->getRepository(Profile::class)->find($BannedId);
+                    
+                if($action == 'UnbanProfile'){
+                    $ProfileBanned->setBanned(false);
+                } else {
+                    $ProfileBanned->setBanned(true);
+                    }
+            }
+
+            //Add User to Admin
+            if($target == "UsersList"){
+                $UserId = $_POST['id'];
+                $action = $_POST['action'];
+
+                $UserProfile = $entityManager->getRepository(Profile::class)->find($UserId);
+                    
+                if($action == 'AddAdmin'){
+                    $UserProfile->setAdmin(true);
+                } else {
+                    $UserProfile->setAdmin(false);
+                    }
+            }
+
+            //Not working yet
+            //Ignore Reported Riddle
+            if($target == "ReportedRiddle"){
+                $RiddleId = $_POST['id'];
+                $action = $_POST['action'];
+
+                $RiddleReported = $entityManager->getRepository(Riddle::class)->find($RiddleId);
+                    
+                if($action == 'dismissRiddle'){
+                    $RiddleReported->setReported(false);
+                } else {
+                    $RiddleReported->setReported(true);
+                    }
+            }
+
+            //Ignore Reported Answer
+            if($target == "ReportedAnswer"){
+                $AnswerId = $_POST['id'];
+                $action = $_POST['action'];
+
+                $AnswerReported = $entityManager->getRepository(Answer::class)->find($AnswerId);
+                    
+                if($action == 'dismissAnswer'){
+                    $AnswerReported->setReported(false);
+                } else {
+                    $AnswerReported->setReported(true);
+                    }
+            }
+
+            //Not Working
+            //Delete Reported Answer
+            if($target == "ReportedAnswerDelete"){
+                $AnswerId = $_POST['id'];
+                $action = $_POST['action'];
+
+                $AnswerReported = $entityManager->getRepository(Answer::class)->find($AnswerId);
+                $AssosiatedComment = $entityManager->getRepository(Comment::class)->findby(array('Answer_id' => $AnswerId));
+                
+                if($action == 'deleteAnswer'){
+                    $entityManager->remove($AnswerReported);
+                    $entityManager->remove($AssosiatedComment);
+                } else {
+                    $AnswerReported->setReported(true);
+                    }
+            }
+
+            //Ignore Reported Comment
+            if($target == "ReportedComment"){
+                $CommentId = $_POST['id'];
+                $action = $_POST['action'];
+
+                $CommentReported = $entityManager->getRepository(Comment::class)->find($CommentId);
+                    
+                if($action == 'dismissComment'){
+                    $CommentReported->setReported(false);
+                } else {
+                    $CommentReported->setReported(true);
+                    }
+            }
+
+            //Delete Reported Comment
+            if($target == "ReportedCommentDelete"){
+                $CommentId = $_POST['id'];
+                $action = $_POST['action'];
+
+                $CommentReported = $entityManager->getRepository(Comment::class)->find($CommentId);
+                    
+                if($action == 'deleteComment'){
+                    $entityManager->remove($CommentReported);
+                } else {
+                    $CommentReported->setReported(true);
+                    }
+            }
+
+            $entityManager->flush();
+
+            return true; 
+         }
+
         $model = array(
-            'admins' => $admins,
-            'allProfiles' => $allProfiles,
+            'Profiles' => $Profiles,
             'reportedRiddles' => $reportedRiddles,
             'reportedAnswers' => $reportedAnswers,
             'reportedComments' => $reportedComments,
-            'profilesReported' => $profilesReported,
-            'bannedProfiles' => $bannedProfiles
+            'profilesReported' => $profilesReported
         );
         $view = 'admin.html.twig';
 
