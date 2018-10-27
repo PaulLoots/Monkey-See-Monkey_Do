@@ -327,3 +327,22 @@ body {
   border-style: solid;
   border-color: white;
 }
+
+.noHover:hover {
+  transform: scale(1);
+}
+
+.noHover:active {
+  transform: scale(1);
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
+}
+
+.noHover {
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, .5);
+  cursor: crosshair;
+}
+
+.searchUserBtn {
+  border-radius: 50px;
+  border-width: 0px;
+}
