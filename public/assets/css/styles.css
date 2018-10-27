@@ -318,3 +318,12 @@ body {
   box-shadow: 0px 3px 10px rgba(0, 0, 0, .0);
   color: #fab1a0 !important;
 }
+
+.gifImg {
+  border-radius: 15px;
+}
+
+.selectedGif {
+  border-style: solid;
+  border-color: white;
+}

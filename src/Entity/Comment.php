@@ -53,6 +53,11 @@ class Comment
      */
     private $reported;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isGif;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -138,6 +143,18 @@ class Comment
     public function setReported(?bool $reported): self
     {
         $this->reported = $reported;
+
+        return $this;
+    }
+
+    public function getIsGif(): ?bool
+    {
+        return $this->isGif;
+    }
+
+    public function setIsGif(?bool $isGif): self
+    {
+        $this->isGif = $isGif;
 
         return $this;
     }
