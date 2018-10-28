@@ -38,7 +38,6 @@ class MyRiddlesController extends AbstractController
         ->getRepository(Riddle::class)
         ->findBy(array('profile_id' => $profileId));
 
-
         $answers = $this->getDoctrine()
         ->getRepository(Answer::class)
         ->findBy(array('correct' => NULL));
@@ -66,9 +65,17 @@ class MyRiddlesController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
 
             $answer = $entityManager->getRepository(Answer::class)->find($answerId);
+
+            $answerProfileID = $answer->getProfileId();
+            $answerProfile = $entityManager->getRepository(Profile::class)->find($answerProfileID);
+            $answerScore = $answerProfile->getRiddlingScore();
+
+            $myScore = $profile->getRiddlingScore();
+            $profile->setRiddlingScore($myScore + 186);
                 
             if($vote == 'Correct'){
                 $answer->setCorrect(true);
+                $answerProfile->setRiddlingScore($answerScore + 186);
             } else {
                 $answer->setCorrect(false);
             }

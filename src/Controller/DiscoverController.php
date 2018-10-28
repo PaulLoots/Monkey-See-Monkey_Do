@@ -25,7 +25,7 @@ class DiscoverController extends AbstractController
         //$profile = $session->get('profile');
         //$profileId = $profile->getId();
 
-        $profileId = 8;
+        $profileId = 1;
 
         $profile = $this->getDoctrine()
         ->getRepository(Profile::class)
@@ -45,7 +45,10 @@ class DiscoverController extends AbstractController
         ->getRepository(Answer::class)
         ->findAll();
 
-        
+        $answersBadge = $this->getDoctrine()
+        ->getRepository(Answer::class)
+        ->findBy(array('correct' => NULL));
+
         //AJAX
         if ($request->isXmlHttpRequest()) {  
             $filter = $_POST['filter'];
@@ -68,7 +71,7 @@ class DiscoverController extends AbstractController
             $filter = $session->get('filter');
             $username = $session->get('filterUsername');
         
-        $model = array('filterUsername' => $username, 'filterItem' => $filter,'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
+        $model = array('filterUsername' => $username, 'filterItem' => $filter, 'answersBadge' => $answersBadge, 'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
         $view = 'discover.html.twig';
 
         return $this->render($view, $model);

@@ -66,17 +66,18 @@ class CreateCommentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($createComment);
             $entityManager->flush();
+
             return $this->redirectToRoute('answers_view', array('id' => $riddleId));
         }  
         
         //form GIF
         $createCommentGif = new Comment();
-        $form = $this->createForm(GifCommentType::class, $createCommentGif);
-        $form->handleRequest($request);
+        $formGif = $this->createForm(GifCommentType::class, $createCommentGif);
+        $formGif->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formGif->isSubmitted() && $formGif->isValid()) {
            
-            $createCommentGif = $form->getData();
+            $createCommentGif = $formGif->getData();
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($createCommentGif);
             $entityManager->flush();
@@ -85,7 +86,7 @@ class CreateCommentController extends AbstractController
 
         $model = array(
             'profile' => $questionProfile,'riddle' => $riddle, 'answers' => $answers,
-            'form' => $form->createView()
+            'form' => $form->createView(),'formGif' => $formGif->createView()
         );
         $view = 'answers_comment.html.twig';
 

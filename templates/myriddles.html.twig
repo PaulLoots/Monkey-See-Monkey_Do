@@ -3,7 +3,9 @@
 {% block title %}My Riddles{% endblock %}
 {% block stylesheets %}{% endblock %}
 
-{% block MyRiddlesNav %}<i class="la la-user d-table mx-auto" style="color: #55efc4;font-size: 30px;"></i><p class="d-none d-lg-table mx-auto" style="font-family: Roboto, sans-serif;font-weight: 400;margin-left: 10px;font-size: 15px;">My Riddles</p>{% endblock %}
+{% block MyRiddlesNav %}<i class="la la-user d-table mx-auto" style="font-size: 30px;color: white;"></i>{% endblock %}
+
+{% block riddlingScore %}{{ profile.riddlingScore }}{% endblock %}
 
 {% block body %}
     <div class="modal fade" role="dialog" tabindex="-1" id="chooseColourModal">

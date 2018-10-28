@@ -24,7 +24,7 @@
                                     <li class="nav-item"><a class="nav-link text-light thumbsHover" role="tab" data-toggle="pill" href="#gifTab" style="height: 50px;padding-top: 3px;"><i class="material-icons" style="font-size: 42px;">gif</i></a></li>
                                 </ul>
                                 <div class="tab-content">
-                                    {# <div class="tab-pane active" role="tabpanel" id="textTab" style="padding-top: 10px;padding-left: 25px;padding-right: 25px;">
+                                    <div class="tab-pane active" role="tabpanel" id="textTab" style="padding-top: 10px;padding-left: 25px;padding-right: 25px;">
                                         {{ form_start(form, {'attr': {'name':'CreateRiddleForm', 'novalidate': 'novalidate'}}) }}
                                         <div class="row" style="margin-left: 0;margin-right: 0;">
                                             <div class="col-12 riddleStateCard" style="padding: 0px;">
@@ -47,9 +47,9 @@
                                         {{ form_widget(form.profileId, {'attr': {'style':'display: none;'}}) }}
                                         {{ form_widget(form.answerId, {'attr': {'style':'display: none;'}}) }}
                                         {{ form_end(form) }}
-                                    </div> #}
+                                    </div>
                                     <div role="tabpanel" class="tab-pane" id="gifTab" style="padding-top: 10px;padding-right: 25px;padding-left: 25px;padding-bottom: 10px;">
-                                        {{ form_start(form, {'attr': {'name':'createCommentGif', 'novalidate': 'novalidate'}}) }}
+                                        {{ form_start(formGif, {'attr': {'name':'createCommentGif', 'novalidate': 'novalidate'}}) }}
                                         <div class="row overflowScroll" style="margin-left: 0;margin-right: 0;max-height: 58vh;padding-bottom: 60px;padding-left: 10px;padding-right: 10px;padding-top: 10px;">
                                             <div class="col-12" style="padding-right: 8px;padding-left: 8px;padding-top: 8px;padding-bottom: 8px;"><img id="gifImg0" src="../assets/img/loading.gif" width="100%" class="gifImg thumbsHover selectedGif" /></div>
                                             <div class="col-12" style="padding-right: 8px;padding-left: 8px;padding-top: 8px;padding-bottom: 8px;"><img id="gifImg1" src="../assets/img/loading.gif" width="100%" class="gifImg thumbsHover" /></div>
@@ -70,12 +70,12 @@
                                             <button id="gifSearchBtn" class="btn btn-outline-success btn-block btn-lg answerBtn thumbsHover" type="button" style="border-style: solid;border-width: 2px;height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;margin-bottom: 16px;color: rgb(234,234,234);background-color: rgba(28,31,33,0.9);"><i class="la la-search" style="font-size: 18px;font-weight: bold;"></i></button></div>
                                         </div>
                                         <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;margin-top: 40px;">
-                                        {{ form_widget(form.submitGifComment, {'attr': {'class':'btn btn-light btn-block btn-lg answerBtn thumbsHover', 'style':'height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;padding-top: 8px;'}}) }}
+                                        {{ form_widget(formGif.submitGifComment, {'attr': {'class':'btn btn-light btn-block btn-lg answerBtn thumbsHover', 'style':'height: 50px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;padding-top: 8px;'}}) }}
                                         </div>
-                                        {{ form_widget(form.commentTxt, {'attr': {'value':'https://media2.giphy.com/media/kLLvH1EOtCwQ8/200_d.gif'}}) }}
-                                        {{ form_widget(form.profileId, {'attr': {'style':'display: none;'}}) }}
-                                        {{ form_widget(form.answerId, {'attr': {'style':'display: none;'}}) }}
-                                        {{ form_end(form) }}
+                                        {{ form_widget(formGif.commentTxt, {'attr': {'value':'https://media2.giphy.com/media/kLLvH1EOtCwQ8/200_d.gif'}}) }}
+                                        {{ form_widget(formGif.profileId, {'attr': {'style':'display: none;'}}) }}
+                                        {{ form_widget(formGif.answerId, {'attr': {'style':'display: none;'}}) }}
+                                        {{ form_end(formGif) }}
                                     </div>
                                 </div>
                             </div>

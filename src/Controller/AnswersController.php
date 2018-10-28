@@ -73,13 +73,19 @@ class AnswersController extends AbstractController
             if($entity == 'Riddle'){
                 $riddleId = $_POST['id'];
                 $riddle = $entityManager->getRepository(Riddle::class)->find($riddleId);
+
+                $riddleProfileID = $riddle->getProfileId();
+                $riddleProfile = $entityManager->getRepository(Profile::class)->find($riddleProfileID);
+                $score = $riddleProfile->getRiddlingScore();
                 
                 if($vote == 'Like'){
                     $likes = $riddle->getLikes();
                     $riddle->setLikes($likes + 1);
+                    $riddleProfile->setRiddlingScore($score + 82);
                 } else {
                     $dislikes = $riddle->getDislikes();
                     $riddle->setDislikes($dislikes + 1);
+                    $riddleProfile->setRiddlingScore($score + 27);
                 }
             }
 
@@ -87,25 +93,36 @@ class AnswersController extends AbstractController
                 $answerId = $_POST['id'];
                 $answer = $entityManager->getRepository(Answer::class)->find($answerId);
 
+                $answerProfileID = $answer->getProfileId();
+                $answerProfile = $entityManager->getRepository(Profile::class)->find($answerProfileID);
+                $score = $answerProfile->getRiddlingScore();
+
                 if($vote == 'Like'){
                     $likes = $answer->getLikes();
                     $answer->setLikes($likes + 1);
+                    $answerProfile->setRiddlingScore($score + 36);
                 } else {
                     $dislikes = $answer->getDislikes();
                     $answer->setDislikes($dislikes + 1);
+                    $answerProfile->setRiddlingScore($score + 11);
                 }
             }
 
             if($entity == 'Comment'){
                 $commentId = $_POST['id'];
                 $comment = $entityManager->getRepository(Comment::class)->find($commentId);
+                $commentProfileID = $comment->getProfileId();
+                $commentProfile = $entityManager->getRepository(Profile::class)->find($commentProfileID);
+                $score = $commentProfile->getRiddlingScore();
 
                 if($vote == 'Like'){
                     $likes = $comment->getLikes();
                     $comment->setLikes($likes + 1);
+                    $commentProfile->setRiddlingScore($score + 16);
                 } else {
                     $dislikes = $comment->getDislikes();
                     $comment->setDislikes($dislikes + 1);
+                    $commentProfile->setRiddlingScore($score + 5);
                 }
             }
             $entityManager->flush();
