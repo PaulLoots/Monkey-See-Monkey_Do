@@ -25,7 +25,7 @@ class DiscoverController extends AbstractController
         //$profile = $session->get('profile');
         //$profileId = $profile->getId();
 
-        $profileId = 1;
+        $profileId = 2;
 
         $profile = $this->getDoctrine()
         ->getRepository(Profile::class)

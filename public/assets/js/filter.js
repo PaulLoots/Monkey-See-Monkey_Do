@@ -13,7 +13,8 @@ $("#filterAll").click(function(){
             console.log(data);
             document.location.reload(true);
         },  
-        error : function(xhr, textStatus, errorThrown) {  
+        error : function(xhr, textStatus, errorThrown) { 
+            document.location.reload(true); 
            //alert('Ajax request failed.');  
         }  
      });
@@ -69,7 +70,8 @@ $("#filterLiked").click(function(){
            console.log(data);
            document.location.reload(true);
        },  
-       error : function(xhr, textStatus, errorThrown) {  
+       error : function(xhr, textStatus, errorThrown) { 
+        document.location.reload(true); 
           //alert('Ajax request failed.');  
        }  
     });
@@ -90,7 +92,8 @@ $("#filterAnswered").click(function(){
             console.log(data);
             document.location.reload(true);
         },  
-        error : function(xhr, textStatus, errorThrown) {  
+        error : function(xhr, textStatus, errorThrown) { 
+            document.location.reload(true); 
            //alert('Ajax request failed.');  
         }  
      });

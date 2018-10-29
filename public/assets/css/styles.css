@@ -196,6 +196,7 @@ body {
 .fixedDisp {
   position: absolute;
   z-index: 10;
+  margin-top: -210px;
 }
 
 .riddleTextCard {

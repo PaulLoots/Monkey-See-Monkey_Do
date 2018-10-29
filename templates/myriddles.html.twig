@@ -178,7 +178,7 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="text-light d-inline" style="font-family: Roboto, sans-serif;font-weight: 300;">Riddling Score</h5><i class="la la-trophy d-inline-block float-right" style="color: white;font-size: 22px;"></i></div>
+                                                <h5 class="text-light d-inline" style="font-family: Roboto, sans-serif;font-weight: 300;">Riddling Score</h5><i class="la la-trophy d-inline-block float-right" style="color: #55efc4;font-size: 22px;"></i></div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
@@ -188,31 +188,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-xl-3" style="margin-top: 10px;margin-bottom: 10px;">
+                            <div class="col-12 col-xl-6" style="margin-top: 10px;margin-bottom: 10px;">
                                 <div class="card bg-dark" style="height: 20vh;min-height: 140px;max-height: 180px;">
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="text-light d-inline" style="font-family: Roboto, sans-serif;font-weight: 300;">Likes</h5><i class="la la-thumbs-up d-inline-block float-right" style="color: white;font-size: 22px;"></i></div>
+                                                <h5 class="text-light d-inline" style="font-family: Roboto, sans-serif;font-weight: 300;">Likes</h5><i class="la la-thumbs-up d-inline-block float-right" style="color: #55efc4;font-size: 22px;"></i></div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="text-center text-white" style="font-family: Quicksand, sans-serif;font-size: 55px;margin-top: 16px;font-weight: 500;">55</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-6 col-xl-3" style="margin-top: 10px;margin-bottom: 10px;">
-                                <div class="card bg-dark" style="height: 20vh;min-height: 140px;max-height: 180px;">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col">
-                                                <h5 class="text-light d-inline" style="font-family: Roboto, sans-serif;font-weight: 300;">Dislikes</h5><i class="la la-thumbs-down d-inline-block float-right" style="color: white;font-size: 22px;"></i></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <p class="text-center text-white" style="font-family: Quicksand, sans-serif;font-size: 55px;margin-top: 16px;font-weight: 500;">13</p>
+                                                <p class="text-center text-white" style="font-family: Quicksand, sans-serif;font-size: 55px;margin-top: 16px;font-weight: 500;">
+                                                {% set totalLikes = 0 %}
+                                                {% for riddle in riddles %}
+                                                    {% set totalLikes = riddle.likes + totalLikes %}
+                                                {% endfor %} 
+                                                {{ totalLikes }}   
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -223,11 +214,17 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="text-light d-inline" style="font-family: Roboto, sans-serif;font-weight: 300;">Average Difficulty</h5><i class="material-icons d-inline-block float-right" style="color: white;font-size: 22px;">album</i></div>
+                                                <h5 class="text-light d-inline" style="font-family: Roboto, sans-serif;font-weight: 300;">Dislikes</h5><i class="la la-thumbs-down d-inline-block float-right" style="color: #55efc4;font-size: 22px;"></i></div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="text-center text-white" style="font-family: Quicksand, sans-serif;font-size: 55px;margin-top: 16px;font-weight: 500;">88%</p>
+                                                <p class="text-center text-white" style="font-family: Quicksand, sans-serif;font-size: 55px;margin-top: 16px;font-weight: 500;">
+                                                {% set totalDislikes = 0 %}
+                                                {% for riddle in riddles %}
+                                                    {% set totalDislikes = riddle.dislikes + totalDislikes %}
+                                                {% endfor %} 
+                                                {{ totalDislikes }}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
@@ -238,11 +235,11 @@
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col">
-                                                <h5 class="text-light d-inline" style="font-family: Roboto, sans-serif;font-weight: 300;">Amount of Riddles</h5><i class="la la-trophy d-inline-block float-right" style="color: white;font-size: 22px;"></i></div>
+                                                <h5 class="d-inline text-light" style="font-family: Roboto, sans-serif;font-weight: 300;">Amount of Riddles</h5><i class="la la-trophy d-inline-block float-right" style="color: #55efc4;font-size: 22px;"></i></div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <p class="text-center text-white" style="font-family: Quicksand, sans-serif;font-size: 55px;margin-top: 16px;font-weight: 500;">12</p>
+                                                <p class="text-center text-white" style="font-family: Quicksand, sans-serif;font-size: 55px;margin-top: 16px;font-weight: 500;">{{ riddles | length }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -280,7 +277,14 @@
                                         <div class="col-auto" style="padding-right: 5px;">
                                             <p style="color: rgb(255,255,255);font-size: 12px;font-weight: 300;">{{ riddle.date | date ('d M')}}</p>
                                         </div>
-                                        <div class="col-auto ml-auto" style="padding-right: 15px;"><img src="../assets/img/{{ riddle.icon }}.svg" height="40px"></div>
+                                        <div class="col-auto ml-auto" style="padding-right: 15px;"><img src="../assets/img/{{ riddle.icon }}.svg" height="40px">
+                                        {% set badgeCount = 0 %}
+                                        {% for answer in answers %}
+                                            {% if riddle.id == answer.riddleId.id %}
+                                                {% set badgeCount = badgeCount + 1 %}
+                                                <span class="badge badge-pill badge-danger" style="position: absolute;font-family: Roboto, sans-serif;font-size: 14px;margin-top: -15px;margin-left: -12px;">{{ badgeCount }}</span>
+                                            {% endif %}
+                                        {% endfor %}</div>
                                     </div>
                                     <div class="row" style="width: 100%;margin: 0px;">
                                         <div class="col-12" style="height: 85px;padding-top: 15px;padding-bottom: 20px;padding-left: 5px;">
@@ -410,7 +414,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row overflowHidden" style="margin-bottom: 20px;margin-left: 0;margin-right: 0;max-height: 60vh;padding-bottom: 30vh;">
+                            <div class="row overflowHidden" style="margin-bottom: 20px;margin-left: 0;margin-right: 0;min-height: 70vh; max-height: 70vh;padding-bottom: 30vh;">
                                 {% for answer in answers %}
                                 {% if riddle.id == answer.riddleId.id %}
                                 <div class="col-12 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 0;padding-right: 0;">
