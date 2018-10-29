@@ -78,12 +78,13 @@ class EditProfileController extends AbstractController
         ->getRepository(ProfileImage::class)
         ->findBy(array("profile_id"=>$id));
 
-
             if ($Uploadform->isSubmitted() && $Uploadform->isValid()) {
 
                 $entityManager = $this->getDoctrine()->getManager();
 
-                $oldImages->setActiveState(false);
+
+
+                // $oldImages->setActiveState(false);
 
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
                 // $file=$profileImage->getImagePath();
@@ -112,7 +113,7 @@ class EditProfileController extends AbstractController
 
 
       $view = 'editProfile.html.twig';
-        $model = array('form' => $form->createView(), 'Uploadform' => $Uploadform->createView());
+        $model = array('form' => $form->createView(), 'Uploadform' => $Uploadform->createView(), 'oldImages' => $oldImages);
 
         return $this->render($view, $model);
 
