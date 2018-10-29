@@ -52,9 +52,6 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
 
                                 {{ form_start(SignUpform, {'attr': {'name':'CreateAccountForm', 'novalidate': 'novalidate'}}) }}
 
-
-
-
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
                                         <i class="la la-user float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
                                         {{ form_widget(SignUpform.name, {'attr': {'class':'form-control', 'placeholder':'Name', 'style':'height: 50px;width: 84%;border: none;'}}) }}
@@ -75,9 +72,7 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                                         href="#collapse-1" style="border: none;border-radius: 15px;background-color: rgba(255,255,255,0);">Login</a>
                                         <div class="collapse d-none" id="collapse-1"></div>
                                     </div>
-
-
-                                
+ 
                                 {{ form_end(SignUpform) }}
 
                         </div>
@@ -100,8 +95,7 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                         <div class="col-12 col-sm-8 col-md-6 col-lg-10 col-xl-8 offset-sm-2 offset-md-3 offset-lg-1 offset-xl-2">
 
                             {{ form_start(loginform, {'attr': {'name':'CreateAccountForm', 'novalidate': 'novalidate'}}) }}
-
-                                   
+ 
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
                                         <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
                                         {{ form_widget(loginform.email, {'attr': {'class':'form-control', 'placeholder':'Email', 'style':'width: 83%;border: none;font-family: Roboto, sans-serif;height: 50px;'}}) }}
@@ -120,8 +114,6 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                                         <div class="collapse d-none" id="collapse-1"></div>
                                     </div>
 
-
-                                
                                 {{ form_end(loginform) }}
 
                         </div>

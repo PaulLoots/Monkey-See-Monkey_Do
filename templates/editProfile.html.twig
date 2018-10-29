@@ -16,13 +16,12 @@
                     </div>
                     <div class="row">
                     {{ form_start(Uploadform, {'attr': {'novalidate': 'novalidate'}}) }}
-                    
                     {{ form_widget(Uploadform.profileId, {'attr': {'style':'display: none;'}}) }}
                     
                     <div class="form-group" style="margin-bottom: 0px;">
                                         <!--Profile Image Upload-->
-                                        <div class="customCodeProfileImage">
-                                            <label class="filebutton">
+                                        <div class="customCodeProfileImage" >
+                                            <label class="filebutton" style="border:2px solid white;">
                                                 <i style="margin:35%;font-size:40px;color:white;" class="la la-user-plus"></i>
                                                 <span>
                                                 <div id="myfile">
@@ -37,7 +36,6 @@
                                         {{ form_widget(Uploadform.submit, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
                                     </div>
                                     {{form_widget(Uploadform)}}
-
 
                     {{ form_end(Uploadform) }}
                     </div>
