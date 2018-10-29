@@ -83,7 +83,9 @@ class EditProfileController extends AbstractController
                 // $file=$profileImage->getImagePath();
                 $file=$Uploadform->get('image_path')->getData();
 
-                $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+                $fileName = "test1234.".$file->guessExtension();
+
+                // $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
                 // Move the file to the directory where brochures are stored
                 try {
