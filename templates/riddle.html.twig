@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    {{ form_start(form, {'attr': {'name':'RiddleAnswerForm', 'novalidate': 'novalidate'}}) }}
+    {{ form_start(form, {'attr': {'name':'RiddleAnswerForm'}}) }}
     <div class="row" style="width: 100%;">
         <div class="col-12 col-lg-8 col-xl-6 offset-lg-2 offset-xl-3 commentBox sitckyB" style="padding-left: 0px;padding-right: 0px;background-color: rgba(45,52,54,0.75);">
             <div class="row" style="width: 100%;margin-left: 0;">
@@ -58,5 +58,7 @@
             </div>
         </div>
     </div>
+    {{ form_widget(form.profileId, {'attr': {'style':'display: none;'}}) }}
+    {{ form_widget(form.riddleId, {'attr': {'style':'display: none;'}}) }}
     {{ form_end(form) }}
 {% endblock %}
