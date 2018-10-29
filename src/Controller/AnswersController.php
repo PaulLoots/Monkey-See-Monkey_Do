@@ -108,6 +108,8 @@ class AnswersController extends AbstractController
                     $comment->setDislikes($dislikes + 1);
                 }
             }
+
+
             $entityManager->flush();
 
             return $likes + $dislikes +1; 

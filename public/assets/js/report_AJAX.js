@@ -92,6 +92,26 @@ $(document).ready(function(){
 
      //delete Riddle
 
+     $(".deleteRiddle").on("click", function(event){
+        $( this ).parent().parent().parent().parent().hide(300);  
+        var ansClicked = $(this).attr("value");
+        console.log(ansClicked);
+        $.ajax({  
+            url:        '/admin',  
+            type:       'POST',
+            data: {action: "deleteRiddle", id: ansClicked, target: "ReportedRiddleDelete"},   
+            dataType:   'text',  
+            async:      true,  
+            
+            success: function(data, status) {   
+                console.log(data);
+            },  
+            error : function(xhr, textStatus, errorThrown) {  
+                //alert('Ajax request failed.');  
+            }  
+        });  
+    });
+
 
      //dismiss Answer
      $(".dismissAnswer").on("click", function(event){
