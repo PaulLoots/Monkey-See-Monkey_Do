@@ -12,6 +12,7 @@ use App\Entity\Comment;
 use App\Entity\Riddle;
 use App\Entity\Profile;
 use App\Form\AnswerCommentType;
+use App\Form\GifCommentType;
 
 class CreateCommentController extends AbstractController
 {
@@ -65,12 +66,27 @@ class CreateCommentController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($createComment);
             $entityManager->flush();
+
             return $this->redirectToRoute('answers_view', array('id' => $riddleId));
-        }        
+        }  
+        
+        //form GIF
+        $createCommentGif = new Comment();
+        $formGif = $this->createForm(GifCommentType::class, $createCommentGif);
+        $formGif->handleRequest($request);
+
+        if ($formGif->isSubmitted() && $formGif->isValid()) {
+           
+            $createCommentGif = $formGif->getData();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($createCommentGif);
+            $entityManager->flush();
+            return $this->redirectToRoute('answers_view', array('id' => $riddleId));
+        } 
 
         $model = array(
             'profile' => $questionProfile,'riddle' => $riddle, 'answers' => $answers,
-            'form' => $form->createView()
+            'form' => $form->createView(),'formGif' => $formGif->createView()
         );
         $view = 'answers_comment.html.twig';
 

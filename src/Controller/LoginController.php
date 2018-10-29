@@ -42,6 +42,7 @@ class LoginController extends AbstractController
             ->findOneBy(['email' => $profileEmail]);
 
             $session->set('profile', $profile);
+            $session->set('filter', 'all');
 
             return $this->redirectToRoute('discover_view');
         }
@@ -69,6 +70,7 @@ class LoginController extends AbstractController
             $entityManager->persist($loginProfile);
        //     $entityManager->flush();
 
+            $session->set('filter', 'all');
             return $this->redirectToRoute('discover_view');
         }
 

@@ -31,8 +31,6 @@ class DiscoverController extends AbstractController
         ->getRepository(Profile::class)
         ->find($profileId);
 
-        $session->set('filter', 'all');
-
         $riddles = $this->getDoctrine()
         ->getRepository(Riddle::class)
         ->findAll();
@@ -47,20 +45,33 @@ class DiscoverController extends AbstractController
         ->getRepository(Answer::class)
         ->findAll();
 
-        
+        $answersBadge = $this->getDoctrine()
+        ->getRepository(Answer::class)
+        ->findBy(array('correct' => NULL));
+
         //AJAX
         if ($request->isXmlHttpRequest()) {  
             $filter = $_POST['filter'];
+
+            if($filter == "user"){
+                $username = $_POST['username'];
+                $session->set('filterUsername', $username );
+            }
+
             $model = array('filterItem' => $filter,'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
             $view = 'discover.html.twig';
-    
+
+            $session->set('filter', $filter );
+            
             return $this->render($view, $model); 
+            
 
          } else {
 
             $filter = $session->get('filter');
+            $username = $session->get('filterUsername');
         
-        $model = array('filterItem' => $filter,'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
+        $model = array('filterUsername' => $username, 'filterItem' => $filter, 'answersBadge' => $answersBadge, 'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
         $view = 'discover.html.twig';
 
         return $this->render($view, $model);
