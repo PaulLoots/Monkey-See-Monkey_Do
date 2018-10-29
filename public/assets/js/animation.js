@@ -29,4 +29,9 @@ function scrolling() {
 //     $(this).classList.add("filterSelect");
 // });
 
+$(".riddleCol").click(function(){
+  $(this).addClass("riddleExit");
+  
+});
+
 
