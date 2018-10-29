@@ -44,6 +44,10 @@ class RiddleController extends AbstractController
         ->getRepository(Profile::class)
         ->find($profileId);
 
+        $answers = $this->getDoctrine()
+        ->getRepository(Answer::class)
+        ->findBy(array('riddle_id' => $riddleId));
+
         $session->set('profile', $profile);
         $session->set('riddleId', $riddleId);
 
@@ -61,7 +65,7 @@ class RiddleController extends AbstractController
             return $this->redirectToRoute("answers_view", array('id' => $riddleId));
         }
 
-        $model = array('profile' => $questionProfile,'riddle' => $riddle,'form' => $form->createView());
+        $model = array('profile' => $questionProfile,'riddle' => $riddle,'answers' => $answers, 'form' => $form->createView());
         $view = 'riddle.html.twig';
 
         return $this->render($view, $model);
