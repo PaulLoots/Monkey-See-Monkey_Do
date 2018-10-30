@@ -125,6 +125,8 @@ class AnswersController extends AbstractController
                     $commentProfile->setRiddlingScore($score + 5);
                 }
             }
+
+
             $entityManager->flush();
 
             return $likes + $dislikes +1; 
