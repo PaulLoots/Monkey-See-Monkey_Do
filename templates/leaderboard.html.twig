@@ -14,106 +14,91 @@
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2">
                 <div class="row">
+                    {% set rank = 0 %}
+                    {% set myRank = 0 %}
+                    {% for profile in profiles %}
+                    {% set rank = rank + 1 %}
+                    {% if (profile.id == myProfile.id ) %}
+                        {% set myRank = rank %}
+                    {% endif %}
+                    {% if (rank == 2) %}
                     <div class="col offset-xl-0 itemCard" style="height: 200px;background-color: #0984e3;text-align: center;flex-grow: 1;margin-top: 50px;border-bottom-right-radius: 0px;background-image: url(&quot;assets/img/first%20Prize.svg&quot;);background-size: 30px;">
-                        <h2 style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;margin-top: -105px;margin-bottom: 20px;">612345</h2><img
+                        <h2 style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;margin-top: -105px;margin-bottom: 20px;">{{ profile.riddlingScore }}</h2><img
                             class="rounded-circle" src="assets/img/3.jpg" width="100px">
-                        <h3 style="color: rgb(255,255,255);font-family: Roboto, sans-serif;font-weight: 300;">John Doe</h3>
+                        <h3 style="color: rgb(255,255,255);font-family: Roboto, sans-serif;font-weight: 300;">{{ profile.name }}</h3>
                         <h1 style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;margin-top: 55px;">2<span
                                 style="font-family: Roboto, sans-serif;font-size: 25px;font-weight: 300;"><strong>nd</strong></span></h1>
                     </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% set rank = 0 %}
+                    {% for profile in profiles %}
+                    {% set rank = rank + 1 %}
+                    {% if (rank == 1) %}
                     <div class="col itemCard" style="height: 250px;background-color: #0984e3;text-align: center;/*border: 1px solid #2d3436;*/border-bottom-left-radius: 0px;border-bottom-right-radius: 0px;z-index: 1;box-shadow: 0px 3px 20px rgba(0,0,0,.5);background-image: url(&quot;assets/img/actual%20first%20Prize.svg&quot;);background-size: 40px;">
-                        <h2 style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;margin-top: -110px;margin-bottom: 20px;">612345</h2><img
+                        <h2 style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;margin-top: -110px;margin-bottom: 20px;">{{ profile.riddlingScore }}</h2><img
                             class="rounded-circle" src="assets/img/3.jpg" width="110px">
-                        <h3 style="color: rgb(255,255,255);font-family: Roboto, sans-serif;font-weight: 300;">John Doe</h3><i
+                        <h3 style="color: rgb(255,255,255);font-family: Roboto, sans-serif;font-weight: 300;">{{ profile.name }}</h3><i
                             class="la la-trophy" style="color: rgb(255,255,255);font-size: 45px;margin-top: 40px;"></i>
                         <h1 style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;margin-top: 0px;">1<span
                                 style="font-family: Roboto, sans-serif;font-size: 25px;">st</span></h1>
                     </div>
+                    {% elseif (rank == 3) %}
                     <div class="col itemCard" style="height: 150px;background-color: #0984e3;text-align: center;margin-top: 100px;/*border: 1px solid #2d3436;*/border-bottom-left-radius: 0px;background-image: url(&quot;assets/img/third%20Prize.svg&quot;);background-size: 20px;">
-                        <h2 style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;margin-top: -100px;margin-bottom: 20px;">612345</h2><img
+                        <h2 style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;margin-top: -100px;margin-bottom: 20px;">{{ profile.riddlingScore }}</h2><img
                             class="rounded-circle" src="assets/img/3.jpg" width="90px">
-                        <h3 style="color: rgb(255,255,255);font-family: Roboto, sans-serif;font-weight: 300;">John Doe</h3>
+                        <h3 style="color: rgb(255,255,255);font-family: Roboto, sans-serif;font-weight: 300;">{{ profile.name }}</h3>
                         <h1 style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;margin-top: 0px;">3<span
                                 style="font-family: Roboto, sans-serif;font-size: 25px;font-weight: 300;"><strong>rd</strong></span></h1>
                     </div>
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
     </div>
     <div class="container" style="margin-bottom: 90px;">
         <div class="row d-block d-sm-block d-md-block d-lg-none d-xl-none">
+            {% set rank = 0 %}
+            {% for profile in profiles %}
+            {% set rank = rank + 1 %}
+            {% if (rank == 1 or rank == 2 or rank == 3) %}
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #0984e3;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;background-image: url(&quot;assets/img/actual%20first%20Prize.svg&quot;);background-size: 40px;">
-                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.3);min-height: 60px;">1</h3><img
+                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.3);min-height: 60px;">{{ rank }}</h3><img
                     class="rounded-circle float-left" src="assets/img/3.jpg" height="60px" style="margin-left: 3%;">
-                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 30%;">John
-                    Doe</h4>
-                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">123456<i
+                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 30%;">{{ profile.name }}</h4>
+                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">{{ profile.riddlingScore }}<i
                         class="la la-trophy"></i></h3>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #0984e3;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;background-image: url(&quot;assets/img/first%20Prize.svg&quot;);background-size: 30px;">
-                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.3);min-height: 60px;">2</h3><img
-                    class="rounded-circle float-left" src="assets/img/3.jpg" height="60px" style="margin-left: 3%;">
-                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 35%;">John
-                    Doe Armand Hello</h4>
-                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">123456</h3>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #0984e3;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;background-image: url(&quot;assets/img/third%20Prize.svg&quot;);background-size: 20px;">
-                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.3);min-height: 60px;">3</h3><img
-                    class="rounded-circle float-left" src="assets/img/3.jpg" height="60px" style="margin-left: 3%;">
-                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 35%;">John
-                    Doe Armand Hello</h4>
-                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">123456</h3>
-            </div>
+            {% endif %}
+            {% endfor %}
         </div>
         <div class="row">
+            {% set rank = 0 %}
+            {% for profile in profiles %}
+            {% set rank = rank + 1 %}
+            {% if (rank == 1 or rank == 2 or rank == 3) %}
+            {% else %}
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #1c1f21;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;">
-                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.5);min-height: 60px;">4</h3><img
+                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.5);min-height: 60px;">{{ rank }}</h3><img
                     class="rounded-circle float-left" src="assets/img/3.jpg" height="60px" style="margin-left: 3%;">
-                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 35%;">John
-                    Doe Armand Hello</h4>
-                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">123456</h3>
+                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 35%;">{{ profile.name }}</h4>
+                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">{{ profile.riddlingScore }}</h3>
             </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #1c1f21;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;">
-                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.5);min-height: 60px;">5</h3><img
-                    class="rounded-circle float-left" src="assets/img/3.jpg" height="60px" style="margin-left: 3%;">
-                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 35%;">John
-                    Doe Armand Hello</h4>
-                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">123456</h3>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #1c1f21;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;">
-                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.5);min-height: 60px;">6</h3><img
-                    class="rounded-circle float-left" src="assets/img/3.jpg" height="60px" style="margin-left: 3%;">
-                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 35%;">John
-                    Doe Armand Hello</h4>
-                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">123456</h3>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #1c1f21;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;">
-                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.5);min-height: 60px;">7</h3><img
-                    class="rounded-circle float-left" src="assets/img/3.jpg" height="60px" style="margin-left: 3%;">
-                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 35%;">John
-                    Doe Armand Hello</h4>
-                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">123456</h3>
-            </div>
-            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #1c1f21;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;">
-                <h3 class="float-left" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.3);min-height: 60px;">8</h3><img
-                    class="rounded-circle float-left" src="assets/img/3.jpg" height="60px" style="margin-left: 3%;">
-                <h4 class="text-truncate float-left" style="color: rgb(255,255,255);font-family: Roboto, sans-serif;height: 80px;padding-top: 15px;margin-left: 3%;font-weight: 300;max-width: 35%;">John
-                    Doe Armand Hello</h4>
-                <h3 class="float-right" style="color: rgb(255,255,255);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">123456</h3>
-            </div>
+            {% endif %}
+            {% endfor %}
         </div>
     </div>
 </div>
 <div class="container" style="margin-bottom: 90px;">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #b2bec3;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;margin-top: -15px;">
-            <h3 class="float-left" style="color: rgb(0,0,0);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.2);min-height: 60px;">10</h3><img
+            <h3 class="float-left" style="color: rgb(0,0,0);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.2);min-height: 60px;">{{ myRank }}</h3><img
                 class="rounded-circle float-left" src="assets/img/3.jpg" height="60px" style="margin-left: 3%;">
             <div class="float-left" style="max-width: 40%;margin-left: 3%;"><span style="font-family: Roboto, sans-serif;font-weight: 700;">You</span>
-                <h4 class="text-truncate" style="color: rgb(0,0,0);font-family: Roboto, sans-serif;height: 80px;padding-top: 0px;font-weight: 300;">Paul
-                    Loots</h4>
+                <h4 class="text-truncate" style="color: rgb(0,0,0);font-family: Roboto, sans-serif;height: 80px;padding-top: 0px;font-weight: 300;">{{ myProfile.name }}</h4>
             </div>
-            <h3 class="float-right" style="color: rgb(0,0,0);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">123456</h3>
+            <h3 class="float-right" style="color: rgb(0,0,0);font-family: Quicksand, sans-serif;height: 80px;padding-top: 10px;text-align: right;">{{ myProfile.riddlingScore }}</h3>
         </div>
     </div>
 </div>
