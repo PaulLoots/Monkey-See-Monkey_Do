@@ -77,28 +77,29 @@
     <div role="document">
         <div>
 
+{% for oldImage in oldImages %}
             <div style="background-color: #2d3436;margin-top:60px;">
                 <div>
                     <div class="row">
                         <div class="col-4 col-sm-8 col-md-6 col-lg-4 col-xl-4 offset-sm-2 offset-md-3 offset-lg-4 offset-xl-4">
 
-
-
                             <div class="form-group" style="margin-bottom: 0px;">
                                 <!--Profile Image Upload-->
                                 <div class="customCodeProfileImage">
-                                    <label class="filebutton" style="background-image:url(assets/profileImages/monkey.png);background-size:cover;background-position:center;">
+                                <div>
+                                    <label class="filebutton" style="background-image:url(assets/profileImages/{{oldImage.imagePath}});background-size:cover;background-position:center;">
                                         <i style="margin-top:70%;font-size:24px;color:white;text-shadow:0 1px 10px rgba(0,0,0,.7);" class="la la-edit"></i>
                                         <span>
                                             <div id="myfile"></div>
                                         </span>
                                     </label>
+                                    </div>
                                 </div>
                             </div>
+                            {% endfor %}
 
 
                             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
-
 
 
                             <div class="form-group inputRoundedBlock" style="height: 50px;">
