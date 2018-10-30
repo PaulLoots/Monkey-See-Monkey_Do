@@ -26,7 +26,6 @@ class EditProfileController extends AbstractController
 
 
         // update Profile handle
-
         $profile = $this->getDoctrine()
             ->getRepository(Profile::class)
             ->find($id);
@@ -83,7 +82,9 @@ class EditProfileController extends AbstractController
                 $entityManager = $this->getDoctrine()->getManager();
 
 
-
+                forEach($oldImages as $oldImage){
+                    $oldImage->setActiveState(false);  
+                }
                 // $oldImages->setActiveState(false);
 
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
