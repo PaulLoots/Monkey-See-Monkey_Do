@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use App\Entity\Profile;
+use App\Entity\ProfileImage;
 
 use App\Form\UserProfileType;
 use App\Form\LoginType;
@@ -32,14 +33,25 @@ class LoginController extends AbstractController
 
             $profileEmail = $userProfile->getEmail();
             
-
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userProfile);
+
             $entityManager->flush();
 
             $profile = $this->getDoctrine()
             ->getRepository(Profile::class)
             ->findOneBy(['email' => $profileEmail]);
+
+            //set default profileImage
+            $entityManager = $this->getDoctrine()->getManager();
+
+            $profileImage = new ProfileImage();
+            $profileImage->setProfileId($profile);
+            $profileImage->setImagePath('monkey.png');
+            $profileImage->setActiveState(true);
+
+            $entityManager->persist($profileImage);
+            $entityManager->flush();
 
             $session->set('profile', $profile);
             $session->set('filter', 'all');
