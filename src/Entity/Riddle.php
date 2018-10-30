@@ -238,6 +238,8 @@ class Riddle
     public function setReported(?bool $reported): self
     {
         $this->reported = $reported;
+
+        return $this;
     }
     /**
      * @return Collection|RiddleLikes[]

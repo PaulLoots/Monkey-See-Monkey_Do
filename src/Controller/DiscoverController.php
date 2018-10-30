@@ -25,7 +25,7 @@ class DiscoverController extends AbstractController
         //$profile = $session->get('profile');
         //$profileId = $profile->getId();
 
-        $profileId = 2;
+        $profileId = 1;
 
         $profile = $this->getDoctrine()
         ->getRepository(Profile::class)
@@ -64,7 +64,6 @@ class DiscoverController extends AbstractController
             $session->set('filter', $filter );
             
             return $this->render($view, $model); 
-            
 
          } else {
 

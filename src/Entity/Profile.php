@@ -283,6 +283,8 @@ class Profile
     public function setBanned(?bool $banned): self
     {
         $this->banned = $banned;
+
+        return $this;
     }    
     /**
      * @return Collection|RiddleLikes[]

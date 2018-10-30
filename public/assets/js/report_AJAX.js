@@ -21,6 +21,27 @@ $(document).ready(function(){
         });  
      });
 
+// Ban Profile
+$(".banButton").on("click", function(event){
+    $( this ).parent().parent().parent().parent().hide(300);  
+    var ansClicked = $(this).attr("value");
+    console.log(ansClicked);
+    $.ajax({  
+       url:        '/admin',  
+       type:       'POST',
+       data: {action: "BanProfile", id: ansClicked, target: "BannedList"},   
+       dataType:   'text',  
+       async:      true,  
+       
+       success: function(data, status) {   
+           console.log(data);
+       },  
+       error : function(xhr, textStatus, errorThrown) {  
+          //alert('Ajax request failed.');  
+       }  
+    });  
+ });
+
 
 // unBan Profile
      $(".unbanButton").on("click", function(event){

@@ -53,7 +53,7 @@ class AnswersController extends AbstractController
         //$profile = $session->get('profile');
         //$profileId = $profile->getId();
 
-        $profileId = 2;
+        $profileId = 1;
 
         $profile = $this->getDoctrine()
         ->getRepository(Profile::class)
@@ -125,6 +125,28 @@ class AnswersController extends AbstractController
                     $commentProfile->setRiddlingScore($score + 5);
                 }
             }
+
+            if($entity == 'Report'){
+                        if($vote == "reportRiddle"){
+                            $riddleId = $_POST['id'];
+                            $riddle = $entityManager->getRepository(Riddle::class)->find($riddleId);
+                            $riddle->setReported(true);
+                        }
+            
+                        if($vote == "reportAnswer"){
+                            $answerId = $_POST['id'];
+            
+                            $AnswerReported = $entityManager->getRepository(Answer::class)->find($answerId);
+                            $AnswerReported->setReported(true);
+                        }
+            
+                        if($vote == "reportComment"){
+                            $commentId = $_POST['id'];
+            
+                            $comment = $entityManager->getRepository(Comment::class)->find($commentId);
+                            $comment->setReported(true);
+                        }
+            }            
 
 
             $entityManager->flush();

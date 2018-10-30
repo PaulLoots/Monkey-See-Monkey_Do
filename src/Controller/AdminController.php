@@ -43,7 +43,6 @@ class AdminController extends AbstractController
 
         if ($request->isXmlHttpRequest()) {  
             $target = $_POST['target'];
-            // $action = $_POST['action'];
 
             $entityManager = $this->getDoctrine()->getManager();
 
@@ -61,7 +60,6 @@ class AdminController extends AbstractController
                     }
             }
 
-            //Not working yet
             //Unbanned User from list
             if($target == "BannedList"){
                 $BannedId = $_POST['id'];
@@ -163,52 +161,6 @@ class AdminController extends AbstractController
                     $CommentReported->setReported(true);
                     }
             }
-
-
-// $entity=$_POST['entity'];
-// $vote=$_POST['vote'];
-
-
-            // //reportButton
-            // //not working?
-            // if($entity == "reportRiddle"){
-            //     $riddleId = $_POST['id'];
-
-            //     $riddle = $entityManager->getRepository(Riddle::class)->find($riddleId);
-                    
-            //     if($vote == 'reportRiddle'){
-            //         $riddle->setReported(true);
-            //     } else {
-            //         $riddle->setReported(false);
-            //         }
-            // }
-
-            // //not working
-            // if($entity == "reportAnswer"){
-            //     $answerId = $_POST['id'];
-            //     // $vote = $_POST['vote'];
-
-            //     $AnswerReported = $entityManager->getRepository(Answer::class)->find($answerId);
-                    
-            //     if($vote == 'reportAnswer'){
-            //         $AnswerReported->setReported(true);
-            //     } else {
-            //         $AnswerReported->setReported(false);
-            //         }
-            // }
-
-            // if($entity == "reportComment"){
-            //     $commentId = $_POST['id'];
-            //     // $vote = $_POST['vote'];
-
-            //     $comment = $entityManager->getRepository(Comment::class)->find($commentId);
-                    
-            //     if($vote == 'reportComment'){
-            //         $comment->setReported(true);
-            //     } else {
-            //         $comment->setReported(false);
-            //         }
-            // }
 
             $entityManager->flush();
 

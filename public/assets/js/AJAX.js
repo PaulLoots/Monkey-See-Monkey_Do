@@ -159,34 +159,35 @@ $(document).ready(function(){
 
 
       //Report Button
-      $("#reportRiddle").on("click", function(event){ 
+      $(".reportRiddle").on("click", function(event){ 
           //styling
-        $(this).css({"opacity":"1 !important"});
+        //$(this).css({"opacity":"1 !important"});
         var ansClicked = $(this).attr("value");
+        console.log(ansClicked);
         $.ajax({  
-           url:        '/admin',  
-           type:       'POST',
-           data: { vote: "reportRiddle", id: ansClicked, entity:"reportRiddle"},   
-           dataType:   'text',  
-           async:      true,  
+           url: '/answers',
+           type: 'POST',
+           data: { entity: "Report", id: ansClicked, vote: "reportRiddle"},   
+           dataType: 'text',  
+           async: true,  
            
            success: function(data, status) {   
                console.log(data);
-           },  
+           },
            error : function(xhr, textStatus, errorThrown) {  
               //alert('Ajax request failed.');  
            }  
         });  
      });
 
-     $("#reportAnswer").on("click", function(event){ 
+     $(".reportAnswer").on("click", function(event){ 
         //styling
       $(this).css({"opacity":"1 !important"});
       var ansClicked = $(this).attr("value");
       $.ajax({  
-         url:        '/admin',  
+         url:        '/answers',  
          type:       'POST',
-         data: { vote: "reportAnswer", id: ansClicked, entity:"reportAnswer"},   
+         data: { entity: "Report", id: ansClicked, vote:"reportAnswer"},   
          dataType:   'text',  
          async:      true,  
          
@@ -200,14 +201,15 @@ $(document).ready(function(){
    });
 
 
-   $("#reportComment").on("click", function(event){ 
+   $(".reportComment").on("click", function(event){ 
     //styling
   $(this).css({"opacity":"1 !important"});
   var ansClicked = $(this).attr("value");
+  console.log(ansClicked);
   $.ajax({  
-     url:        '/admin',  
+     url:        '/answers',  
      type:       'POST',
-     data: { vote: "reportComment", id: ansClicked, entity:"reportComment"},   
+     data: { entity: "Report", id: ansClicked, vote:"reportComment"},   
      dataType:   'text',  
      async:      true,  
      

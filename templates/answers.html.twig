@@ -62,7 +62,7 @@
                         <div id="dislikeRiddle" value="{{ riddle.id }}" class="col-auto mx-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.dislikes }}</p>
                         </div>
-                        <div id="reportRiddle" value="{{ riddle.id }}" class="col-auto mr-auto thumbsHover" style="padding-right: 5px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
+                        <div value="{{ riddle.id }}" class="col-auto mr-auto thumbsHover reportRiddle" style="padding-right: 5px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
                     </div>
                 </div>
             </div>
@@ -115,7 +115,7 @@
                                 </div>
                             
                                 <div class="col"></div>
-                            <div id="reportAnswer" value="{{ answer.id }}" class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
+                            <div value="{{ answer.id }}" class="col-auto thumbsHover reportAnswer" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
                         </div>
                         <div class="row" style="width: 100%;margin: 0px;margin-top: 10px;">
                             <div class="col" style="padding: 0;">
@@ -156,7 +156,7 @@
                                                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.dislikes }}</p>
                                                         </div>
                                                         <div class="col"></div>
-                                                        <div id="reportComment" value="{{ comment.id }}" class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><a href="riddle_comments.html"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></a></div>
+                                                        <div value="{{ comment.id }}" class="col-auto thumbsHover reportComment" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -194,7 +194,7 @@
                                                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.dislikes }}</p>
                                                         </div>
                                                         <div class="col"></div>
-                                                        <div id="reportComment" value="{{ comment.id }}" class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><a href="riddle_comments.html"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></a></div>
+                                                        <div value="{{ comment.id }}" class="col-auto thumbsHover reportComment" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -252,7 +252,7 @@
                                 </div>
                             
                                 <div class="col"></div>
-                            <div id="reportAnswer" value="{{ answer.id }}" class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
+                            <div value="{{ answer.id }}" class="col-auto thumbsHover reportAnswer" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
                         </div>
                         <div class="row" style="width: 100%;margin: 0px;margin-top: 10px;">
                             <div class="col" style="padding: 0;">
@@ -293,7 +293,7 @@
                                                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.dislikes }}</p>
                                                         </div>
                                                         <div class="col"></div>
-                                                        <div id="reportComment" value="{{ comment.id }}" class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><a href="riddle_comments.html"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></a></div>
+                                                        <div value="{{ comment.id }}" class="col-auto thumbsHover reportComment" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -331,7 +331,7 @@
                                                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.dislikes }}</p>
                                                         </div>
                                                         <div class="col"></div>
-                                                        <div id="reportComment" value="{{ comment.id }}" class="col-auto thumbsHover" style="padding-right: 15px;padding-left: 5px;"><a href="riddle_comments.html"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></a></div>
+                                                        <div value="{{ comment.id }}" class="col-auto thumbsHover reportComment" style="padding-right: 15px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
                                                     </div>
                                                 </div>
                                             </div>
