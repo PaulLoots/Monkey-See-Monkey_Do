@@ -4,58 +4,156 @@
 
 {% block body %}
 
+<div class="modal fade" role="dialog" tabindex="-1" id="uploadImageModal">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body" style="background-color: #1c1f21;padding: 25px;">
+                <div class="row" style="height: 45px;">
+                    <div class="col-8">
+                        <h4 class="text-light" style="font-family: Roboto, sans-serif;">Select Image</h4>
+                    </div>
+                    <div class="col" style="margin-right: 10px;">
+                    {# <button class="btn btn-light btn-block btn-lg answerBtn riddleItem"
+                            type="button" id="okColourBtn" style="height: 40px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;padding-top: 5px;margin-bottom: 13px;">Ok</button>
+                            #}</div> 
+                </div>
+
+
+                <div class="row">
+
+                {% for oldImage in oldImages %}
+
+                <div class="form-group" style="margin-bottom: 0px;padding:10px;">
+                        <!--Profile Image Upload-->
+                        <div class="customCodeProfileImage">
+                            <label value="{{oldImage.id}}" class="filebutton" style="background-image:url(../assets/profileImages/{{oldImage.imagePath}});background-size:cover;background-position:center;">
+                                <i style="margin:35%;font-size:40px;color:white;" class="la la-check"></i>
+                                <span>
+                                    <div id="myfile">
+                                    </div>
+                                </span>
+                            </label>
+                        </div>
+                </div>
+
+                {% endfor %}
+
+                </div>
+                <div class="row">
+
+                    {{ form_start(Uploadform, {'attr': {'novalidate': 'novalidate'}}) }}
+                    {{ form_widget(Uploadform.profileId, {'attr': {'style':'display: none;'}}) }}
+
+                    <div class="form-group" style="margin-bottom: 0px;padding:10px;text-align:center;">
+                        <!--Profile Image Upload-->
+                        <div class="customCodeProfileImage">
+                            <label class="filebutton" style="border:2px solid white;">
+                                <i style="margin:35%;font-size:40px;color:white;" class="la la-user-plus"></i>
+                                <span>
+                                    <div id="myfile">
+                                        {{ form_widget(Uploadform.image_path, {'attr':{'id':'imageUpload'}}) }}
+                                    </div>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 3vh;">
+                        {{ form_widget(Uploadform.submit, {'attr': {'class':'btn btn-primary btn-block btn-lg',
+                        'style':'text-align: center;font-family: Quicksand, sans-serif;background-color:
+                        rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight:
+                        500;border:none;border-radius:10px;'}}) }}
+                    </div>
+                    {{form_widget(Uploadform)}}
+                </div>
+                {{ form_end(Uploadform) }}
+
+            </div>
+        </div>
+    </div>
+</div>
+
 <div role="dialog" tabindex="-1">
-            <div role="document">
+    <div role="document">
+        <div>
+
+            <div style="background-color: #2d3436;margin-top:60px;">
                 <div>
-                    
-                    <div style="background-color: #2d3436;margin-top:60px;">
-                        <div>
-                            <div class="row">
-                                <div class="col-12 col-sm-8 col-md-6 col-lg-10 col-xl-8 offset-sm-2 offset-md-3 offset-lg-1 offset-xl-2">
-
-                                     {{ form_start(EditProfileform, {'attr': {'name':'EditProfileForm', 'novalidate': 'novalidate'}}) }}
-
-                                    <div class="form-group" style="margin-bottom: 0px;">
-                                        <!--Profile Image Upload-->
-                                        <div class="customCodeProfileImage">
-                                            <label class="filebutton">
-                                                <i style="margin:35%;font-size:40px;color:white;" class="la la-user-plus"></i>
-                                                <span>
-                                                 {# {{ form_widget(EditProfileform.image_path, {'attr': {'accept':'image/*', 'type':'file', 'id':'myfile', 'name':'editImage'}}) }} #}
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
+                    <div class="row">
+                        <div class="col-4 col-sm-8 col-md-6 col-lg-4 col-xl-4 offset-sm-2 offset-md-3 offset-lg-4 offset-xl-4">
 
 
 
-                                    <div class="form-group inputRoundedBlock" style="height: 50px;">
-                                        <i class="la la-user float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
-                                        {{ form_widget(EditProfileform.name, {'attr': {'class':'form-control', 'placeholder':'Name', 'style':'height: 50px;width: 84%;border: none;'}}) }}
-                                    </div>
-                                    <div class="form-group inputRoundedBlock" style="height: 50px;">
-                                        <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
-                                        {{ form_widget(EditProfileform.email, {'attr': {'class':'form-control', 'placeholder':'Email', 'style':'height: 50px;width: 84%;border: none;'}}) }}
-                                    </div>
-                                    <div class="form-group inputRoundedBlock" style="height: 50px;">
-                                        <i class="la la-lock float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
-                                        {{ form_widget(EditProfileform.password, {'attr': {'class':'form-control', 'placeholder':'Password', 'style':'height: 50px;width: 84%;border: none;'}}) }}
-                                    </div>
-                                    <div style="margin-top: 3vh;">
-                                        {{ form_widget(EditProfileform.submitEditProfile, {'attr': {'class':'btn btn-primary btn-block btn-lg', 'style':'text-align: center;font-family: Quicksand, sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
-                                    </div>
-                                    
-                                    </div>
-
-
-                                
-                                {{ form_end(EditProfileform) }} 
+                            <div class="form-group" style="margin-bottom: 0px;">
+                                <!--Profile Image Upload-->
+                                <div class="customCodeProfileImage">
+                                    <label class="filebutton" style="background-image:url(assets/profileImages/monkey.png);background-size:cover;background-position:center;">
+                                        <i style="margin-top:70%;font-size:24px;color:white;text-shadow:0 1px 10px rgba(0,0,0,.7);" class="la la-edit"></i>
+                                        <span>
+                                            <div id="myfile"></div>
+                                        </span>
+                                    </label>
                                 </div>
                             </div>
+
+
+                            {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+
+
+                            <div class="form-group inputRoundedBlock" style="height: 50px;">
+                                <i class="la la-user float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
+                                {{ form_widget(form.name, {'attr': {'class':'form-control', 'placeholder':'Name',
+                                'style':'height: 50px;width: 84%;border: none;'}}) }}
+                            </div>
+                            <div class="form-group inputRoundedBlock" style="height: 50px;">
+                                <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
+                                {{ form_widget(form.email, {'attr': {'class':'form-control', 'placeholder':'Email',
+                                'style':'height: 50px;width: 84%;border: none;'}}) }}
+                            </div>
+                            <div class="form-group inputRoundedBlock" style="height: 50px;">
+                                <i class="la la-lock float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
+                                {{ form_widget(form.password, {'attr': {'class':'form-control',
+                                'placeholder':'Password', 'style':'height: 50px;width: 84%;border: none;'}}) }}
+                            </div>
+                            <div style="margin-top: 3vh;">
+                                {{ form_widget(form.submitEditProfile, {'attr': {'class':'btn btn-primary btn-block
+                                btn-lg', 'style':'text-align: center;font-family: Quicksand,
+                                sans-serif;background-color: rgb(0,0,0);margin-top: 5vh;height: 60px;font-size:
+                                24px;font-weight: 500;border:none;border-radius:10px;'}}) }}
+                            </div>
+
+                            {{ form_end(form) }}
+
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+</div>
 
-        {% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+<script>
+$(function(){
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('.filebutton').css('background-image', 'url('+e.target.result +')');
+            $('.filebutton').hide();
+            $('.filebutton').fadeIn(650);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$("#imageUpload").change(function() {
+    readURL(this);
+});
+});
+</script>
+{% endblock %}

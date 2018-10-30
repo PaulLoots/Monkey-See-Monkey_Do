@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProfileImageRepository")
@@ -24,6 +25,7 @@ class ProfileImage
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\File(mimeTypes={ "image/*" })
      */
     private $image_path;
 
