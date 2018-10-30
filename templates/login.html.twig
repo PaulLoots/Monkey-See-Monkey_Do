@@ -94,7 +94,7 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                     <div class="row">
                         <div class="col-12 col-sm-8 col-md-6 col-lg-10 col-xl-8 offset-sm-2 offset-md-3 offset-lg-1 offset-xl-2">
 
-                            {{ form_start(loginform, {'attr': {'name':'CreateAccountForm', 'novalidate': 'novalidate'}}) }}
+                            {{ form_start(loginform, {'attr': {'name':'CreateAccountForm'}}) }}
  
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
                                         <i class="la la-envelope float-left" style="margin-left: 5%;margin-top: 13px;font-size: 20px;"></i>
@@ -115,6 +115,9 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                                     </div>
 
                                 {{ form_end(loginform) }}
+                                {% if loginError == true %}
+                                    <p>Email or Password is incorrect!</p>
+                                {% endif %}
 
                         </div>
                     </div>

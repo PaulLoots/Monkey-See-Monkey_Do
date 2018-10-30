@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Answer;
 use App\Entity\Riddle;
@@ -17,22 +18,13 @@ class MyRiddlesController extends AbstractController
     /**
     * @Route("/myriddles/{id}", name="myriddles_view")
     */
-    public function viewMyRiddles($id = "1", Request $request)
+    public function viewMyRiddles($id = "1", Request $request, SessionInterface $session)
     {
-        $session = new Session();
-        $session->start();
 
-        $profileId = (int) $id;
-
-        $profile = $this->getDoctrine()
-        ->getRepository(Profile::class)
-        ->find($profileId);
-
-        $session->set('profile', $profile);
 
         //UNCOMMENT to let this page work with sessions
-        //$profile = $session->get('profile');
-        //$profileId = $profile->getId();
+        $profile = $session->get('profile');
+        $profileId = $profile->getId();
 
         $riddles = $this->getDoctrine()
         ->getRepository(Riddle::class)

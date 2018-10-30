@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Security\Core\Encoder\BCryptPasswordEncoder;
 
 use App\Entity\Profile;
 use App\Entity\ProfileImage;
@@ -18,11 +20,8 @@ class LoginController extends AbstractController
     /**
     * @Route("/login", name="login_view")
     */
-    public function newProfile(Request $request)
+    public function newProfile(Request $request, SessionInterface $session)
     {
-        $session = new Session();
-        $session->start();
-
         $userProfile = new Profile();
         $SignUpform = $this->createForm(UserProfileType::class, $userProfile);
         $SignUpform->handleRequest($request);
@@ -32,7 +31,10 @@ class LoginController extends AbstractController
             $userProfile = $SignUpform->getData();
 
             $profileEmail = $userProfile->getEmail();
-            
+
+            $encoder = new BCryptPasswordEncoder(12);
+            $userProfile->setPassword($encoder->encodePassword($userProfile->getPassword(), null));
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($userProfile);
 
@@ -59,40 +61,44 @@ class LoginController extends AbstractController
             return $this->redirectToRoute('discover_view');
         }
 
-
         $profile = $this->getDoctrine()
             ->getRepository(Profile::class)
             ->findAll();
         
-        $loginform = $this->createForm(LoginType::class, $profile);
+        $loginProfile = new Profile();
+        $loginform = $this->createForm(LoginType::class, $loginProfile);
         $loginform->handleRequest($request);
         
-        if ($loginform->isSubmitted() && $loginform->isValid()) {
-            // $loginform->getData() holds the submitted values
+        if ($loginform->isSubmitted()) {
             $loginProfile = $loginform->getData();
 
-            // $loginEmail = $loginProfile->getEmail();
-            // $loginPassword = $loginProfile->getPassword();
+            $loginEmail = $loginProfile->getEmail();
+            //$loginPassword = $loginProfile->getPassword();
 
-            // $profileMatchingEmail = $this->getDoctrine()
-            // ->getRepository(Profile::class)
-            // ->findOneBy(['email' => $loginEmail]);
+            $profileMatchingEmail = $this->getDoctrine()
+            ->getRepository(Profile::class)
+            ->findOneBy(['email' => $loginEmail]);
 
-            // $profileMatchingPassword = $this->getDoctrine()
-            // ->getRepository(Profile::class)
-            // ->findOneBy(['password' => $loginPassword]);
+            $encoder = new BCryptPasswordEncoder(12);
 
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($profile);
-        //    $entityManager->flush();
-
-            $session->set('filter', 'all');
-            return $this->redirectToRoute('discover_view');
+            if($profileMatchingEmail != NULL){
+                if($encoder->isPasswordValid($profileMatchingEmail->getPassword(), $loginProfile->getPassword(), null)){
+                $session->set('filter', 'all');
+                $session->set('profile', $profileMatchingEmail);
+                $session->set('loginError', false);
+                return $this->redirectToRoute('discover_view');
+                } else {
+                    $session->set('loginError', true);  
+                }
+            } else {
+                $session->set('loginError', true);
+            }
         }
 
+        $loginError = $session->get('loginError');
 
         $view = 'login.html.twig';
-        $model = array('SignUpform' => $SignUpform->createView(), 'loginform' => $loginform->createView());
+        $model = array('SignUpform' => $SignUpform->createView(), 'loginform' => $loginform->createView(), 'loginError' => $loginError);
 
         return $this->render($view, $model);
     }
