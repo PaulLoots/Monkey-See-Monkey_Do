@@ -109,3 +109,7 @@ label span input {
   border-style: solid;
   border-color: white;
 }
+
+img {
+  object-fit: cover;
+}

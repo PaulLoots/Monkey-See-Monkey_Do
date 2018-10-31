@@ -27,6 +27,9 @@ class UserProfileType extends AbstractType
             ->add('banned', HiddenType::class, array(
                 'data' => 0
             ))
+            ->add('admin', HiddenType::class, array(
+                'data' => 1
+            ))
         ;
     }
 }

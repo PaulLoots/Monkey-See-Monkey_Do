@@ -1,12 +1,13 @@
-$(function() {
-    sizeCheck();
-});
+// $(function() {
+    
+// });
 
-$( window ).resize(function() {sizeCheck()});
+// $( window ).resize(function() {sizeCheck()});
 
 function sizeCheck() {     
  var displayCol = document.getElementById("displayCol");   
  if ($( window ).width() < 992) {
+
     displayCol.classList.add("fixedDisp")
   } else {
     displayCol.classList.remove("fixedDisp");  
@@ -14,6 +15,7 @@ function sizeCheck() {
 };
 
 $(".myRiddleSelect").click(function(){
+    sizeCheck();
     $(".myRiddleSelect").removeClass("selectedRiddle");
     $(".visible").attr('class', 'invisible');
     $(this).addClass("selectedRiddle");
@@ -26,6 +28,7 @@ $(".myRiddleSelect").click(function(){
 
 $(".closeAnswersIcon").click(function(){
     $(".myRiddleSelect").removeClass("selectedRiddle");
+    displayCol.classList.remove("fixedDisp");
     $(".visible").attr('class', 'invisible');
 });
 
