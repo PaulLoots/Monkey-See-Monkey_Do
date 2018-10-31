@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Profile;
 use App\Entity\ProfileImage;
@@ -19,11 +20,10 @@ class EditProfileController extends AbstractController
     /**
     * @Route("/editprofile/{id}", name="editProfile_view")
     */
-    public function updateProfile($id = "1", Request $request)
+    public function updateProfile($id = "1", Request $request, SessionInterface $session)
     {
-        $session = new Session();
-        $session->start();
-
+        $profile = $session->get('profile');
+        $profileId = $profile->getId();
 
         // update Profile handle
         $profile = $this->getDoctrine()
@@ -57,17 +57,9 @@ class EditProfileController extends AbstractController
 
         // upload Image handle
 
-        $profileId=1;
-
         $profilesImage = $this->getDoctrine()
         ->getRepository(Profile::class)
         ->find($profileId);
-
-        $session->set('profile', $profilesImage);
-
-        //UNCOMMENT to let this page work with sessions
-        //$profile = $session->get('profile');
-        //$profileId = $profile->getId();
         
         $profileImage = new ProfileImage();
         $Uploadform = $this->createForm(ProfileImageType::class, $profileImage);
@@ -134,7 +126,7 @@ class EditProfileController extends AbstractController
 
 
       $view = 'editProfile.html.twig';
-        $model = array('form' => $form->createView(), 'Uploadform' => $Uploadform->createView(), 'oldImages' => $oldImages);
+        $model = array('form' => $form->createView(), 'Uploadform' => $Uploadform->createView(), 'profileImage' => $profileImage, 'oldImages' => $oldImages, 'profile' => $profile);
 
         return $this->render($view, $model);
 
