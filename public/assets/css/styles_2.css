@@ -105,4 +105,7 @@ label span input {
   }
 }
 
-
+.activePP{
+  border-style: solid;
+  border-color: white;
+}

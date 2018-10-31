@@ -7,26 +7,25 @@
 <div class="modal fade" role="dialog" tabindex="-1" id="uploadImageModal">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-body" style="background-color: #1c1f21;padding: 25px;">
+            <div class="modal-body" style="background-color: #1c1f21;padding: 25px;max-height:60vh;overflow:scroll;">
                 <div class="row" style="height: 45px;">
                     <div class="col-8">
                         <h4 class="text-light" style="font-family: Roboto, sans-serif;">Select Image</h4>
                     </div>
                     <div class="col" style="margin-right: 10px;">
-                    {# <button class="btn btn-light btn-block btn-lg answerBtn riddleItem"
-                            type="button" id="okColourBtn" style="height: 40px;font-family: Quicksand, sans-serif;font-weight: 700;width: 100%;padding-top: 5px;margin-bottom: 13px;">Ok</button>
-                            #}</div> 
+                    </div>
                 </div>
 
 
                 <div class="row">
+                    {% for oldImage in oldImages %}
+                    {% if oldImage.activeState == true %}
 
-                {% for oldImage in oldImages %}
 
-                <div class="form-group" style="margin-bottom: 0px;padding:10px;">
+                    <div class="form-group" style="margin-bottom: 0px;padding:10px;">
                         <!--Profile Image Upload-->
                         <div class="customCodeProfileImage">
-                            <label value="{{oldImage.id}}" class="filebutton" style="background-image:url(../assets/profileImages/{{oldImage.imagePath}});background-size:cover;background-position:center;">
+                            <label value="{{oldImage.id}}" class="filebutton selectImage activePP" style="background-image:url(../assets/profileImages/{{oldImage.imagePath}});background-size:cover;background-position:center;">
                                 <i style="margin:35%;font-size:40px;color:white;" class="la la-check"></i>
                                 <span>
                                     <div id="myfile">
@@ -34,14 +33,35 @@
                                 </span>
                             </label>
                         </div>
-                </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
 
-                {% endfor %}
 
-                </div>
-                <div class="row">
+                    {% for oldImage in oldImages %}
 
-                    {{ form_start(Uploadform, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                    <div class="form-group" style="margin-bottom: 0px;padding:10px;">
+                        <!--Profile Image Upload-->
+                        <div class="customCodeProfileImage">
+                            <label value="{{oldImage.id}}" class="filebutton selectImage" style="background-image:url(../assets/profileImages/{{oldImage.imagePath}});background-size:cover;background-position:center;">
+                                <i style="margin:35%;font-size:40px;color:white;display:none;" class="la la-check"></i>
+                                <span>
+                                    <div id="myfile">
+                                    </div>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    {% endfor %}
+
+                {# </div>
+                <div class="row"> #}
+
+
+
+                    {{ form_start(Uploadform, {'attr': {'novalidate': 'novalidate', 'id': 'Uploadform'}}) }}
                     {{ form_widget(Uploadform.profileId, {'attr': {'style':'display: none;'}}) }}
 
                     <div class="form-group" style="margin-bottom: 0px;padding:10px;text-align:center;">
@@ -51,7 +71,7 @@
                                 <i style="margin:35%;font-size:40px;color:white;" class="la la-user-plus"></i>
                                 <span>
                                     <div id="myfile">
-                                        {{ form_widget(Uploadform.image_path, {'attr':{'id':'imageUpload'}}) }}
+                                        {{ form_widget(Uploadform.image_path, {'attr':{'id':'imageUpload', 'onChange':'readURL(this)'}}) }}
                                     </div>
                                 </span>
                             </label>
@@ -64,7 +84,7 @@
                         rgb(0,0,0);margin-top: 5vh;height: 60px;font-size: 24px;font-weight:
                         500;border:none;border-radius:10px;'}}) }}
                     </div>
-                    {{form_widget(Uploadform)}}
+
                 </div>
                 {{ form_end(Uploadform) }}
 
@@ -77,26 +97,29 @@
     <div role="document">
         <div>
 
-{% for oldImage in oldImages %}
             <div style="background-color: #2d3436;margin-top:60px;">
                 <div>
                     <div class="row">
                         <div class="col-4 col-sm-8 col-md-6 col-lg-4 col-xl-4 offset-sm-2 offset-md-3 offset-lg-4 offset-xl-4">
-
-                            <div class="form-group" style="margin-bottom: 0px;">
+                            {% for oldImage in oldImages %}
+                            {% if oldImage.activeState == true %}
+                            <div class="form-group" style="margin-bottom: 0px;margin-left:30px;">
                                 <!--Profile Image Upload-->
                                 <div class="customCodeProfileImage">
-                                <div>
-                                    <label class="filebutton" style="background-image:url(assets/profileImages/{{oldImage.imagePath}});background-size:cover;background-position:center;">
-                                        <i style="margin-top:70%;font-size:24px;color:white;text-shadow:0 1px 10px rgba(0,0,0,.7);" class="la la-edit"></i>
-                                        <span>
-                                            <div id="myfile"></div>
-                                        </span>
-                                    </label>
+                                    <div>
+                                        <label class="filebutton" style="background-image:url(assets/profileImages/{{oldImage.imagePath}});background-size:cover;background-position:center;">
+                                            <i style="margin-top:70%;font-size:24px;color:white;text-shadow:0 1px 10px rgba(0,0,0,.7);"
+                                                class="la la-edit"></i>
+                                            <span>
+                                                <div id="myfile"></div>
+                                            </span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                             {% endfor %}
+
 
 
                             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
@@ -140,21 +163,22 @@
 
 {% block javascripts %}
 <script>
-$(function(){
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-            $('.filebutton').css('background-image', 'url('+e.target.result +')');
-            $('.filebutton').hide();
-            $('.filebutton').fadeIn(650);
+    $(function () {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('.filebutton').css('background-image', 'url(' + e.target.result + ')');
+                    $('.filebutton').hide();
+                    $('.filebutton').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
         }
-        reader.readAsDataURL(input.files[0]);
-    }
-}
-$("#imageUpload").change(function() {
-    readURL(this);
-});
-});
+        $("#imageUpload").change(function () {
+            readURL(this);
+        });
+    });
 </script>
+<script src="../assets/js/AJAX_image.js"></script>
 {% endblock %}
