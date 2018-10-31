@@ -24,6 +24,9 @@ class UserProfileType extends AbstractType
             ->add('riddling_score', HiddenType::class, array(
                 'data' => 0
             ))
+            ->add('banned', HiddenType::class, array(
+                'data' => 0
+            ))
         ;
     }
 }

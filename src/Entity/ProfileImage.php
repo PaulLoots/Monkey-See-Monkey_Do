@@ -22,10 +22,11 @@ class ProfileImage
      * @ORM\JoinColumn(nullable=false)
      */
     private $profile_id;
-
+    
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\File(mimeTypes={ "image/*" })
+     * @Assert\File(mimeTypes={ "image/jpg" })
+     * @Assert\File(maxSize="8Mi")
      */
     private $image_path;
 

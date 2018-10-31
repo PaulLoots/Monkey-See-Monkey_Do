@@ -112,6 +112,26 @@ class EditProfileController extends AbstractController
             }
 
 
+            if ($request->isXmlHttpRequest()) {  
+                $action = $_POST['action'];
+                $imageId = $_POST['id'];
+
+                $entityManager = $this->getDoctrine()->getManager();
+
+                $otherImages = $entityManager->getRepository(ProfileImage::class)->findby(array('profile_id' => $profileId));
+                $image = $entityManager->getRepository(ProfileImage::class)->find($imageId);
+    
+                if($action == "changeImage"){
+
+                    forEach($otherImages as $otherImage){
+                        $otherImage->setActiveState(false);  
+                    }
+                    $image->setActiveState(true);
+                }
+                $entityManager->flush();
+                return true; 
+             }
+
 
       $view = 'editProfile.html.twig';
         $model = array('form' => $form->createView(), 'Uploadform' => $Uploadform->createView(), 'oldImages' => $oldImages);
