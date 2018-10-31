@@ -16,10 +16,11 @@ $(document).ready(function(){
            async:      true,  
            
            success: function(data, status) {   
-               console.log(data);
+                document.location.reload(true); 
            },  
            error : function(xhr, textStatus, errorThrown) {  
               //alert('Ajax request failed.');  
+              document.location.reload(true); 
            }  
         });  
     });

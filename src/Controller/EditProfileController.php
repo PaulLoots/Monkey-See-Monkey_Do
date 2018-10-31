@@ -18,17 +18,21 @@ use App\Form\ProfileImageType;
 class EditProfileController extends AbstractController
 {
     /**
-    * @Route("/editprofile/{id}", name="editProfile_view")
+    * @Route("/editprofile", name="editProfile_view")
     */
-    public function updateProfile($id = "1", Request $request, SessionInterface $session)
+    public function updateProfile(Request $request, SessionInterface $session)
     {
         $profile = $session->get('profile');
         $profileId = $profile->getId();
 
+        $profileImg = $this->getDoctrine()
+        ->getRepository(ProfileImage::class)
+        ->findOneBy(array('active_state' => true, 'profile_id' => $profileId));
+
         // update Profile handle
         $profile = $this->getDoctrine()
             ->getRepository(Profile::class)
-            ->find($id);
+            ->find($profileId);
         
         $form = $this->createForm(EditProfileType::class, $profile);
         $form->handleRequest($request);
@@ -39,13 +43,11 @@ class EditProfileController extends AbstractController
 
             $profileName = $userProfile->getName();
             $profileEmail = $userProfile->getEmail();
-            $profilePassword = $userProfile->getPassword();
             
             $entityManager = $this->getDoctrine()->getManager();
 
             $profile->setName($profileName);
             $profile->setEmail($profileEmail);
-            $profile->setPassword($profilePassword);
 
             $session->set('profile', $profile);
 
@@ -67,17 +69,15 @@ class EditProfileController extends AbstractController
 
         $oldImages = $this->getDoctrine()
         ->getRepository(ProfileImage::class)
-        ->findBy(array("profile_id"=>$id));
+        ->findBy(array("profile_id"=>$profileId));
 
             if ($Uploadform->isSubmitted() && $Uploadform->isValid()) {
 
                 $entityManager = $this->getDoctrine()->getManager();
 
-
                 forEach($oldImages as $oldImage){
                     $oldImage->setActiveState(false);  
                 }
-                // $oldImages->setActiveState(false);
 
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
                 // $file=$profileImage->getImagePath();
@@ -125,7 +125,7 @@ class EditProfileController extends AbstractController
              }
 
       $view = 'editProfile.html.twig';
-        $model = array('form' => $form->createView(), 'Uploadform' => $Uploadform->createView(), 'profileImage' => $profileImage, 'oldImages' => $oldImages, 'profile' => $profile);
+        $model = array('form' => $form->createView(), 'Uploadform' => $Uploadform->createView(), 'profileImage' => $profileImg, 'oldImages' => $oldImages, 'profile' => $profile);
 
         return $this->render($view, $model);
 

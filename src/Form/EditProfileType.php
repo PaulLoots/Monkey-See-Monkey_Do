@@ -16,7 +16,6 @@ class EditProfileType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
-            ->add('password', PasswordType::class)
             ->add('submitEditProfile', SubmitType::class, ['label' => 'Save'])
         ;
     }
