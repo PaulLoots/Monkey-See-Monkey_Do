@@ -26,7 +26,7 @@ class ProfileImage
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\File(mimeTypes={ "image/jpg" })
-     * @Assert\File(maxSize="8Mi")
+     * @Assert\File(maxSize="2M")
      */
     private $image_path;
 

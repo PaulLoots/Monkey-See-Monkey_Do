@@ -29,3 +29,16 @@ $(document).ready(function(){
     });
  
  });  
+
+ function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('.filebutton2').css('background-image', 'url(' + e.target.result + ')');
+            $('.filebutton2').hide();
+            $('.filebutton2').fadeIn(650);
+            $("#profile_image_submit").css('display', 'block');
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}

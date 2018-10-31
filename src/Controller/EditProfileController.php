@@ -124,7 +124,6 @@ class EditProfileController extends AbstractController
                 return true; 
              }
 
-
       $view = 'editProfile.html.twig';
         $model = array('form' => $form->createView(), 'Uploadform' => $Uploadform->createView(), 'profileImage' => $profileImage, 'oldImages' => $oldImages, 'profile' => $profile);
 
