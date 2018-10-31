@@ -84,7 +84,6 @@ class EditProfileController extends AbstractController
 
 
 
-                // $oldImages->setActiveState(false);
 
                 /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
                 // $file=$profileImage->getImagePath();
