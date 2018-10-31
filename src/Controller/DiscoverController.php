@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Riddle;
 use App\Entity\Profile;
+use App\Entity\ProfileImage;
 use App\Entity\Answer;
 
 class DiscoverController extends AbstractController
@@ -32,6 +33,10 @@ class DiscoverController extends AbstractController
         $profiles = $this->getDoctrine()
         ->getRepository(Profile::class)
         ->findAll();
+
+        $profileImage = $this->getDoctrine()
+        ->getRepository(ProfileImage::class)
+        ->findOneBy(array('active_state' => true, 'profile_id' => $profileId));
 
         $answers = $this->getDoctrine()
         ->getRepository(Answer::class)
@@ -62,7 +67,7 @@ class DiscoverController extends AbstractController
             $filter = $session->get('filter');
             $username = $session->get('filterUsername');
         
-        $model = array('filterUsername' => $username, 'filterItem' => $filter, 'answersBadge' => $answersBadge, 'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
+        $model = array('filterUsername' => $username, 'filterItem' => $filter, 'answersBadge' => $answersBadge, 'profileImage' => $profileImage, 'profile' => $profile, 'profiles' => $profiles, 'answers' => $answers,'riddles' => $riddles);
         $view = 'discover.html.twig';
 
         return $this->render($view, $model);

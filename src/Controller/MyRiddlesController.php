@@ -12,6 +12,7 @@ use App\Entity\Answer;
 use App\Entity\Riddle;
 use App\Entity\Profile;
 use App\Form\CreateRiddleType;
+use App\Entity\ProfileImage;
 
 class MyRiddlesController extends AbstractController
 {
@@ -23,6 +24,10 @@ class MyRiddlesController extends AbstractController
         //UNCOMMENT to let this page work with sessions
         $profile = $session->get('profile');
         $profileId = $profile->getId();
+
+        $profileImage = $this->getDoctrine()
+        ->getRepository(ProfileImage::class)
+        ->findOneBy(array('active_state' => true, 'profile_id' => $profileId));
 
         $riddles = $this->getDoctrine()
         ->getRepository(Riddle::class)
@@ -79,7 +84,7 @@ class MyRiddlesController extends AbstractController
             return true; 
          }
          
-        $model = array('profile' => $profile,'riddles' => $riddles, 'answers' => $answers, 'answersAll' => $answersAll, 'form' => $form->createView());
+        $model = array('profileImage' => $profileImage, 'profile' => $profile,'riddles' => $riddles, 'answers' => $answers, 'answersAll' => $answersAll, 'form' => $form->createView());
         $view = 'myriddles.html.twig';
 
         return $this->render($view, $model);

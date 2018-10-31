@@ -20,15 +20,22 @@ class AnswersController extends AbstractController
     /**
     * @Route("/answers/{id}", name="answers_view")
     */
-    public function viewAnswers($id = "33", Request $request, SessionInterface $session)
+    public function viewAnswers($id = "1", Request $request, SessionInterface $session)
     {    
         $riddleId = (int) $id;
-
-        $session->set('riddleId', $riddleId);
 
         $riddle = $this->getDoctrine()
         ->getRepository(Riddle::class)
         ->find($riddleId);
+
+        if($riddle == NULL){
+            $riddleId = $session->get('riddleId', $riddleId);
+            $riddle = $this->getDoctrine()
+            ->getRepository(Riddle::class)
+            ->find($riddleId);
+        } else {
+            $session->set('riddleId', $riddleId);
+        }
 
         $questionProfileId = $riddle->getProfileId(); 
 

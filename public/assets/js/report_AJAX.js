@@ -116,7 +116,6 @@ $(".banButton").on("click", function(event){
      $(".deleteRiddle").on("click", function(event){
         $( this ).parent().parent().parent().parent().hide(300);  
         var ansClicked = $(this).attr("value");
-        console.log(ansClicked);
         $.ajax({  
             url:        '/admin',  
             type:       'POST',

@@ -30,11 +30,14 @@
                 <div class="col-8 col-md-3 order-2 order-md-3" style="padding-left: 3%;">
                     <div class="row riddleStateCard" style="border-width: 2px;height: 70px;margin-right: 0;margin-left: 0;padding-top: 5px;padding-bottom: 5px;border-color: rgb(30,30,30);">
                         <div class="col-5 col-md-12 col-lg-4">
-                            <div class="dropdown d-table"><button class="btn btn-outline-link dropdown-toggle float-right thumbsHover" data-toggle="dropdown" aria-expanded="false" type="button" style="background-color: transparent;border-width: 2px;color: white;"><img src="../assets/img/IMG_2189.jpg" width="40px" height="40px" class="rounded-circle" /></button>
+                            <div class="dropdown d-table"><button class="btn btn-outline-link dropdown-toggle float-right thumbsHover" data-toggle="dropdown" aria-expanded="false" type="button" style="background-color: transparent;border-width: 2px;color: white;"><img src="../assets/profileImages/{{ profileImage.imagePath }}" width="40px" height="40px" class="rounded-circle" /></button>
                                 <div
-                                    role="menu" class="dropdown-menu roundBorder" style="background-color: #1c1f21;box-shadow: 0px 3px 10px rgba(0, 0, 0, .5);"><a role="presentation" href="/admin" class="dropdown-item text-white thumbsHover roundBorder" style="background-color: #1c1f21;height: 50px;padding-top: 12px;"><i class="icon-user" style="margin-right:20px;"></i>Admin</a><a role="presentation"
-                                        href="/editprofile" class="dropdown-item text-white thumbsHover roundBorder" id="editDetails" style="background-color: #1c1f21;height: 50px;padding-top: 12px;"><i class="icon-pencil" style="margin-right:20px;"></i>Edit Details</a><a role="presentation"
-                                        href="/login" class="dropdown-item thumbsHover roundBorder" style="background-color: #1c1f21;height: 50px;padding-top: 12px;color: #ff7675;"><i class="icon-logout" style="margin-right:20px;"></i>Log Out</a></div>
+                                    role="menu" class="dropdown-menu roundBorder" style="background-color: #1c1f21;box-shadow: 0px 3px 10px rgba(0, 0, 0, .5);">
+                                        {% if (profile.admin ) %}
+                                            <a role="presentation" href="/admin" class="dropdown-item text-white thumbsHover roundBorder" style="background-color: #1c1f21;height: 50px;padding-top: 12px;"><i class="icon-user" style="margin-right:20px;"></i>Admin</a>
+                                        {% endif %}
+                                        <a role="presentation" href="/editprofile" class="dropdown-item text-white thumbsHover roundBorder" id="editDetails" style="background-color: #1c1f21;height: 50px;padding-top: 12px;"><i class="icon-pencil" style="margin-right:20px;"></i>Edit Details</a>
+                                        <a role="presentation" href="/logout" class="dropdown-item thumbsHover roundBorder" style="background-color: #1c1f21;height: 50px;padding-top: 12px;color: #ff7675;"><i class="icon-logout" style="margin-right:20px;"></i>Log Out</a></div>
                         </div>
                     </div>
                     <div class="col-7 d-md-none d-lg-block" style="padding-right: 0;">

@@ -161,7 +161,7 @@ $(document).ready(function(){
       //Report Button
       $(".reportRiddle").on("click", function(event){ 
           //styling
-        //$(this).css({"opacity":"1 !important"});
+        $(this).addClass("reportedI");
         var ansClicked = $(this).attr("value");
         console.log(ansClicked);
         $.ajax({  
@@ -182,7 +182,7 @@ $(document).ready(function(){
 
      $(".reportAnswer").on("click", function(event){ 
         //styling
-      $(this).css({"opacity":"1 !important"});
+      $(this).addClass("reportedI");
       var ansClicked = $(this).attr("value");
       $.ajax({  
          url:        '/answers',  
@@ -203,7 +203,7 @@ $(document).ready(function(){
 
    $(".reportComment").on("click", function(event){ 
     //styling
-  $(this).css({"opacity":"1 !important"});
+  $(this).addClass("reportedI");
   var ansClicked = $(this).attr("value");
   console.log(ansClicked);
   $.ajax({  

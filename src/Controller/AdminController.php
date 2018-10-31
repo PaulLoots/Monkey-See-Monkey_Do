@@ -5,19 +5,31 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Profile;
 use App\Entity\Riddle;
 use App\Entity\Answer;
 use App\Entity\Comment;
+use App\Entity\ProfileImage;
 
 class AdminController extends AbstractController
 {
     /**
     * @Route("/admin", name="admin_view")
     */
-    public function viewAdmin(Request $request)
+    public function viewAdmin(Request $request, SessionInterface $session)
     {
+        $profile = $session->get('profile');
+        $profileId = $profile->getId();
+
+        $profileImages = $this->getDoctrine()
+        ->getRepository(ProfileImage::class)
+        ->findBy(array('active_state' => true));
+
+        $profileImage = $this->getDoctrine()
+        ->getRepository(ProfileImage::class)
+        ->findOneBy(array('active_state' => true, 'profile_id' => $profileId));
 
         $Profiles = $this->getDoctrine()
         ->getRepository(Profile::class)
@@ -88,7 +100,6 @@ class AdminController extends AbstractController
                     }
             }
 
-            //Not working yet
             //Ignore Reported Riddle
             if($target == "ReportedRiddle"){
                 $RiddleId = $_POST['id'];
@@ -100,6 +111,31 @@ class AdminController extends AbstractController
                     $RiddleReported->setReported(false);
                 } else {
                     $RiddleReported->setReported(true);
+                    }
+            }
+
+            if($target == "ReportedRiddleDelete"){
+                $RiddleId = $_POST['id'];
+                $action = $_POST['action'];
+
+                $RiddleReported = $entityManager->getRepository(Riddle::class)->find($RiddleId);
+                $AssosiatedAnswers = $entityManager->getRepository(Answer::class)->findby(array('riddle_id' => $RiddleId));
+                
+                if($action == 'deleteRiddle'){
+                    foreach ($AssosiatedAnswers as $AssosiatedAnswer)
+                    {
+                        $AssosiatedComments = $AssosiatedAnswer->getComments();
+
+                        foreach ($AssosiatedComments as $AssosiatedComment)
+                        {
+                           $entityManager->remove($AssosiatedComment);
+                        }
+                        $entityManager->remove($AssosiatedAnswer);
+                    }
+                    //$entityManager->remove($AssosiatedComment);
+                    $entityManager->remove($RiddleReported);
+                } else {
+                    $AnswerReported->setReported(true);
                     }
             }
 
@@ -117,17 +153,19 @@ class AdminController extends AbstractController
                     }
             }
 
-            //Not Working
             //Delete Reported Answer
             if($target == "ReportedAnswerDelete"){
                 $AnswerId = $_POST['id'];
                 $action = $_POST['action'];
 
                 $AnswerReported = $entityManager->getRepository(Answer::class)->find($AnswerId);
-                $AssosiatedComment = $entityManager->getRepository(Comment::class)->findby(array('Answer_id' => $AnswerId));
+                $AssosiatedComments = $entityManager->getRepository(Comment::class)->findby(array('answer_id' => $AnswerId));
                 
                 if($action == 'deleteAnswer'){
-                    $entityManager->remove($AssosiatedComment);
+                    foreach ($AssosiatedComments as $AssosiatedComment)
+                    {
+                        $entityManager->remove($AssosiatedComment);
+                    }
                     $entityManager->remove($AnswerReported);
                 } else {
                     $AnswerReported->setReported(true);
@@ -168,11 +206,14 @@ class AdminController extends AbstractController
          }
 
         $model = array(
+            'profile' => $profile,
             'Profiles' => $Profiles,
             'reportedRiddles' => $reportedRiddles,
             'reportedAnswers' => $reportedAnswers,
             'reportedComments' => $reportedComments,
-            'profilesReported' => $profilesReported
+            'profilesReported' => $profilesReported,
+            'profileImages' => $profileImages,
+            'profileImage' => $profileImage,
         );
         $view = 'admin.html.twig';
 

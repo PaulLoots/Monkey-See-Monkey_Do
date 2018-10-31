@@ -1,5 +1,5 @@
 $(function() {
-    var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=funny+monkey&api_key=Jh224xwIOI33FI7V5fhOOZsv3uVW7zf3&limit=10");
+    var xhr = $.get("https://api.giphy.com/v1/gifs/search?api_key=Jh224xwIOI33FI7V5fhOOZsv3uVW7zf3&q=funny monkey&limit=10&offset=0&rating=G&lang=en");
     xhr.done(function(data) { 
         for (imageId = 0; imageId < 10; imageId++) {
             console.log(data);
@@ -21,7 +21,7 @@ $("#gifSearchBtn").click(function(){
     for (imageId = 0; imageId < 10; imageId++) {
         $('#' + 'gifImg' + imageId).attr('src', '../assets/img/loading.gif');
     }
-    var xhr = $.get("http://api.giphy.com/v1/gifs/search?q="+$("#gifSearchBar").val()+"&api_key=Jh224xwIOI33FI7V5fhOOZsv3uVW7zf3&limit=10");
+    var xhr = $.get("https://api.giphy.com/v1/gifs/search?api_key=Jh224xwIOI33FI7V5fhOOZsv3uVW7zf3&q="+$("#gifSearchBar").val()+"&limit=10&offset=0&rating=G&lang=en");
     xhr.done(function(data) { 
         for (imageId = 0; imageId < 10; imageId++) {
             $('#' + 'gifImg' + imageId).attr('src', data.data[imageId].images.fixed_height_downsampled.url);
