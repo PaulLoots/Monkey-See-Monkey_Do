@@ -103,5 +103,14 @@ class LoginController extends AbstractController
         return $this->render($view, $model);
     }
 
+    /**
+    * @Route("/logout", name="logout_view")
+    */
+    public function logout(Request $request, SessionInterface $session)
+    {
+        $session->invalidate();
+        return $this->redirectToRoute('login_view');
+    }
+
 }
 ?>

@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Riddle;
 use App\Entity\Profile;
@@ -16,20 +17,11 @@ class DiscoverController extends AbstractController
     /**
     * @Route("/discover", name="discover_view")
     */
-    public function viewDiscover(Request $request)
+    public function viewDiscover(Request $request, SessionInterface $session)
     {
-        $session = new Session();
-        $session->start();
-
         //UNCOMMENT to let this page work with sessions
-        //$profile = $session->get('profile');
-        //$profileId = $profile->getId();
-
-        $profileId = 1;
-
-        $profile = $this->getDoctrine()
-        ->getRepository(Profile::class)
-        ->find($profileId);
+        $profile = $session->get('profile');
+        $profileId = $profile->getId();
 
         $riddles = $this->getDoctrine()
         ->getRepository(Riddle::class)

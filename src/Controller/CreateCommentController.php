@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Answer;
 use App\Entity\Comment;
@@ -19,12 +20,9 @@ class CreateCommentController extends AbstractController
     /**
     * @Route("/createComment/{id}", name="createComment_view")
     */
-    public function viewAnswers($id = "1", Request $request)
+    public function viewAnswers($id = "1", Request $request, SessionInterface $session)
     {
         $answerId = (int) $id;
-
-        $session = new Session();
-        $session->start();
     
         $riddleId = $session->get('riddleId');
 
@@ -43,16 +41,9 @@ class CreateCommentController extends AbstractController
         ->findAll();
 
         //UNCOMMENT to let this page work with sessions
-        //$profile = $session->get('profile');
-        //$profileId = $profile->getId();
+        $profile = $session->get('profile');
+        $profileId = $profile->getId();
 
-        $profileId = 1;
-
-        $profile = $this->getDoctrine()
-        ->getRepository(Profile::class)
-        ->find($profileId);
-
-        $session->set('profile', $profile);
         $session->set('answerId', $answerId);
 
         //form

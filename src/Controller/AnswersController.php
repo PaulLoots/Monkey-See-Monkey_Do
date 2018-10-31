@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Answer;
 use App\Entity\Comment;
@@ -19,11 +20,8 @@ class AnswersController extends AbstractController
     /**
     * @Route("/answers/{id}", name="answers_view")
     */
-    public function viewAnswers($id = "33", Request $request)
-    {
-        $session = new Session();
-        $session->start();
-    
+    public function viewAnswers($id = "33", Request $request, SessionInterface $session)
+    {    
         $riddleId = (int) $id;
 
         $session->set('riddleId', $riddleId);
@@ -46,18 +44,9 @@ class AnswersController extends AbstractController
         ->getRepository(Comment::class)
         ->findAll();
 
-        //$session = new Session();
-        //$session->start();
-
         //UNCOMMENT to let this page work with sessions
-        //$profile = $session->get('profile');
-        //$profileId = $profile->getId();
-
-        $profileId = 1;
-
-        $profile = $this->getDoctrine()
-        ->getRepository(Profile::class)
-        ->find($profileId);        
+        $profile = $session->get('profile');
+        $profileId = $profile->getId();        
 
         //AJAX
 

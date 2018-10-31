@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 use App\Entity\Answer;
 use App\Entity\Riddle;
@@ -17,7 +18,7 @@ class RiddleController extends AbstractController
     /**
     * @Route("/riddle/{id}", name="riddle_view")
     */
-    public function viewRiddle($id = "1", Request $request)
+    public function viewRiddle($id = "1", Request $request, SessionInterface $session)
     {
         $riddleId = (int) $id;
 
@@ -31,24 +32,14 @@ class RiddleController extends AbstractController
         ->getRepository(Profile::class)
         ->find($questionProfileId);
 
-        $session = new Session();
-        $session->start();
-
         //UNCOMMENT to let this page work with sessions
-        //$profile = $session->get('profile');
-        //$profileId = $profile->getId();
-
-        $profileId = 1;
-
-        $profile = $this->getDoctrine()
-        ->getRepository(Profile::class)
-        ->find($profileId);
+        $profile = $session->get('profile');
+        $profileId = $profile->getId();
 
         $answers = $this->getDoctrine()
         ->getRepository(Answer::class)
         ->findBy(array('riddle_id' => $riddleId));
 
-        $session->set('profile', $profile);
         $session->set('riddleId', $riddleId);
 
         //form

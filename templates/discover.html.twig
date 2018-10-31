@@ -6,10 +6,16 @@
 
 {% block Badge %}
     {% set badgeCount = 0 %}
-    {% for answerBadge in answersBadge %}
-        {% if profile.id == answerBadge.profileId.id %}
-            {% set badgeCount = badgeCount + 1 %}
-            <span class="badge badge-pill badge-danger" style="position: absolute;margin-top: -44px;margin-left: 43px;font-family: Roboto, sans-serif;font-size: 12px;">{{ badgeCount }}</span>
+    {% for riddle in riddles %}
+        {% if profile.id == riddle.profileId.id %}
+            {% for answerBadge in answersBadge %}
+                {% if riddle.id == answerBadge.riddleId.id %}
+                    {% if profile.id != answerBadge.profileId.id %}
+                        {% set badgeCount = badgeCount + 1 %}
+                        <span class="badge badge-pill badge-danger" style="position: absolute;margin-top: -44px;margin-left: 43px;font-family: Roboto, sans-serif;font-size: 12px;">{{ badgeCount }}</span>
+                    {% endif %}
+                {% endif %}
+            {% endfor %} 
         {% endif %}
     {% endfor %} 
 {% endblock %}
@@ -48,7 +54,7 @@
                                 </div>
                             </div>
                         </div>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>

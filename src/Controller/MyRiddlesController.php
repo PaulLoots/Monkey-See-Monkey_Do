@@ -16,12 +16,10 @@ use App\Form\CreateRiddleType;
 class MyRiddlesController extends AbstractController
 {
     /**
-    * @Route("/myriddles/{id}", name="myriddles_view")
+    * @Route("/myriddles", name="myriddles_view")
     */
-    public function viewMyRiddles($id = "1", Request $request, SessionInterface $session)
+    public function viewMyRiddles(Request $request, SessionInterface $session)
     {
-
-
         //UNCOMMENT to let this page work with sessions
         $profile = $session->get('profile');
         $profileId = $profile->getId();
@@ -33,6 +31,10 @@ class MyRiddlesController extends AbstractController
         $answers = $this->getDoctrine()
         ->getRepository(Answer::class)
         ->findBy(array('correct' => NULL));
+
+        $answersAll = $this->getDoctrine()
+        ->getRepository(Answer::class)
+        ->findAll();
 
         //form
         $createRiddle = new Riddle();
@@ -77,7 +79,7 @@ class MyRiddlesController extends AbstractController
             return true; 
          }
          
-        $model = array('profile' => $profile,'riddles' => $riddles, 'answers' => $answers, 'form' => $form->createView());
+        $model = array('profile' => $profile,'riddles' => $riddles, 'answers' => $answers, 'answersAll' => $answersAll, 'form' => $form->createView());
         $view = 'myriddles.html.twig';
 
         return $this->render($view, $model);
