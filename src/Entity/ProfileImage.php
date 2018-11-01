@@ -33,6 +33,11 @@ class ProfileImage
      */
     private $active_state;
 
+    /**
+     * @ORM\Column(type="blob", nullable=true)
+     */
+    private $image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,6 +75,18 @@ class ProfileImage
     public function setActiveState(bool $active_state): self
     {
         $this->active_state = $active_state;
+
+        return $this;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function setImage($image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

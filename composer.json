@@ -21,7 +21,8 @@
         "symfony/twig-bundle": "*",
         "symfony/validator": "*",
         "symfony/web-server-bundle": "*",
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "cloudinary/cloudinary_php": "dev-master"
     },
     "require-dev": {
         "symfony/dotenv": "*"

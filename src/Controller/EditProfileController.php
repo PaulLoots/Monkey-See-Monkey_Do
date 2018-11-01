@@ -85,15 +85,21 @@ class EditProfileController extends AbstractController
 
                 $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
+                $bucket->upload(
+                    file_get_contents($_FILES[$file]['tmp_name']),
+                    [
+                        'name' => $_FILES[$file][$fileName]
+                    ]
+                );
                 // Move the file to the directory where brochures are stored
-                try {
-                    $file->move(
-                        $this->getParameter('profileImages_directory'),
-                        $fileName
-                    );
-                } catch (FileException $e) {
-                    // ... handle exception if something happens during file upload
-                }
+                // try {
+                //     $file->move(
+                //         $this->getParameter('profileImages_directory'),
+                //         $fileName
+                //     );
+                // } catch (FileException $e) {
+                //     // ... handle exception if something happens during file upload
+                // }
 
                 $profileImage->setImagePath($fileName);
 
