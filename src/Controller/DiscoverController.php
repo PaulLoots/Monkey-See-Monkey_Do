@@ -23,9 +23,9 @@ class DiscoverController extends AbstractController
         //UNCOMMENT to let this page work with sessions
         $profile = $session->get('profile');
 
-        // if($session->has('profile') == false){
-        //     return $this->redirectToRoute('login_view');
-        // }
+        if($session->has('profile') == false){
+            return $this->redirectToRoute('login_view');
+        }
         $profileId = $profile->getId();
 
         $riddles = $this->getDoctrine()
