@@ -7,7 +7,7 @@
 {% block bodyStyling %}style="background-image: url(../assets/img/{{ riddle.icon }}_pattern.svg);background-position: center;background-size: 600px;"{% endblock %}
 
 {% block body %}
-<div class="container" style="padding-right: 0;padding-left: 0;">
+<div class="container" style="padding-left: 0px;padding-right: 0px;margin-bottom:60px;">
         <div class="row">
             <div class="col-12 col-md-5 col-xl-4" id="sidebar">
                 <div class="container">
@@ -33,7 +33,7 @@
                                         <div data-bs-parallax-bg="true" style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
                                             <div class="row" style="width: 100%;margin: 0px;">
                                                 <div class="col-12" style="padding-top: 15px;padding-bottom: 20px;padding-left: 10px;padding-right: 10px;">
-                                                    <h4 class="text-center text-white riddleTextScroll" style="font-family: Quicksand, sans-serif;font-size: 20px;max-height: 265px;">{{ riddle.question }}</h4>
+                                                    <h4 class="text-center text-white riddleTextScroll" style="font-family: Quicksand, sans-serif;font-size: 20px;max-height: 20vh;">{{ riddle.question }}</h4>
                                                 </div>
                                             </div>
                                         </div>
@@ -46,7 +46,7 @@
                                             <div data-bs-parallax-bg="true" style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
                                                 <div class="row" style="width: 100%;margin: 0px;">
                                                     <div class="col-12" style="padding-top: 15px;padding-bottom: 20px;padding-left: 15px;padding-right: 20px;">
-                                                        <h4 class="text-center text-light riddleTextScroll" style="font-family: Quicksand, sans-serif;max-height: 265px;font-size: 20px;">{{ riddle.correctAnswer }}</h4>
+                                                        <h4 class="text-center text-light riddleTextScroll" style="font-family: Quicksand, sans-serif;max-height: 20vh;;font-size: 20px;">{{ riddle.correctAnswer }}</h4>
                                                     </div>
                                                 </div>
                                             </div>
@@ -68,7 +68,7 @@
             </div>
         </div>
         <div class="col-12 col-md-6 offset-md-6" style="padding-left: 0;">
-            <div class="container">
+            <div class="container"style="padding-left: 0px;padding-right: 0px;">
                 <div class="row" style="margin-bottom: 20px;margin-left: 0;">
                     <div class="col mx-auto" style="padding-top: 5px;padding-bottom: 10px;">
                         <h1 class="text-center text-white" style="font-family: Quicksand, sans-serif;font-weight: 300;font-size: 30px;margin-top: 10px;">Answers</h1>
@@ -76,7 +76,7 @@
                     {% for answer in answers %}
                     {% if riddle.id == answer.riddleId.id %}
                     {% if user.id == answer.profileId.id %}
-                    <div class="col-12 col-xl-10 mx-auto" data-aos="zoom-in" style="padding-top: 5px;padding-bottom: 5px;padding-left: 10px;padding-right: 10px;">
+                    <div class="col-12 col-xl-10 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 10px;padding-right: 10px;">
                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;">
                             <div class="row">
                                 <div class="col-auto" style="padding-right: 5px;">
@@ -119,7 +119,13 @@
                         </div>
                         <div class="row" style="width: 100%;margin: 0px;margin-top: 10px;">
                             <div class="col" style="padding: 0;">
-                                <div class="filterBg answerRiddleCardItem2" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-sm thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-{{ answer.id }}" role="button" href="#collapse-{{ answer.id }}" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;">Comments<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
+                                <div class="filterBg answerRiddleCardItem2" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-sm thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-{{ answer.id }}" role="button" href="#collapse-{{ answer.id }}" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;">Comments 
+                                        {% set commentCount = 0 %}
+                                        {% for comment in comments %}
+                                            {% if answer.id == comment.answerId.id %}
+                                                {% set commentCount = commentCount + 1 %}
+                                            {% endif %}
+                                        {% endfor %}({{ commentCount }})<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
                                     <div class="collapse" id="collapse-{{ answer.id }}">
                                         <div class="row" style="padding-left: 15px;padding-right: 15px;">
                                             <div class="col-12 sendBtnCol thumbsHover" style="padding-right: 25px;padding-left: 25px;"><a class="btn btn-dark btn-block btn-lg" role="button" href="/createComment/{{ answer.id }}" style="height: 50px;font-family: Quicksand, sans-serif;border-style: none;border-radius: 10px;font-weight: 700;width: 100%;background-color: {{ riddle.colour }};padding-top: 10px;"><i class="la la-pencil"></i></a></div>
@@ -149,10 +155,10 @@
                                                         </div>
                                                     </div>
                                                     <div class="row" style="width: 100%;margin: 0px;">
-                                                        <div value="{{ comment.id }}" class="col-auto thumbsHover likeComment" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
+                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
                                                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.likes }}</p>
                                                         </div>
-                                                        <div value="{{ comment.id }}" class="col-auto thumbsHover dislikeComment" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
+                                                        <div class="col-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
                                                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ comment.dislikes }}</p>
                                                         </div>
                                                         <div class="col"></div>
@@ -211,10 +217,10 @@
             {% endif %}
             {% endif %}
             {% endfor %}
-                    {% for answer in answers  | sortbyfield('time') | reverse%}
+                    {% for answer in answers  | sortbyfield('id') | reverse %}
                     {% if riddle.id == answer.riddleId.id %}
                     {% if user.id != answer.profileId.id %}
-                    <div class="col-12 col-xl-10 mx-auto" data-aos="zoom-in" style="padding-top: 5px;padding-bottom: 5px;padding-left: 10px;padding-right: 10px;">
+                    <div class="col-12 col-xl-10 mx-auto" style="padding-top: 5px;padding-bottom: 5px;padding-left: 10px;padding-right: 10px;">
                         <div class="riddleCard" style="padding: 18px;background-color: #1c1f21;">
                             <div class="row">
                                 <div class="col-auto" style="padding-right: 5px;">
@@ -256,7 +262,13 @@
                         </div>
                         <div class="row" style="width: 100%;margin: 0px;margin-top: 10px;">
                             <div class="col" style="padding: 0;">
-                                <div class="filterBg answerRiddleCardItem2" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-sm thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-{{ answer.id }}" role="button" href="#collapse-{{ answer.id }}" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;">Comments<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
+                                <div class="filterBg answerRiddleCardItem2" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-sm thumbsHover" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-{{ answer.id }}" role="button" href="#collapse-{{ answer.id }}" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;">Comments
+                                {% set commentCount = 0 %}
+                                        {% for comment in comments %}
+                                            {% if answer.id == comment.answerId.id %}
+                                                {% set commentCount = commentCount + 1 %}
+                                            {% endif %}
+                                        {% endfor %}({{ commentCount }})<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
                                     <div class="collapse" id="collapse-{{ answer.id }}">
                                         <div class="row" style="padding-left: 15px;padding-right: 15px;">
                                             <div class="col-12 sendBtnCol thumbsHover" style="padding-right: 25px;padding-left: 25px;"><a class="btn btn-dark btn-block btn-lg" role="button" href="/createComment/{{ answer.id }}" style="height: 50px;font-family: Quicksand, sans-serif;border-style: none;border-radius: 10px;font-weight: 700;width: 100%;background-color: {{ riddle.colour }};padding-top: 10px;"><i class="la la-pencil"></i></a></div>
