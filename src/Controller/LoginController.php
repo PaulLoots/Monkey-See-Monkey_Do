@@ -31,6 +31,17 @@ class LoginController extends AbstractController
             $userProfile = $SignUpform->getData();
 
             $profileEmail = $userProfile->getEmail();
+            $profileMatchingEmail = $this->getDoctrine()
+            ->getRepository(Profile::class)
+
+            ->findOneBy(['email' => $profileEmail]);
+
+            $session->set('loginError', false);
+            
+            if($profileMatchingEmail != NULL){
+                $session->set('emailError', true);
+                return $this->redirectToRoute('login_view');
+            }
 
             $encoder = new BCryptPasswordEncoder(12);
             $userProfile->setPassword($encoder->encodePassword($userProfile->getPassword(), null));
@@ -96,9 +107,10 @@ class LoginController extends AbstractController
         }
 
         $loginError = $session->get('loginError');
+        $emailError = $session->get('emailError');
 
         $view = 'login.html.twig';
-        $model = array('SignUpform' => $SignUpform->createView(), 'loginform' => $loginform->createView(), 'loginError' => $loginError);
+        $model = array('SignUpform' => $SignUpform->createView(), 'loginform' => $loginform->createView(), 'loginError' => $loginError, 'emailError' => $emailError);
 
         return $this->render($view, $model);
     }
