@@ -108,6 +108,7 @@ class LoginController extends AbstractController
     */
     public function logout(Request $request, SessionInterface $session)
     {
+        $session->clear();
         $session->invalidate();
         return $this->redirectToRoute('login_view');
     }

@@ -22,6 +22,10 @@ class EditProfileController extends AbstractController
     */
     public function updateProfile(Request $request, SessionInterface $session)
     {
+        if($session->has('profile') == false){
+            return $this->redirectToRoute('login_view');
+        }
+
         $profile = $session->get('profile');
         $profileId = $profile->getId();
 

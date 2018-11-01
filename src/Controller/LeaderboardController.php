@@ -18,6 +18,9 @@ class LeaderboardController extends AbstractController
     */
     public function showLeaderboard(Request $request, SessionInterface $session)
     {
+        if($session->has('profile') == false){
+            return $this->redirectToRoute('login_view');
+        }
         //UNCOMMENT to let this page work with sessions
         $profile = $session->get('profile');
         $profileId = $profile->getId();
