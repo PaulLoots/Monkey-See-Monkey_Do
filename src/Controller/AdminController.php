@@ -20,8 +20,15 @@ class AdminController extends AbstractController
     */
     public function viewAdmin(Request $request, SessionInterface $session)
     {
+        if($session->has('profile') == false){
+            return $this->redirectToRoute('login_view');
+        }
         $profile = $session->get('profile');
         $profileId = $profile->getId();
+
+        if($profile->getAdmin() != true){
+            return $this->redirectToRoute('discover_view');
+        }
 
         $profileImages = $this->getDoctrine()
         ->getRepository(ProfileImage::class)

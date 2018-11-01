@@ -1,4 +1,7 @@
-$(function() {sideBar()});
+$(function() {
+  sideBar();
+  $(".riddleCol").removeClass("riddleExit");
+});
 
 $( window ).resize(function() {sideBar()});
     

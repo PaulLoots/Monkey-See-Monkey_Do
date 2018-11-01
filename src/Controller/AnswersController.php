@@ -22,6 +22,9 @@ class AnswersController extends AbstractController
     */
     public function viewAnswers($id = "1", Request $request, SessionInterface $session)
     {    
+        if($session->has('profile') == false){
+            return $this->redirectToRoute('login_view');
+        }
         $riddleId = (int) $id;
 
         $riddle = $this->getDoctrine()

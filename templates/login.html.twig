@@ -74,7 +74,9 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                                     </div>
  
                                 {{ form_end(SignUpform) }}
-
+                                {% if emailError == true %}
+                                    <p>Email already registered!</p>
+                                {% endif %}
                         </div>
                     </div>
                 </div>

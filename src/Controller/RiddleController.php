@@ -20,6 +20,9 @@ class RiddleController extends AbstractController
     */
     public function viewRiddle($id = "1", Request $request, SessionInterface $session)
     {
+        if($session->has('profile') == false){
+            return $this->redirectToRoute('login_view');
+        }
         $riddleId = (int) $id;
 
         $riddle = $this->getDoctrine()
