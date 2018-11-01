@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="assets/css/styles_2.css">{% endblock %}
 
 {% block bodyStyling %}style="background-color: #2d3436;background-image:
-url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock %}
+url(&quot;../assets/img/monkey_pattern.svg&quot;);background-size: 70px;"{% endblock %}
 
 {% block navigation %}{% endblock %}
 {% block body %}
@@ -14,42 +14,23 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-lg-6 col-xl-8 d-lg-block infoBlock" style="height: 100vh;">
-            <div class="row d-none d-lg-block" style="margin-top: 20vh;">
-                <div class="col" style="text-align:center;"><img src="assets/img/logo1.svg" style="height: 110px;"></div>
-            </div>
-            <div class="row d-none d-lg-block" style="padding-top: 10vh;margin-bottom: 40px;">
-                <div class="col-10 offset-1">
-                    <p style="color: rgb(255,255,255);font-family: Roboto, sans-serif;">Welcome to Monkey See
-                        Monkey Do!&nbsp;Welcome to Monkey See Monkey Do!&nbsp;Welcome to Monkey See Monkey
-                        Do!&nbsp;Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey Do!&nbsp;Welcome to
-                        Monkey See Monkey Do!&nbsp;Welcome
-                        to Monkey See Monkey Do! Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey
-                        Do!Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey Do!<br><br></p>
-                    <p style="color: rgb(255,255,255);font-family: Roboto, sans-serif;">Welcome to Monkey See
-                        Monkey Do!&nbsp;Welcome to Monkey See Monkey Do!&nbsp;Welcome to Monkey See Monkey
-                        Do!&nbsp;Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey Do!&nbsp;Welcome to
-                        Monkey See Monkey Do!&nbsp;Welcome
-                        to Monkey See Monkey Do! Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey
-                        Do!Welcome to Monkey See Monkey Do! Welcome to Monkey See Monkey Do!<br><br></p>
+            <div class="row d-none d-lg-block" style="padding-top: 15vh;">
+                <div class="col-12 col-sm-8 col-md-6 col-lg-8 col-xl-4 mx-auto colorShift" style="padding: 0px;">
+                    <h4 class="text-center" style="font-family: Quicksand, sans-serif;font-size: 20px;max-height: 265px;">There are two monkeys on a tree and one jumps off.&nbsp; Why does the other monkey jump too?</h4>
                 </div>
             </div>
+            <div class="row d-none d-lg-block" style="margin-top: 15vh;">
+                <div class="col" style="text-align: center;margin-bottom: 20vh;"><img src="../assets/img/logoFull.png" style="height: 110px;"></div>
+            </div>
             <div class="row">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-8 col-xl-4 offset-sm-2 offset-md-3 offset-lg-2 offset-xl-4"
-                    style="margin-bottom: 30px;">
-                    <div class="collapseContentBlock" style="transition:0.3s;"><a class="btn btn-primary btn-block d-none d-lg-block collapse-button"
-                            data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" role="button" href="#collapse-1"
-                            id="collapseToBottom" style="background-color: #e17055;border: none;border-radius: 10px;height: 60px;font-size: 24px;font-family: Quicksand, sans-serif;font-weight: 500;padding: 8px 16px;">Create
-                            Account</a>
-                        <div class="collapse collapseContentBlock" id="collapse-1" style="padding-top: 25px;transition:0.3s;">
-                            <div class="row">
-                                <div class="col d-block d-lg-none">
-                                    <h2 style="font-family: Quicksand, sans-serif;text-align: center;color: rgb(255,255,255);font-weight: 500;">Create
-                                        Account</h2>
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-8 col-xl-4 offset-sm-2 offset-md-3 offset-lg-2 offset-xl-4" style="margin-bottom: 30px;padding-right: 0;padding-left: 0;">
+                        <div class="riddleStateCard colorShiftB collapseContentBlock" style="padding-bottom: 15px;margin-top: 20px;transition: 0.3s;padding-left: 15px;padding-right: 15px;"><a class="btn btn-outline-link btn-block btn-sm thumbsHover collapsebutton" data-toggle="collapse" aria-expanded="false" aria-controls="collapse-1" role="button" href="#collapse-1" id="collapseToBottom" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;height: 40px;padding-top: 12px;">Create Account<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
+                            <div class="collapse collapseContentBlock" id="collapse-1">
+                                <div class="row">
+                                    <div class="col d-block d-lg-none">
+                                        <h2 style="font-family: Quicksand, sans-serif;text-align: center;color: rgb(255,255,255);font-weight: 500;">Create Account</h2>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                                
-
                                 {{ form_start(SignUpform, {'attr': {'name':'CreateAccountForm'}}) }}
 
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
@@ -77,17 +58,18 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
                                 {% if emailError == true %}
                                     <p>Email already registered!</p>
                                 {% endif %}
-                        </div>
                     </div>
-                </div>
+            </div>
+       
+        </div>
             </div>
         </div>
         <div class="col-12 col-lg-6 col-xl-4 loginBlock" style="position: fixed;right: 0px;height: 100vh;background-color: #e17055;padding-top: 0;">
             <div class="loginContent">
-                <div class="d-block d-lg-none" style="text-align:center;padding-bottom: 30px;padding-top: 25px;color: rgb(255,255,255);"><img
-                        src="assets/img/logo1.svg" style="height: 80px;"></div>
-                <div class="d-none d-lg-block" style="height: 30vh;"></div>
-                <div style="height: 50vh;">
+                <div class="d-block d-lg-none" style="margin-top:2vh;text-align:center;padding-bottom: 30px;padding-top: 25px;color: rgb(255,255,255);"><img
+                        src="../assets/img/logoFull.png" style="height: 80px;"></div>
+                <div class="d-none d-lg-block" style="height: 27vh;"></div>
+                <div style="height: 50vh;margin-top:3vh;">
                     <div class="row">
                         <div class="col">
                             <h2 style="font-family: Quicksand, sans-serif;text-align: center;color: rgb(255,255,255);font-weight: 500;">Login</h2>
@@ -123,6 +105,11 @@ url(&quot;assets/img/monkey-dull2.svg&quot;);background-size: 70px;"{% endblock 
 
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row" style="padding-top: 25px;padding-bottom: 25px;margin-top:30px;">
+                <div class="col">
+                    <p class="text-center text-white-50" style="margin: 0;font-family: Roboto, sans-serif;font-size: 12px;">Monkey See Monkey Do © 2018</p>
                 </div>
             </div>
         </div>

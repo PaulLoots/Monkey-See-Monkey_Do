@@ -25,7 +25,7 @@
 {% block body %}
     <div class="container" style="margin-top: 10px;">
         <div class="row">
-            <div class="col-10 col-sm-8 col-md-6 col-lg-8 col-xl-6 mx-auto">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-8 col-xl-6 mx-auto"style="padding-left: 0px;padding-right: 0px;">
                 <div class="filterBg" style="padding-bottom: 1px;"><a class="btn btn-outline-link btn-block btn-lg thumbsHover" data-toggle="collapse" {% if filterItem != 'all' %} aria-expanded="true" {% else %} aria-expanded="false" {% endif %} aria-controls="collapse-1" role="button" href="#collapse-1" style="color: rgb(254,254,254);font-family: Roboto, sans-serif;font-weight: 300;font-size: 20px;height: 60px;">Filter<i class="la la-chevron-circle-down" style="color: rgb(255,255,255);font-size: 20px;margin-left: 5px;"></i></a>
                     <div class="collapse {% if filterItem != 'all' %} show {% else %} {% endif %}" id="collapse-1">
                         <div class="col">
@@ -60,7 +60,7 @@
         </div>
     </div>
     </div>
-    <div class="container">
+    <div class="container"style="padding-left: 0px;padding-right: 0px;margin-bottom:60px;">
         <div class="row" style="padding-left: 1%;">
         {% set noUser = false %} 
         {% if filterItem == 'all' %}
