@@ -108,13 +108,17 @@ class LoginController extends AbstractController
             $encoder = new BCryptPasswordEncoder(12);
 
             if($profileMatchingEmail != NULL){
-                if($encoder->isPasswordValid($profileMatchingEmail->getPassword(), $loginProfile->getPassword(), null)){
-                $session->set('filter', 'all');
-                $session->set('profile', $profileMatchingEmail);
-                $session->set('loginError', false);
-                return $this->redirectToRoute('discover_view');
+                if($profileMatchingEmail->getBanned()){
+                    $session->set('bannedError', true);
                 } else {
-                    $session->set('loginError', true);  
+                    if($encoder->isPasswordValid($profileMatchingEmail->getPassword(), $loginProfile->getPassword(), null)){
+                    $session->set('filter', 'all');
+                    $session->set('profile', $profileMatchingEmail);
+                    $session->set('loginError', false);
+                    return $this->redirectToRoute('discover_view');
+                    } else {
+                        $session->set('loginError', true);  
+                    }
                 }
             } else {
                 $session->set('loginError', true);
@@ -123,9 +127,10 @@ class LoginController extends AbstractController
 
         $loginError = $session->get('loginError');
         $emailError = $session->get('emailError');
+        $bannedError = $session->get('bannedError');
 
         $view = 'login.html.twig';
-        $model = array('SignUpform' => $SignUpform->createView(), 'loginform' => $loginform->createView(), 'loginError' => $loginError, 'emailError' => $emailError);
+        $model = array('SignUpform' => $SignUpform->createView(), 'loginform' => $loginform->createView(), 'bannedError' => $bannedError, 'loginError' => $loginError, 'emailError' => $emailError);
 
         return $this->render($view, $model);
     }
