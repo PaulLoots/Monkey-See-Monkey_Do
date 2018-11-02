@@ -60,10 +60,25 @@ class LoginController extends AbstractController
 
             $profileImage = new ProfileImage();
             $profileImage->setProfileId($profile);
-            $profileImage->setImagePath('monkey.png');
+            $profileImage->setImagePath('monkey1.png');
             $profileImage->setActiveState(true);
 
             $entityManager->persist($profileImage);
+
+            $profileImage2 = new ProfileImage();
+            $profileImage2->setProfileId($profile);
+            $profileImage2->setImagePath('monkey2.png');
+            $profileImage2->setActiveState(false);
+
+            $entityManager->persist($profileImage2);
+
+            $profileImage3 = new ProfileImage();
+            $profileImage3->setProfileId($profile);
+            $profileImage3->setImagePath('monkey3.png');
+            $profileImage3->setActiveState(false);
+
+            $entityManager->persist($profileImage3);
+
             $entityManager->flush();
 
             $session->set('profile', $profile);
