@@ -82,6 +82,17 @@ class MyRiddlesController extends AbstractController
                 $answer->setCorrect(false);
             }
 
+    
+                if($vote == "reportAnswer"){
+                    $answerId = $_POST['id'];
+    
+                    $AnswerReported = $entityManager->getRepository(Answer::class)->find($answerId);
+                    $AnswerReported->setReported(true);
+                }
+    
+
+    
+
             $entityManager->flush();
 
             return true; 

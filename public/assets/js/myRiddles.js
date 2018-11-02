@@ -68,3 +68,22 @@ $(".iconItem").click(function(){
 $("#okIconBtn").click(function(){
     $("#chooseIconModal").modal("hide");
 });
+
+$(".reportAnswer").on("click", function(event){ 
+  $(this).addClass("reportedI");
+  var ansClicked = $(this).attr("value");
+  $.ajax({  
+     url:        '/myriddles',  
+     type:       'POST',
+     data: {id: ansClicked, vote:"reportAnswer"},   
+     dataType:   'text',  
+     async:      true,  
+     
+     success: function(data, status) {   
+         console.log(data);
+     },  
+     error : function(xhr, textStatus, errorThrown) {  
+        //alert('Ajax request failed.');  
+     }  
+  });  
+});
