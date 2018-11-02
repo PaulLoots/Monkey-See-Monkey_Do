@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block navigation %}{% endblock %}
+
+{% block bodyStyling %}style="background-color: #1c1f21;" {% endblock %}
+
+    {% block body %}
+
+    <div class="container" style="padding-right: 0px;padding-left: 0px;padding-bottom: 60px;">
+        <div class="row backBlock" style="height: 60px;">
+            <div class="col-2 thumbsHover" style="margin: 0;padding-top: 16px;padding-left: 25px;"><a href="/discover"><i class="la la-chevron-circle-left d-table" style="font-size: 36px;color: #dfe6e9;margin: auto;"></i></a></div>
+        </div>
+        <div class="row">
+            <div class="col-12"><img class="d-table mx-auto" src="../assets/img/monkeySayB.svg" width="110px"></div>
+        </div>
+        <div class="row">
+            <div class="col-12"><img class="d-table mx-auto flicker" src="../assets/img/sayLogo.png" width="180px" style="margin-top: 2vh;"></div>
+        </div>
+        <div class="row">
+            <div class="col-12 shake bounce" style="padding-right: 0px;padding-left: 0px;"><img class="sha d-table mx-auto" src="../assets/img/Magic_eight_ball.png" width="360px" style="margin-top: 2vh;">
+                <p class="res text-center d-table mx-auto" style="color: rgba(168,164,215,0.96);font-family: Roboto, sans-serif;font-weight: 700;margin-top: -209px;width: 80px;font-size: 16px;"></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="../assets/js/monkeySay.js"></script>
+    <script src="../assets/jquery-ui/jquery-ui.min.js"></script>
+{% endblock %}

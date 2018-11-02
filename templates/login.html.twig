@@ -55,9 +55,6 @@ url(&quot;../assets/img/monkey_pattern.svg&quot;);background-size: 70px;"{% endb
                                     </div>
  
                                 {{ form_end(SignUpform) }}
-                                {% if emailError == true %}
-                                    <p>Email already registered!</p>
-                                {% endif %}
                     </div>
             </div>
        
@@ -77,7 +74,12 @@ url(&quot;../assets/img/monkey_pattern.svg&quot;);background-size: 70px;"{% endb
                     </div>
                     <div class="row">
                         <div class="col-12 col-sm-8 col-md-6 col-lg-10 col-xl-8 offset-sm-2 offset-md-3 offset-lg-1 offset-xl-2">
-
+                                {% if loginError == true %}
+                                    <p style="margin-top:15px;text-align:center;color:white;box-shadow: 0px 3px 15px rgba(0,0,0,.6);border-radius:20px;background-color:#ff7675;">Email or Password is incorrect!</p>
+                                {% endif %}
+                                                                {% if emailError == true %}
+                                    <p style="margin-top:15px;text-align:center;color:white;box-shadow: 0px 3px 15px rgba(0,0,0,.6);border-radius:20px;background-color:#ff7675;">Email already registered!</p>
+                                {% endif %}
                             {{ form_start(loginform, {'attr': {'name':'CreateAccountForm'}}) }}
  
                                     <div class="form-group inputRoundedBlock" style="height: 50px;">
@@ -99,9 +101,7 @@ url(&quot;../assets/img/monkey_pattern.svg&quot;);background-size: 70px;"{% endb
                                     </div>
 
                                 {{ form_end(loginform) }}
-                                {% if loginError == true %}
-                                    <p>Email or Password is incorrect!</p>
-                                {% endif %}
+
 
                         </div>
                     </div>
