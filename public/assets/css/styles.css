@@ -409,3 +409,44 @@ img {
   object-fit: cover;
 }
 
+#sha {
+  position:absolute;
+  left:100px;
+  top:100px;
+}
+#icirc {
+  position:absolute;
+  border-style: solid;
+  border: 3px;
+  border-radius:50px;
+  width:100px;
+  height:100px;
+  background-color:white;
+  left:35px;
+  top:50px;
+  z-index:1;
+}
+#ocirc {
+  left:30px;
+  position:absolute;
+  border-style: solid;
+  border: 3px;
+  border-radius:100px;
+  width:200px;
+  height:200px;
+  background-color:black;
+}
+#eight {
+  position:absolute;
+  left:60px;
+  top:62px;
+  font-size:350%;
+  z-index:2;
+}
+#res {
+  position:absolute;
+  left:48px;
+  top:332px;
+  font-size:250%;
+}
+

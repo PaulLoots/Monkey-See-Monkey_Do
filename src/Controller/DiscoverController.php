@@ -78,6 +78,16 @@ class DiscoverController extends AbstractController
 
          }
     }
+    /**
+    * @Route("/monkeysays", name="monkeySays_view")
+    */
+    public function viewMonkeySays(Request $request, SessionInterface $session)
+    {
+        $model = array();
+        $view = 'monkey_says.html.twig';
+
+        return $this->render($view, $model);
+    }
 }
 
 ?>
