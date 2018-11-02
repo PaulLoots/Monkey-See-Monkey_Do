@@ -55,6 +55,7 @@
                             </div>
                         </div>
                     </div>
+                    {% if user.id != riddle.profileId.id %}
                     <div class="row" style="width: 100%;margin: 0px;padding-left: 20%;padding-right: 20%;margin-top: 25px;">
                         <div id="likeRiddle" value="{{ riddle.id }}" class="col-auto ml-auto thumbsHover" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
                             <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.likes }}</p>
@@ -64,6 +65,17 @@
                         </div>
                         <div value="{{ riddle.id }}" class="col-auto mr-auto thumbsHover reportRiddle" style="padding-right: 5px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
                     </div>
+                    {% else %}
+                    <div class="row" style="width: 100%;margin: 0px;padding-left: 20%;padding-right: 20%;margin-top: 25px;">
+                        <div class="col-auto ml-auto" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-up" style="color: #ffffff;font-size: 28px;font-weight: 700;"></i>
+                            <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.likes }}</p>
+                        </div>
+                        <div class="col-auto mx-auto" style="padding-right: 20px;padding-left: 5px;"><i class="la la-thumbs-down" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i>
+                            <p class="text-center d-table" style="color: rgba(255,255,255,0.85);width: 50%;font-weight: 500;font-family: Roboto, sans-serif;margin: auto;margin-top: -5px;font-size: 12px;">{{ riddle.dislikes }}</p>
+                        </div>
+                        <div value="{{ riddle.id }}" class="col-auto mr-auto thumbsHover reportRiddle" style="padding-right: 5px;padding-left: 5px;"><i class="la la-exclamation-circle" style="color: rgba(255,255,255,0.65);font-size: 28px;"></i></div>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -133,7 +145,7 @@
                                         <div class="row overflowScroll" style="max-height: 50vh;padding-right: 20px;padding-left: 20px;">
                                             {% for comment in comments %}
                                             {% if answer.id == comment.answerId.id %}
-                                            {% if profile.id == comment.profileId.id %}
+                                            {% if user.id == comment.profileId.id %}
                                             <div class="col-12" style="padding: 0px;margin-top: 5px;">
                                                 <div style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
                                                     <div class="row">
@@ -171,7 +183,7 @@
                                             {% endfor %}
                                             {% for comment in comments %}
                                             {% if answer.id == comment.answerId.id %}
-                                            {% if profile.id != comment.profileId.id %}
+                                            {% if user.id != comment.profileId.id %}
                                             <div class="col-12" style="padding: 0px;margin-top: 5px;">
                                                 <div style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
                                                     <div class="row">
@@ -276,7 +288,7 @@
                                         <div class="row overflowScroll" style="max-height: 50vh;padding-right: 20px;padding-left: 20px;">
                                             {% for comment in comments %}
                                             {% if answer.id == comment.answerId.id %}
-                                            {% if profile.id == comment.profileId.id %}
+                                            {% if user.id == comment.profileId.id %}
                                             <div class="col-12" style="padding: 0px;margin-top: 5px;">
                                                 <div style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
                                                     <div class="row">
@@ -314,7 +326,7 @@
                                             {% endfor %}
                                             {% for comment in comments %}
                                             {% if answer.id == comment.answerId.id %}
-                                            {% if profile.id != comment.profileId.id %}
+                                            {% if user.id != comment.profileId.id %}
                                             <div class="col-12" style="padding: 0px;margin-top: 5px;">
                                                 <div style="padding-top: 20px;padding-bottom: 20px;padding-right: 10px;padding-left: 10px;background-position: center;background-size: cover;background-image: url(assets/img/background_pattern.svg);max-height: 300px;">
                                                     <div class="row">
