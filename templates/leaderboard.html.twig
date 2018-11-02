@@ -11,7 +11,7 @@
 
 {% block body %}
 
-<div style="max-height: 70vh;overflow:scroll;">
+<div style="max-height: 90vh;padding-bottom:100px;overflow:scroll;">
     <div class="container d-none d-sm-none d-md-none d-lg-block d-xl-block" style="padding-bottom: 15px;margin-top: 120px;">
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2">
@@ -119,9 +119,10 @@
         </div>
     </div>
 </div>
-<div class="container" style="margin-bottom: 90px;">
+<div class="container" style="margin-bottom: 20px;position:fixed;
+bottom:0;">
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 offset-lg-2 offset-xl-2 itemCard" style="background-color: #b2bec3;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;margin-top: -15px;">
+        <div class="col-11 col-sm-12 col-md-12 col-lg-8 col-xl-9 offset-lg-3 offset-xl-4 itemCard" style="background-color: #b2bec3;border-radius: 15px;height: 100px;padding-top: 20px;margin-bottom: 15px;padding-right: 5%;padding-left: 1%;margin-top: -15px;">
             <h3 class="float-left" style="color: rgb(0,0,0);font-family: Quicksand, sans-serif;padding-top: 10px;text-align: center;min-width: 10%;border-right: 1px solid rgba(0,0,0,.2);min-height: 60px;">{{ myRank }}</h3><img
                 class="rounded-circle float-left" src="assets/profileImages/{{ profileImage.imagePath }}" height="60px" width="60px" style="margin-left: 3%;">
             <div class="float-left" style="max-width: 40%;margin-left: 3%;"><span style="font-family: Roboto, sans-serif;font-weight: 700;">Me</span>
