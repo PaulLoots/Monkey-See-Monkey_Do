@@ -20,7 +20,7 @@ class AnswersController extends AbstractController
     /**
     * @Route("/answers/{id}", name="answers_view")
     */
-    public function viewAnswers($id = "1", Request $request, SessionInterface $session)
+    public function viewAnswers($id = "0", Request $request, SessionInterface $session)
     {    
         if($session->has('profile') == false){
             return $this->redirectToRoute('login_view');
