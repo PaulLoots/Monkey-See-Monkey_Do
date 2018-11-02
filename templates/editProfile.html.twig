@@ -65,7 +65,7 @@
                                 <i style="margin:35%;font-size:40px;color:white;" class="la la-user-plus"></i>
                                 <span>
                                     <div id="myfile">
-                                        {{ form_widget(Uploadform.image_path, {'attr':{'id':'imageUpload', 'onChange':'readURL(this)'}}) }}
+                                        {{ form_widget(Uploadform.image_path, {'attr':{'id':'imageUpload', 'onChange':'readURL(this)', 'accept':'images/*', 'size':'200000'}}) }}
                                     </div>
                                 </span>
                             </label>
