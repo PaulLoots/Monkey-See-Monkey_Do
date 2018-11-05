@@ -71,8 +71,11 @@ class AdminController extends AbstractController
                 $action = $_POST['action'];
 
                 $profileAdmin = $entityManager->getRepository(Profile::class)->find($adminId);
+                $allAdmin = $this->getDoctrine()
+                ->getRepository(Profile::class)
+                ->findBy(array('admin' => true));
                     
-                if($action == 'RemoveAdmin'){
+                if(sizeof($allAdmin) > 1){
                     $profileAdmin->setAdmin(false);
                 } else {
                     $profileAdmin->setAdmin(true);
