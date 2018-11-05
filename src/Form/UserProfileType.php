@@ -28,7 +28,7 @@ class UserProfileType extends AbstractType
                 'data' => 0
             ))
             ->add('admin', HiddenType::class, array(
-                'data' => 1
+                'data' => 0
             ))
         ;
     }
