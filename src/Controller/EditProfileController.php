@@ -79,6 +79,8 @@ class EditProfileController extends AbstractController
 
                 $entityManager = $this->getDoctrine()->getManager();
 
+
+
                 forEach($oldImages as $oldImage){
                     $oldImage->setActiveState(false);  
                 }
@@ -87,23 +89,34 @@ class EditProfileController extends AbstractController
                 // $file=$profileImage->getImagePath();
                 $file=$Uploadform->get('image_path')->getData();
 
+                //upload Image Validation
+
+                // // $session->set('uploadError', false);
+
+                //  $size=$_FILES[$file]['size'];
+
+
+                // if($size > 200000){
+                //         $session->set('uploadError', true);  
+                //         return $this->redirectToRoute('editProfile_view');
+                // } else {
+                //     $session->set('uploadError', false);
+                // }
+
+                // $uploadError = $session->get('uploadError');
+
                 $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 
-                $bucket->upload(
-                    file_get_contents($_FILES[$file]['tmp_name']),
-                    [
-                        'name' => $_FILES[$file][$fileName]
-                    ]
-                );
-                // Move the file to the directory where brochures are stored
-                // try {
-                //     $file->move(
-                //         $this->getParameter('profileImages_directory'),
-                //         $fileName
-                //     );
-                // } catch (FileException $e) {
-                //     // ... handle exception if something happens during file upload
-                // }
+                
+                //Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        $this->getParameter('profileImages_directory'),
+                        $fileName
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
 
                 $profileImage->setImagePath($fileName);
 
