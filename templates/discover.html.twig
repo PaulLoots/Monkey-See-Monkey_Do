@@ -282,6 +282,7 @@
             {% endif %}  
         {% endfor %}
         {% elseif filterItem == 'user' %}
+        {% set noUser = true %}
         {% for riddle in riddles | sortbyfield('date') | reverse %}
         {% if riddle.profileId.name == filterUsername %}
         {% set myRiddle = false %}
@@ -353,9 +354,7 @@
                     </div>
                 </div>
             </div>
-        {% set noUser = false %} 
-        {% else %}
-        {% set noUser = true %}   
+        {% set noUser = false %}  
         {% endif %}
         {% endfor %}       
         {% endif %} 
